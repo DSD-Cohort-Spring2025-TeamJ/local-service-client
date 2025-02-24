@@ -12,6 +12,7 @@
   "dependencies": {
     "local-service-client": "file:",
     "react": "^19.0.0",
+    "react-calendar": "^5.1.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
