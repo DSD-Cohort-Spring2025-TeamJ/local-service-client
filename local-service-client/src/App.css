@@ -5,38 +5,27 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-tab {
+  font-size: 12px;
+  font-family: "Orbitron";
+  width: 6%;
+  padding: 12px 0;
+  margin: -1px 6px 6px;
+  background: #b644fc;
+  text-decoration: none;
+  color: white;
+  border-top: 2px solid #ee07e2;
+  border-radius: 100% 100%;
+  box-shadow: rgba(134, 44, 187, 0.2) 0 -25px 18px -14px inset, rgba(134, 44, 187, 0.2) 0 1px 2px, rgba(134, 44, 187, 0.2) 0 2px 4px, rgba(134, 44, 187, 0.2) 0 4px 8px, rgba(134, 44, 187, 0.2) 0 8px 16px, rgba(134, 44, 187, 0.2) 0 16px 32px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.nav-tab:hover {
+  color: #ee07e2;
+  box-shadow: rgba(238, 7, 226, 0.35) 0 -25px 18px -14px inset, rgba(238, 7, 226, 0.35) 0 1px 2px, rgba(238, 7, 226, 0.35) 0 2px 4px, rgba(238, 7, 226, 0.35) 0 4px 8px, rgba(238, 7, 226, 0.35) 0 8px 16px, rgba(238, 7, 226, 0.35) 0 16px 32px;
 }
