@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FormCalendar from './FormCalendar';
+// import FormCalendar from './FormCalendar';
 
 const ClientInfoForm = () => {
     //State to manage form
@@ -30,10 +30,12 @@ const ClientInfoForm = () => {
     return (
       <div>
         <section id="client_request">
-          <FormCalendar />
+          {/* <FormCalendar /> */}
         </section> <br />
         <section id="client_info">
           <form onSubmit={handleSubmit}>
+            <label htmlFor="stringCalendar">Date: </label>
+            <input type="datetime-local" id="stringCalendar" value={formData.stringCalendar} onChange={handleInputChange} /> <br />
             <label htmlFor="name">Name: </label>
             <input type="text" id="name" value={formData.name} onChange={handleInputChange} /> <br />
             <label htmlFor="email">Email: </label>
