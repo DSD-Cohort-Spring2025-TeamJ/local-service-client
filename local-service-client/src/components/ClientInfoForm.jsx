@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+// import FormCalendar from './FormCalendar';
 
 const ClientInfoForm = () => {
     //State to manage form
@@ -22,27 +23,8 @@ const ClientInfoForm = () => {
     //Handle submission
     const handleSubmit = (e) => {
       e.preventDefault( );
+      console.log('Form Data Submitted:', formData);
       //Send data to calendar API
-      try {
-        const response = await fetch(//'https',
-          {method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-        body: JSON.stringify(formData),
-        });
-
-        if(!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-
-        const result = await response.json();
-        console.log('Success:', JSON.stringify(result));
-        alert('Form submitted successfully');
-      }
-      catch (error) {
-        console.error('Error:', error);
-        alert('Error submitting form');
     };
 
     return (
