@@ -1,5 +1,12 @@
+import pragmaticplumberlogo from '/src/assets/pragmaticplumberlogo.png';
+
 export default function Services() {
     return (
+        <>
+        <div className="logo">
+        <img className="pragmatic-plumber" src={pragmaticplumberlogo} alt="The Pragmatic Plumber Logo" />
+        </div>
+        
         <div className="services-nav">
         <button className="services remodel">Remodel</button>
         <button className="services installation">Installation</button>
@@ -7,5 +14,6 @@ export default function Services() {
         <button className="services gas">Gas Related</button>
         <button className="services unsure">Unsure</button>
         </div>
+        </>
     )
 }
