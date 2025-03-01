@@ -21,10 +21,48 @@ const ClientInfoForm = () => {
     };
 
     //Handle submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault( );
+
+      //Check if all fields are filled
+      for(const field in formData) {
+        if(formData[field] === '') {
+          return alert('Please fill all fields');
+        }
+      }
+
       console.log('Form Data Submitted:', formData);
       //Send data to calendar API
+      try {
+        const response = await fetch('https://api.calendar.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        if(!response.ok) {
+          throw new Error('Failed to submit data');
+        }
+
+        const result = await response.json();
+        console.log('Success:', result);
+        alert('Form submitted successfully');
+
+        //Reset form
+        setFormData({
+          name: '',
+          email: '',
+          address: '',
+          phoneNumber: '',
+          comments: ''
+        });
+
+      }catch(error) {
+        console.error('Error:', error);
+        alert('Failed to submit form');
+      }
     };
 
     return (
