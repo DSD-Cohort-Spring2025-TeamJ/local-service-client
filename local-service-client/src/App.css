@@ -32,8 +32,44 @@
 
 footer {
   position: fixed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   bottom: 0;
   left: 0;
   width: 100%;
   color: black;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+  justify-content:left;
+  align-items: flex-start;
+  text-align: right;
+  line-height: 25%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 2rem;
+}
+
+.email-address {
+  display: flex;
+  flex-direction: column;
+  justify-content:right;
+  align-items: flex-start;
+  text-align: left;
+  line-height: 25%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 2rem;
+}
+
+.copyright-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
 }
