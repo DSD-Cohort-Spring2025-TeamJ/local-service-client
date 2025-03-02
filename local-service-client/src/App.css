@@ -50,7 +50,7 @@ button.services {
   rgba(2, 199, 78, 0.35) 0 16px 32px;
   color: rgb(75, 75, 75);
   font-family:Verdana, Geneva, Tahoma, sans-serif;
-  border: 1px solid black;
+  border: 1px solid rgb(76, 227, 76);
 }
 
 button.services:hover {
@@ -58,7 +58,8 @@ button.services:hover {
   rgba(2, 139, 57, 0.35) 0 2px 4px, rgba(1, 107, 10, 0.35) 0 4px 8px, rgba(1, 119, 42, 0.35) 0 8px 16px, 
   rgba(1, 128, 50, 0.35) 0 16px 32px;
   color: rgb(4, 94, 22);
-  border: rgb(4, 94, 22);
+  border: 1px solid black;
+  transform: scale(1.1);
 }
 
 img.pragmatic-plumber {
