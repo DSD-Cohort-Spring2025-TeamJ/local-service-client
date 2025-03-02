@@ -62,6 +62,10 @@ button.services:hover {
   transform: scale(1.1);
 }
 
+button.services:active {
+  transform: scale(0.9);
+}
+
 img.pragmatic-plumber {
   margin-top: 3rem;
   width: 300px;
