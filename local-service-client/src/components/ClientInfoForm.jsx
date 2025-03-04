@@ -34,7 +34,7 @@ const ClientInfoForm = () => {
       console.log('Form Data Submitted:', formData);
       //Send data to calendar API
       try {
-        const response = await fetch('https://api.calendar.com', {
+        const response = await fetch('http://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/vi/appointments/%7Bappointment_id%7D', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
