@@ -5,6 +5,8 @@ import Signup from "./Signup";
 import ClientInfoForm from "./components/ClientInfoForm";
 import AppointmentsList from "./components/AppointmentsList";
 import Dashboard from "./Dashboard";
+import Footer from "/src/components/Footer.jsx"
+import Services from "/src/components/Services.jsx"
 
 import './App.css'
 
@@ -19,7 +21,10 @@ function App() {
           <Route exact path="/signup" render={(props) => <Signup {...props} />} />
           <Route exact path="/" render={(props) => <Dashboard {...props} />} />
         </Switch>
-        </div>
+
+        <Services />
+        <Footer />
+      </div>
     </>
   )
 }
