@@ -1,20 +1,26 @@
 import React from 'react';
-import dayjs from 'dayjs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import './scheduler.css'
+import add from 'date-fns/add'
+
+const currentDate = new Date()
+const todayString = currentDate.toISOString().split('T')[0]
+const nextWeekString = add(currentDate, { weeks: 1 }).toISOString().split('T')[0]
+const times = ["9:00", "10:00", "11:00", "12:00"]
+
+const renderTimes = times.map(t => { return <option value={t}>{t}</option> })
+const renderTimeButtons = times.map(t => { return <button>{t}</button> })
 
 
-const todayAtNoon = dayjs().set('hour', 12).startOf('hour');
-const todayAt3PM = dayjs().set('hour', 15).startOf('hour');
 
 function AppointmentScheduler() {
   return (
     <div className="scheduler">
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateTimePicker defaultValue={todayAtNoon} minDateTime={todayAt3PM} />
-      </LocalizationProvider>
+      <input type="date" min={todayString} max={nextWeekString} />
+      <select id="service">
+        <option value="">Select an appointment</option>
+        {renderTimes}
+      </select>
+      <br />
+      {renderTimeButtons}
     </div>
   );
 }
