@@ -48,9 +48,10 @@
   padding: 1.5rem;
 }
 
-button.services {
+.nav-tab {
   background-color: rgb(76, 227, 76);
   border-radius: 1rem;
+  text-decoration: none;
   padding: 5px;
   width: 100px;
   box-shadow: rgba(1, 185, 38, 0.35) 0 -25px 18px -14px inset, rgba(1, 177, 30, 0.35) 0 1px 2px,
