@@ -1,12 +1,11 @@
 import { Route, Switch } from "react-router-dom";
+import pragmaticplumberlogo from '/src/assets/pragmaticplumberlogo.png';
 import Nav from "./Nav";
 import Login from "./Login";
 import Signup from "./Signup";
-import ClientInfoForm from "./components/ClientInfoForm";
-import AppointmentsList from "./components/AppointmentsList";
 import Dashboard from "./Dashboard";
+import ServiceRequest from "./components/ServiceRequest";
 import Footer from "/src/components/Footer.jsx"
-import Services from "/src/components/Services.jsx"
 
 import './App.css'
 
@@ -15,14 +14,16 @@ function App() {
   return (
     <>
       <div>
+        <div className="logo">
+          <img className="pragmatic-plumber" src={pragmaticplumberlogo} alt="The Pragmatic Plumber Logo" />
+        </div>
         <Nav />
         <Switch>
           <Route exact path="/login" render={(props) => <Login {...props} />} />
           <Route exact path="/signup" render={(props) => <Signup {...props} />} />
-          <Route exact path="/" render={(props) => <Dashboard {...props} />} />
+          <Route exact path="/dashboard" render={(props) => <Dashboard {...props} />} />
         </Switch>
-
-        <Services />
+        <ServiceRequest />
         <Footer />
       </div>
     </>

@@ -15,7 +15,8 @@
   padding: 1.5rem;
 }
 
-.nav-tab {
+.nav-tab,
+button.services {
   background-color: rgb(76, 227, 76);
   border-radius: 1rem;
   text-decoration: none;
