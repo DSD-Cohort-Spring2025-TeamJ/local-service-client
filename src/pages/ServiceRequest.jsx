@@ -1,6 +1,6 @@
 import React from 'react'
 import Services from '../components/Services'
-import AppointmentScheduler from '../components/AppointmentScheduler/AppointmentScheduler'
+import AppointmentScheduler from '../components/AppointmentScheduler'
 import ClientInfoForm from '../components/ClientInfoForm'
 
 const ServiceRequest = () => {
