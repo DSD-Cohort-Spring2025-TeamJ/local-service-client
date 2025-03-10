@@ -1,13 +1,13 @@
 import { Route, Switch } from "react-router-dom";
 import pragmaticplumberlogo from '/src/assets/pragmaticplumberlogo.png';
-import Nav from "./Nav";
-import Login from "./Login";
-import Signup from "./Signup";
-import Dashboard from "./Dashboard";
+import Nav from "./components/Nav";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
 import ServiceRequest from "./pages/ServiceRequest";
-import Footer from "/src/components/Footer.jsx"
+import Footer from "./components/Footer.jsx"
 
-import './App.css'
+import './css/App.css'
 
 function App() {
 
