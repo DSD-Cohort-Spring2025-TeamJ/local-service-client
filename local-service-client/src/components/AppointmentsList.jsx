@@ -8,13 +8,7 @@ function AppointmentsList() {
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                const response = await fetch('http://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    // body: JSON.stringify(appointments)
-                });
+                const response = await fetch('http://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments');
 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -31,7 +25,6 @@ function AppointmentsList() {
 
         fetchAppointments();
     }, []); //Empty array to run only once
-
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -40,6 +33,22 @@ function AppointmentsList() {
         return <p>Error: {error}</p>;
     }
 
+    const appointmentTable = appointments.map(appointment => {
+        return (
+            <tr key={appointment.appointment_id} className="text-center text-sm">
+                <td className="px-2 py-2">{appointment.appointment_id}</td>
+                <td className="px-2 py-2">{appointment.service_id.service_id}</td>
+                <td className="px-2 py-2">{appointment.client_note}</td>
+                <td className="px-2 py-2">{appointment.issue_description}</td>
+                <td className="px-2 py-2">{appointment.location}</td>
+                <td className="px-2 py-2">{appointment.admin_note}</td>
+                <td className="px-2 py-2">{appointment.created_at}</td>
+                <td className="px-2 py-2">{appointment.updated_at}</td>
+                <td className="px-2 py-2">{appointment.estimated_time}</td>
+                <td className="px-2 py-2">{appointment.status}</td>
+            </tr>
+        )
+    })
     return (
         <div>
             <h1>Appointments</h1>
@@ -59,24 +68,11 @@ function AppointmentsList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {appointments.map((appointment) => (
-                        <tr key={appointment.appointment_id} className="text-center text-sm">
-                            <td className="px-2 py-2">{appointment.appointment_id}</td>
-                            <td className="px-2 py-2">{appointment.service_id}</td>
-                            <td className="px-2 py-2">{appointment.client_note}</td>
-                            <td className="px-2 py-2">{appointment.description}</td>
-                            <td className="px-2 py-2">{appointment.location}</td>
-                            <td className="px-2 py-2">{appointment.admin_note}</td>
-                            <td className="px-2 py-2">{appointment.created_at}</td>
-                            <td className="px-2 py-2">{appointment.updated_at}</td>
-                            <td className="px-2 py-2">{appointment.estimated_time}</td>
-                            <td className="px-2 py-2">{appointment.status}</td>
-                        </tr>
-                    ))}
+                    {appointmentTable}
                 </tbody>
             </table>
         </div>
     );
-    }
+}
 
 export default AppointmentsList;
