@@ -71,7 +71,6 @@ img.pragmatic-plumber {
   width: 300px;
 
 }
-=======
 footer {
   position: fixed;
   display: flex;
@@ -136,4 +135,32 @@ input.admin-notes {
   justify-content: left;
   align-items: center;
   margin-bottom: 0;
+}
+
+.submissionStatus-title {
+  margin: 1rem 0 0 0;
+}
+.submission-message-box {
+  border: 1px solid black;
+  border-radius: 1rem;
+  width: 350px;
+  height: 125px;
+  margin-top: 1rem;
+  margin: 3rem 0 0 0;
+
+}
+
+.submission-status {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 1rem;
+  height: 400px;
+  width: 400px;
+}
+
+.submission-logo {
+  margin-top: 2rem;
 }

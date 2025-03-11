@@ -1,11 +1,10 @@
-import pragmaticplumberlogo from '/src/assets/pragmaticplumberlogo.png';
+import Logo from "/src/components/Logo.jsx"
+import SubmissionStatus from "/src/components/SubmissionStatus.jsx"
 
 export default function Services() {
     return (
         <>
-        <div className="logo">
-        <img className="pragmatic-plumber" src={pragmaticplumberlogo} alt="The Pragmatic Plumber Logo" />
-        </div>
+        <Logo />
         
         <div className="services-nav">
         <button className="services remodel">Remodel</button>
