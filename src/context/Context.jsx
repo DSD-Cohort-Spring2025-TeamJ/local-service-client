@@ -6,20 +6,35 @@ const Context = React.createContext();
 function Provider({ children }) {
 
   const [user, setUser] = useState(false)
+  const [services, setServices] = useState([])
+  const [selectedService, setSelectedService] = useState(null)
+  const [appointment, setAppointment] = useState({
+    service_id: "",
+    estimated_time: "",
+    tech_id: "",
+    date: "",
+    time_slot: "",
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    comment: ""
+  })
+
   const history = useHistory()
 
-  useEffect(() => {
-    fetch("/api/me")
-      .then(r => r.json())
-      .then(data => {
-        if (data.error) {
-          history.push("/")
-        }
-        else {
-          setUser(data)
-        }
-      })
-  }, [])
+  // useEffect(() => {
+  //   fetch("/api/me")
+  //     .then(r => r.json())
+  //     .then(data => {
+  //       if (data.error) {
+  //         history.push("/")
+  //       }
+  //       else {
+  //         setUser(data)
+  //       }
+  //     })
+  // }, [])
 
   const logout = () => {
     fetch('/api/logout', {
@@ -36,6 +51,12 @@ function Provider({ children }) {
       value={{
         user,
         setUser,
+        services,
+        setServices,
+        selectedService,
+        setSelectedService,
+        appointment,
+        setAppointment,
         logout
       }}>
       {children}
