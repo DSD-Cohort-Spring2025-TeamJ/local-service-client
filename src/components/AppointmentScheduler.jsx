@@ -20,11 +20,19 @@ function AppointmentScheduler() {
     });
   }
 
+  // NOTE - this is the logic for grabbing all technicians' time slots and condensing them into an ordered list with no duplicates
+  // const times = () => {
+  //   let slots = [];
+  //   let arrays = Object.values(selectedService.availableTimeSlotsByTechnician)
+  //   arrays.map(t => t[day].map(d => slots.push(d)))
+  //   return sortByTime([...new Set(slots)])
+  // }
+
+  // NOTE - this grabs only the first technician's time slots
   const times = () => {
-    let slots = [];
-    let arrays = Object.values(selectedService.availableTimeSlotsByTechnician)
-    arrays.map(t => t[day].map(d => slots.push(d)))
-    return sortByTime([...new Set(slots)])
+    let firstTechSlots = Object.values(selectedService.availableTimeSlotsByTechnician)[0]
+    let slots = firstTechSlots[day]
+    return sortByTime(slots)
   }
 
   const handleDayChange = (e) => {
@@ -37,7 +45,8 @@ function AppointmentScheduler() {
   const handleSlotSelection = (e) => {
     setAppointment({
       ...appointment,
-      time_slot: e.target.value
+      time_slot: e.target.value,
+      tech_id: 1 // NOTE - here we are hard-coding the first technician's tech_id into the future POST body
     })
   }
   const renderTimeButtons = times().map((t, i) => { return <button key={i} value={t} onClick={handleSlotSelection}>{t}</button> })
