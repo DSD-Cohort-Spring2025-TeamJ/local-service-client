@@ -1,10 +1,8 @@
-import Logo from "/src/components/Logo.jsx"
-import SubmissionStatus from "/src/components/SubmissionStatus.jsx"
+
 
 export default function Services() {
     return (
         <>
-        <Logo />
         
         <div className="services-nav">
         <button className="services remodel">Remodel</button>
