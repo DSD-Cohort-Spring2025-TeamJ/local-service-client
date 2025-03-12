@@ -10,9 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "local-service-client": "file:",
+    "date-fns": "^4.1.0",
     "react": "^19.0.0",
-    "react-calendar": "^5.1.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^5.3.1"
   },
