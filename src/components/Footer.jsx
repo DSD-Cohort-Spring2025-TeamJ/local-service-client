@@ -1,3 +1,4 @@
+import Logo from '/src/components/Logo.jsx'
 export default function Footer() {
     return (
         <footer>
@@ -11,6 +12,7 @@ export default function Footer() {
             <div className="email-address">
                 <p><a href="mail to:">ThePragPlumb@Plumbing.com</a></p>
             </div>
+            <Logo />
         </footer>
     )
 }
