@@ -1,11 +1,8 @@
-import pragmaticplumberlogo from '/src/assets/pragmaticplumberlogo.png';
+
 
 export default function Services() {
     return (
         <>
-        <div className="logo">
-        <img className="pragmatic-plumber" src={pragmaticplumberlogo} alt="The Pragmatic Plumber Logo" />
-        </div>
         
         <div className="services-nav">
         <button className="services remodel">Remodel</button>
