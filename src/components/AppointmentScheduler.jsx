@@ -8,7 +8,7 @@ function AppointmentScheduler() {
 
   const currentDate = new Date()
   const todayString = currentDate.toISOString().split('T')[0]
-  const nextWeekString = add(currentDate, { weeks: 1 }).toISOString().split('T')[0]
+  const nextWeekString = add(currentDate, { days: 6 }).toISOString().split('T')[0]
 
   const [day, setDay] = useState(todayString)
 
