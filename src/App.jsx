@@ -11,10 +11,6 @@ import './css/App.css'
 
 function App() {
 
-    const handleClick = () => {
-      console.log('button was clicked!');
-    };
-
   return (
     <>
       <div>

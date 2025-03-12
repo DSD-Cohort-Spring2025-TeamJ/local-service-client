@@ -18,6 +18,6 @@ export default function Button(props) {
         text-[#4B4B4B] font-sans border-[1px] border-[#4BCE4B]
         hover:bg-green-700 hover:text-white
         active:scale-90"
-        onClick={handleClick}
+        onClick={}
         text="click me"
         /> */
