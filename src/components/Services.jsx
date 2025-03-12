@@ -6,13 +6,13 @@ export default function Services() {
     const { services, setServices, setSelectedService, appointment, setAppointment } = useContext(Context)
 
     useEffect(() => {
-        fetch("http://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services")
+        fetch("https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services")
             .then(r => r.json())
             .then(data => setServices(data))
     }, [])
 
     const handleSelectService = async (e) => {
-        fetch(`http://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${e.target.id}/timeSlots`)
+        fetch(`https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${e.target.id}/timeSlots`)
             .then(r => r.json())
             .then(data => {
                 setSelectedService(data)
