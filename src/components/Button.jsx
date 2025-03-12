@@ -1,16 +1,14 @@
-const props = {
-    className: "",
-    text: "",
-    onClick: () => "",
-}
+import React from 'react';
 
-export default function Button(props) {
+const Button = ({ className, text, onClick }) => {
     return (
-        <button className={props.className} onClick={() => props.onClick()}>
-            {props.text}
+        <button className={className} onClick={() => onClick()}>
+            {text}
         </button>
     )
 }
+
+export default Button;
 
 /* <Button 
         className="bg-[#4BCE4B] rounded-[1rem] no-underline px-[5px] py-[5px] w-[100px]
