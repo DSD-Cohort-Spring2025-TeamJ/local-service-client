@@ -1,47 +1,46 @@
-import React, { useState, useContext } from 'react'
-import { Context } from '../context/Context'
+import React, { useState, useContext } from "react";
+import { Context } from "../context/Context";
 
 const Login = () => {
-
-  const { setUser } = useContext(Context)
+  const { setUser } = useContext(Context);
 
   const [form, setForm] = useState({
     username: "",
-    password: ""
-  })
+    password: "",
+  });
 
   const handleChange = (e) => {
-    const value = e.target.value
+    const value = e.target.value;
     setForm({
       ...form,
-      [e.target.name]: value
-    })
-  }
+      [e.target.name]: value,
+    });
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const r = await fetch("/api/login", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username: form.username,
-        password: form.password
-      })
-    })
-    const user = await r.json()
+        password: form.password,
+      }),
+    });
+    const user = await r.json();
     if (user.error) {
-      alert('incorrect username or password')
+      alert("incorrect username or password");
     } else {
-      setUser(user)
+      setUser(user);
     }
-  }
+  };
 
   return (
     <div>
       <h3>Log In</h3>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <label>
           Username:
           <input
@@ -64,10 +63,10 @@ const Login = () => {
           />
         </label>
         <br />
-        <button type='submit'>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

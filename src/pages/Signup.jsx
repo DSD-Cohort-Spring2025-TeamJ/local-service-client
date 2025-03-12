@@ -1,48 +1,47 @@
-import React, { useState, useContext } from 'react'
-import { Context } from '../context/Context'
+import React, { useState, useContext } from "react";
+import { Context } from "../context/Context";
 
 const Signup = () => {
-
-  const { setUser } = useContext(Context)
+  const { setUser } = useContext(Context);
   const [form, setForm] = useState({
     username: "",
     password: "",
-    confirm_password: ""
-  })
+    confirm_password: "",
+  });
 
   const handleChange = (e) => {
-    const value = e.target.value
+    const value = e.target.value;
     setForm({
       ...form,
-      [e.target.name]: value
-    })
-  }
+      [e.target.name]: value,
+    });
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const r = await fetch("/api/register", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username: form.username,
         password: form.password,
-        confirm_password: form.confirm_password
-      })
-    })
-    const user = await r.json()
+        confirm_password: form.confirm_password,
+      }),
+    });
+    const user = await r.json();
     if (user.error) {
-      setErrors(user.error)
+      setErrors(user.error);
     } else {
-      setUser(user)
+      setUser(user);
     }
-  }
+  };
 
   return (
     <div>
       <h3>Sign Up</h3>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <label>
           Username:
           <input
@@ -76,10 +75,10 @@ const Signup = () => {
           />
         </label>
         <br />
-        <button type='submit'>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

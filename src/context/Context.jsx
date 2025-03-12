@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 const Context = React.createContext();
 
 function Provider({ children }) {
-
-  const [user, setUser] = useState(false)
-  const [services, setServices] = useState([])
-  const [selectedService, setSelectedService] = useState(null)
+  const [user, setUser] = useState(false);
+  const [services, setServices] = useState([]);
+  const [selectedService, setSelectedService] = useState(null);
   const [appointment, setAppointment] = useState({
     service_id: "",
     estimated_time: "",
@@ -18,10 +17,10 @@ function Provider({ children }) {
     email: "",
     phone: "",
     address: "",
-    comment: ""
-  })
+    comment: "",
+  });
 
-  const history = useHistory()
+  const history = useHistory();
 
   // useEffect(() => {
   //   fetch("/api/me")
@@ -37,14 +36,13 @@ function Provider({ children }) {
   // }, [])
 
   const logout = () => {
-    fetch('/api/logout', {
-      method: "DELETE"
-    })
-      .then(() => {
-        setUser(false)
-        history.push("/")
-      })
-  }
+    fetch("/api/logout", {
+      method: "DELETE",
+    }).then(() => {
+      setUser(false);
+      history.push("/");
+    });
+  };
 
   return (
     <Context.Provider
@@ -57,11 +55,12 @@ function Provider({ children }) {
         setSelectedService,
         appointment,
         setAppointment,
-        logout
-      }}>
+        logout,
+      }}
+    >
       {children}
     </Context.Provider>
-  )
+  );
 }
 
-export { Context, Provider }
+export { Context, Provider };
