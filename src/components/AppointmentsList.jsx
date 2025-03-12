@@ -9,7 +9,7 @@ function AppointmentsList() {
     const fetchAppointments = async () => {
       try {
         const response = await fetch(
-          "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments"
+          "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments",
         );
 
         if (!response.ok) {

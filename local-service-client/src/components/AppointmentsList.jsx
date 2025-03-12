@@ -16,7 +16,7 @@ function AppointmentsList() {
               "Content-Type": "application/json",
             },
             // body: JSON.stringify(appointments)
-          }
+          },
         );
 
         if (!response.ok) {
