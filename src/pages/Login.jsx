@@ -71,7 +71,7 @@ const Login = () => {
         text-[#4B4B4B] font-sans border-[1px] border-[#4BCE4B]
         hover:bg-green-700 hover:text-white
         active:scale-90 border-[#005701]"
-        text="submit"
+        text="Submit"
         type="submit"/>
         {/* <button type='submit'>Submit</button> */}
       </form>

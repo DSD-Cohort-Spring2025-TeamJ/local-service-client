@@ -1,5 +1,6 @@
 import { useEffect, useContext } from "react"
 import { Context } from "../context/Context"
+import pipe from '/src/assets/pipe.png'
 
 export default function Services() {
 
@@ -38,6 +39,9 @@ export default function Services() {
             <div className="services-nav">
                 {renderServiceButtons}
             </div>
+            <div className="flex w-full relative">
+            <img src={pipe} className="w-full h-10 mt-4"/>
+        </div>
         </>
     )
 }
