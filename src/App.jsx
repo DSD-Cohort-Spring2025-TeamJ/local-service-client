@@ -38,7 +38,7 @@ function App() {
             render={(props) => <Dashboard {...props} />}
           />
         </Switch>
-        <Modal isOpen={!open} onClose={handleCloseModal} children={<ServiceRequest />} />
+        <Modal isOpen={open} onClose={handleCloseModal} children={<ServiceRequest />} /> {/*to test modal, change isOpen={!open}*/}
         <Footer />
       </div>
     </>
