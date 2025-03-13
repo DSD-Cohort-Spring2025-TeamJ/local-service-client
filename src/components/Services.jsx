@@ -35,6 +35,7 @@ export default function Services() {
 
   const renderServiceButtons = services.map((s) => (
     <button
+      type="button"
       key={s.service_id}
       onClick={handleSelectService}
       className="services"
@@ -46,6 +47,7 @@ export default function Services() {
 
   return (
     <>
+      <h1>Select a Service</h1>
       <div className="services-nav">{renderServiceButtons}</div>
     </>
   );
