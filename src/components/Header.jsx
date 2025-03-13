@@ -5,6 +5,7 @@ import Logo from '/src/components/Logo.jsx'
 
 export default function Header() {
     return (
+        <div className="flex flex-col items-center pl-8"> 
         <div className="flex flex-row gap-10 items-center pl-8">
         <Logo />
         <Button 
@@ -23,6 +24,8 @@ export default function Header() {
                 active:scale-90 border-[#005701] ml-95"
         text="ADMIN"
         />
+        </div>
+       
         </div>
     )
 }
