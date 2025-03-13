@@ -8,7 +8,7 @@ function AppointmentsList() {
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                const response = await fetch('http://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments');
+                const response = await fetch('https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments');
 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
