@@ -12,7 +12,6 @@ export default function Footer() {
             <div className="email-address">
                 <p><a href="mail to:">ThePragPlumb@Plumbing.com</a></p>
             </div>
-            <Logo />
         </footer>
     )
 }
