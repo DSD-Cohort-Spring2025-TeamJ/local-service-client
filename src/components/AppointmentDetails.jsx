@@ -47,7 +47,7 @@ function AppointmentDetails({appointment}) {
                     <td className="px-2 py-2">{location}</td>
                     <td className="px-2 py-2">{issue_description}</td>
                     {/* <td className="px-2 py-2">{}</td> */}
-                    <td className="px-2 py-2">{start_time.split("T")[0]}</td>
+                    <td className="px-2 py-2">{start_time?.split("T")[0]}</td>
                     <td className="px-2 py-2">{end_time}</td>
                     <td className="px-2 py-2">{estimated_time}</td>
                     <td className="px-2 py-2">{status}</td>
