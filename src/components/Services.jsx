@@ -1,5 +1,7 @@
-import { useEffect, useContext } from "react";
-import { Context } from "../context/Context";
+import { useEffect, useContext } from "react"
+import { Context } from "../context/Context"
+import pipe from '/src/assets/pipe.png'
+
 
 export default function Services() {
   const {
@@ -35,6 +37,7 @@ export default function Services() {
 
   const renderServiceButtons = services.map((s) => (
     <button
+      type="button"
       key={s.service_id}
       onClick={handleSelectService}
       className="services"
@@ -46,7 +49,13 @@ export default function Services() {
 
   return (
     <>
-      <div className="services-nav">{renderServiceButtons}</div>
+      <h1>Select a Service</h1>
+            <div className="services-nav">
+                {renderServiceButtons}
+            </div>
+            <div className="flex w-full relative">
+            <img src={pipe} className="w-full h-10 mt-4"/>
+        </div>
     </>
   );
 }

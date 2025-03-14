@@ -1,9 +1,11 @@
-import React, { useContext, useState } from "react";
-import add from "date-fns/add";
-import { Context } from "../context/Context";
+import React, { useContext, useState } from 'react';
+import add from 'date-fns/add'
+import { Context } from '../context/Context';
 
 function AppointmentScheduler() {
   const { selectedService, appointment, setAppointment } = useContext(Context);
+
+  if (!selectedService) return <h3>Loading...</h3>
 
   const currentDate = new Date();
   const todayString = currentDate.toISOString().split("T")[0];
@@ -52,9 +54,15 @@ function AppointmentScheduler() {
       tech_id: 1, // NOTE - here we are hard-coding the first technician's tech_id into the future POST body
     });
   };
+
+  const timeEstimate = () => {
+    let minutes = parseInt(selectedService.estimated_time)
+    return (minutes >= 60) ? `${minutes / 60} hour(s)` : `${minutes} minutes`
+  }
+
   const renderTimeButtons = times().map((t, i) => {
     return (
-      <button key={i} value={t} onClick={handleSlotSelection}>
+      <button type="button" key={i} value={t} onClick={handleSlotSelection}>
         {t}
       </button>
     );
@@ -62,7 +70,8 @@ function AppointmentScheduler() {
 
   return (
     <div>
-      <p>Estimated completion time: {selectedService.estimated_time} minutes</p>
+      <h1>Select a Date and a Start Time</h1>
+      <p>Estimated completion time: {timeEstimate()}</p>
       <input
         type="date"
         min={todayString}
@@ -71,6 +80,7 @@ function AppointmentScheduler() {
       />
       <br />
       {renderTimeButtons}
+      <br />
     </div>
   );
 }
