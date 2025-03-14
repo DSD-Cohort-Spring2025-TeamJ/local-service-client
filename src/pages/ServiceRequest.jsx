@@ -5,6 +5,7 @@ import AppointmentScheduler from "../components/AppointmentScheduler";
 import ClientInfoForm from "../components/ClientInfoForm";
 import Message from "../components/Message";
 import { Context } from "../context/Context";
+import Button from "/src/components/Button.jsx"
 
 const ServiceRequest = () => {
   const { selectedService, appointment } = useContext(Context);
@@ -53,7 +54,7 @@ const ServiceRequest = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div style={{ position: "absolute", bottom: ".5rem", right: ".5rem" }}>
+      <div style={{ position: "absolute", bottom: ".25rem", left: ".5rem" }}>
         {currentStepIndex + 1} / {steps.length}
       </div>
       {step}
@@ -66,11 +67,21 @@ const ServiceRequest = () => {
         }}
       >
         {!isFirstStep && (
-          <button type="button" onClick={back}>
+          <Button 
+          className="bg-[#4BCE4B] rounded-[1rem] no-underline px-[5px] py-[5px] w-[100px] h-[25px]
+          shadow-[inset_0_-25px_18px_-14px_rgba(1,185,38,0.35),0_1px_2px_rgba(1,177,30,0.35),0_2px_4px_rgba(3,194,79,0.35),0_4px_8px_rgba(1,192,17,0.35),0_8px_16px_rgba(1,119,42,0.35),0_16px_32px_rgba(2,199,78,0.35)]
+          text-[#4B4B4B] font-sans border-[1px] border-[#4BCE4B]"
+          active:scale-90
+          type="button" 
+          onClick={back}>
             Back
-          </button>
+          </Button>
         )}
-        <button type="submit">{isLastStep ? "Finish" : "Next"}</button>
+        <Button className="bg-[#4BCE4B] rounded-[1rem] no-underline px-[5px] py-[5px] w-[100px] h-[25px] mb-2 mr-2
+        shadow-[inset_0_-25px_18px_-14px_rgba(1,185,38,0.35),0_1px_2px_rgba(1,177,30,0.35),0_2px_4px_rgba(3,194,79,0.35),0_4px_8px_rgba(1,192,17,0.35),0_8px_16px_rgba(1,119,42,0.35),0_16px_32px_rgba(2,199,78,0.35)]
+        text-[#4B4B4B] font-sans border-[1px] border-[#4BCE4B]"
+        active:scale-90
+        type="submit">{isLastStep ? "Finish" : "Next"}</Button>
       </div>
     </form>
 
