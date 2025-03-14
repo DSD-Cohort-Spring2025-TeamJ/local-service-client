@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function AppointmentsList() {
+function AppointmentsList({ setAppointment, appointment }) {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -35,9 +35,27 @@ function AppointmentsList() {
     return <p>Error: {error}</p>;
   }
 
+  const handleAppointmentClick = async (e) => {
+      try {
+        const response = await fetch(
+          `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${e}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+       const data = await response.json();
+       setAppointment(data);
+
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+  };
+
+
   const appointmentTable = appointments.map((appointment) => {
     return (
-      <tr key={appointment.appointment_id} className="text-center text-sm">
+      <tr key={appointment.appointment_id} onClick={() => handleAppointmentClick(appointment.appointment_id)} className="text-center text-sm" style={{padding: "10px"}}>
         <td className="px-2 py-2">{appointment.appointment_id}</td>
         <td className="px-2 py-2">{appointment.service_id.service_id}</td>
         <td className="px-2 py-2">{appointment.client_note}</td>
