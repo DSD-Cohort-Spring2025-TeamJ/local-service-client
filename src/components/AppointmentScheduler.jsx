@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
-import add from "date-fns/add";
-import { Context } from "../context/Context";
+import React, { useContext, useState } from 'react';
+import add from 'date-fns/add'
+import { Context } from '../context/Context';
 
 function AppointmentScheduler() {
   const { selectedService, appointment, setAppointment } = useContext(Context);
@@ -59,6 +59,7 @@ function AppointmentScheduler() {
     let minutes = parseInt(selectedService.estimated_time)
     return (minutes >= 60) ? `${minutes / 60} hour(s)` : `${minutes} minutes`
   }
+
   const renderTimeButtons = times().map((t, i) => {
     return (
       <button type="button" key={i} value={t} onClick={handleSlotSelection}>

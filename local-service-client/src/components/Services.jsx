@@ -1,23 +1,52 @@
-import pragmaticplumberlogo from "/src/assets/pragmaticplumberlogo.png";
+import Logo from '/src/components/Logo.jsx'
+import Button from '/src/components/Button.jsx'
 
 export default function Services() {
-  return (
-    <>
-      <div className="logo">
-        <img
-          className="pragmatic-plumber"
-          src={pragmaticplumberlogo}
-          alt="The Pragmatic Plumber Logo"
-        />
-      </div>
+    return (
+        <>
+        
+        <Logo />
 
-      <div className="services-nav">
-        <button className="services remodel">Remodel</button>
-        <button className="services installation">Installation</button>
-        <button className="services repairs">Repairs</button>
-        <button className="services gas">Gas Related</button>
-        <button className="services unsure">Unsure</button>
-      </div>
-    </>
-  );
+        <Button className="services remodel
+        bg-[#4BCE4B] rounded-[1rem] no-underline px-[5px] py-[5px] w-[100px]
+        shadow-[inset_0_-25px_18px_-14px_rgba(1,185,38,0.35),0_1px_2px_rgba(1,177,30,0.35),0_2px_4px_rgba(3,194,79,0.35),0_4px_8px_rgba(1,192,17,0.35),0_8px_16px_rgba(1,119,42,0.35),0_16px_32px_rgba(2,199,78,0.35)]
+        text-[#4B4B4B] font-sans border-[1px] border-[#4BCE4B]
+        hover:bg-green-700 hover:text-white
+        active:scale-90"
+        text="Remodel" />
+
+<Button className="services remodel
+        bg-[#4BCE4B] rounded-[1rem] no-underline px-[5px] py-[5px] w-[100px]
+        shadow-[inset_0_-25px_18px_-14px_rgba(1,185,38,0.35),0_1px_2px_rgba(1,177,30,0.35),0_2px_4px_rgba(3,194,79,0.35),0_4px_8px_rgba(1,192,17,0.35),0_8px_16px_rgba(1,119,42,0.35),0_16px_32px_rgba(2,199,78,0.35)]
+        text-[#4B4B4B] font-sans border-[1px] border-[#4BCE4B]
+        hover:bg-green-700 hover:text-white
+        active:scale-90"
+        text="Installation" />
+   
+   <Button className="services remodel
+        bg-[#4BCE4B] rounded-[1rem] no-underline px-[5px] py-[5px] w-[100px]
+        shadow-[inset_0_-25px_18px_-14px_rgba(1,185,38,0.35),0_1px_2px_rgba(1,177,30,0.35),0_2px_4px_rgba(3,194,79,0.35),0_4px_8px_rgba(1,192,17,0.35),0_8px_16px_rgba(1,119,42,0.35),0_16px_32px_rgba(2,199,78,0.35)]
+        text-[#4B4B4B] font-sans border-[1px] border-[#4BCE4B]
+        hover:bg-green-700 hover:text-white
+        active:scale-90"
+        text="Repairs" />
+
+<Button className="services remodel
+        bg-[#4BCE4B] rounded-[1rem] no-underline px-[5px] py-[5px] w-[100px]
+        shadow-[inset_0_-25px_18px_-14px_rgba(1,185,38,0.35),0_1px_2px_rgba(1,177,30,0.35),0_2px_4px_rgba(3,194,79,0.35),0_4px_8px_rgba(1,192,17,0.35),0_8px_16px_rgba(1,119,42,0.35),0_16px_32px_rgba(2,199,78,0.35)]
+        text-[#4B4B4B] font-sans border-[1px] border-[#4BCE4B]
+        hover:bg-green-700 hover:text-white
+        active:scale-90"
+        text="Gas related" />
+
+<Button className="services remodel
+        bg-[#4BCE4B] rounded-[1rem] no-underline px-[5px] py-[5px] w-[100px]
+        shadow-[inset_0_-25px_18px_-14px_rgba(1,185,38,0.35),0_1px_2px_rgba(1,177,30,0.35),0_2px_4px_rgba(3,194,79,0.35),0_4px_8px_rgba(1,192,17,0.35),0_8px_16px_rgba(1,119,42,0.35),0_16px_32px_rgba(2,199,78,0.35)]
+        text-[#4B4B4B] font-sans border-[1px] border-[#4BCE4B]
+        hover:bg-green-700 hover:text-white
+        active:scale-90"
+        text="Unsure" />
+        
+        </>
+    )
 }
