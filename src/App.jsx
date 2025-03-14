@@ -6,27 +6,26 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import ServiceRequest from "./pages/ServiceRequest";
 import Footer from "./components/Footer.jsx"
+import Header from "/src/components/Header.jsx"
 
 import './css/App.css'
 
 function App() {
 
   return (
-    <>
-      <div>
-        <div className="logo">
-          <img className="pragmatic-plumber" src={pragmaticplumberlogo} alt="The Pragmatic Plumber Logo" />
-        </div>
-        <Nav />
+    <body className="flex flex-col min-h-screen pt-8 pb-2">
+      <main className="flex-grow">
+        <Header />
+        {/* <Nav /> */}
         <Switch>
           <Route exact path="/login" render={(props) => <Login {...props} />} />
           <Route exact path="/signup" render={(props) => <Signup {...props} />} />
           <Route exact path="/dashboard" render={(props) => <Dashboard {...props} />} />
         </Switch>
         <ServiceRequest />
-        <Footer />
-      </div>
-    </>
+      </main>
+      <Footer />
+    </body>
   )
 }
 
