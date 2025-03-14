@@ -11,7 +11,6 @@ export default function Footer() {
      
   
                 <p><a href="mail to:">ThePragPlumb@Plumbing.com</a></p>
-      
         </footer>
     )
 }
