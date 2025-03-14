@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import ServiceRequest from "./pages/ServiceRequest";
 import Footer from "./components/Footer.jsx";
+import Button from "/src/components/Button.jsx"
 
 import "./css/App.css";
 
