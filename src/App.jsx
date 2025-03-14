@@ -1,15 +1,19 @@
 import { Route, Switch } from "react-router-dom";
+import { useState } from "react";
 import pragmaticplumberlogo from "/src/assets/pragmaticplumberlogo.png";
 import Nav from "./components/Nav";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import ServiceRequest from "./pages/ServiceRequest";
+import Modal from "./components/Modal";
 import Footer from "./components/Footer.jsx";
-
 import "./css/App.css";
 
 function App() {
+  const [open, setOpen] = useState(false)
+  const handleCloseModal = () => setOpen(!open)
+
   return (
     <>
       <div>
@@ -34,7 +38,7 @@ function App() {
             render={(props) => <Dashboard {...props} />}
           />
         </Switch>
-        <ServiceRequest />
+        <Modal isOpen={open} onClose={handleCloseModal} children={<ServiceRequest />} /> {/*to test modal, change isOpen={!open}*/}
         <Footer />
       </div>
     </>
