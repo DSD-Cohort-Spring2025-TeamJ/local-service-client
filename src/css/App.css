@@ -3,14 +3,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .main-button {
-  @apply bg-[#4BCE4B] rounded-[1rem] no-underline px-[5px] py-[5px] w-[100px] shadow-[inset_0_-25px_18px_-14px_rgba(1, 185, 38, 0.35), 0_1px_2px_rgba(1, 177, 30, 0.35), 0_2px_4px_rgba(3, 194, 79, 0.35), 0_4px_8px_rgba(1, 192, 17, 0.35), 0_8px_16px_rgba(1, 119, 42, 0.35), 0_16px_32px_rgba(2, 199, 78, 0.35)] text-[#4B4B4B] font-sans border-[1px] border-[#4BCE4B] hover:bg-green-700 hover:text-white active:scale-90
-} */
+.main-button {
+  @apply rounded-[3rem] no-underline m-0 
+  shadow-xl shadow-green-500/50 
+  text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] flex items-center
+  hover:bg-green-700 
+  hover:text-white 
+  active:scale-90
+}
+
+html {
+  background: url("/src/assets/plumbing1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 
 }
@@ -21,7 +31,7 @@
   background-size: cover;
 }
 
-.button {
+/* .button {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -32,7 +42,7 @@
   border: 1px solid #000;
   color: black;
   text-decoration: none;
-}
+} */
 
 /* #navbar {
   display: flex;
@@ -125,12 +135,12 @@ button.services:hover {
   border: 1px solid black;
 }
 
-img.pragmatic-plumber {
+/* img.pragmatic-plumber {
   margin-top: 3rem;
   width: 300px;
-}
+} */
 
-footer {
+/* footer {
   position: fixed;
   display: flex;
   justify-content: space-around;
@@ -139,9 +149,9 @@ footer {
   left: 0;
   width: 100%;
   color: black;
-}
+} */
 
-.address {
+/* .address {
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -152,9 +162,9 @@ footer {
   bottom: 0;
   left: 0;
   margin: 2rem;
-}
+} */
 
-.email-address {
+/* .email-address {
   display: flex;
   flex-direction: column;
   justify-content: right;
@@ -165,7 +175,7 @@ footer {
   bottom: 0;
   right: 0;
   margin: 2rem;
-}
+} */
 
 .copyright-center {
   display: flex;
