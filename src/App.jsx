@@ -1,8 +1,5 @@
 import { Route, Switch } from "react-router-dom";
 import { useState } from "react";
-import pragmaticplumberlogo from "/src/assets/pragmaticplumberlogo.png";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import ServiceRequest from "./pages/ServiceRequest";
 import Header from "/src/components/Header.jsx"
@@ -15,26 +12,20 @@ function App() {
   const handleCloseModal = () => setOpen(!open)
 
   return (
-    <body className="flex flex-col min-h-screen pt-8 pb-2">
-      <main className="flex-grow">
-        <Header />
+    <div className="flex flex-col min-h-screen pt-8 pb-2">
+      <div className="flex-grow">
+        <Header setOpen={setOpen} />
         <Switch>
-          <Route exact path="/login" render={(props) => <Login {...props} />} />
-          <Route
-            exact
-            path="/signup"
-            render={(props) => <Signup {...props} />}
-          />
           <Route
             exact
             path="/dashboard"
             render={(props) => <Dashboard {...props} />}
           />
         </Switch>
-        <Modal isOpen={!open} onClose={handleCloseModal} children={<ServiceRequest />} /> {/*to test modal, change isOpen={!open}*/}
-      </main>
+        <Modal isOpen={open} onClose={handleCloseModal} children={<ServiceRequest />} /> {/*to test modal, change isOpen={!open}*/}
+      </div>
       <Footer />
-    </body>
+    </div>
   )
 };
 
