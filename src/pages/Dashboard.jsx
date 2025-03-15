@@ -6,8 +6,11 @@ const Dashboard = () => {
   const [appointment, setAppointment] = useState(null);
   return (
     <div>
-      <AppointmentsList setAppointment = {setAppointment} appointment = {appointment} />
-      <AppointmentDetails appointment = {appointment} />
+      {
+        !appointment ?
+          <AppointmentsList setAppointment={setAppointment} appointment={appointment} /> :
+          <AppointmentDetails appointment={appointment} setAppointment={setAppointment} />
+      }
     </div>
   );
 };
