@@ -30,7 +30,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
         active:scale-90"
           onClick={() => setAppointment(null)}>X</button>
         <h1>Client Information</h1>
-        <table className="min-w-full table-auto border-collapse text-zinc-300">
+        <table className="min-w-full table-auto border-collapse">
           <thead>
             <tr className="text-center text-sm">
               <th className="px-2 py-2">Client Name</th>
@@ -61,7 +61,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
       </div>
       <div>
         <h1>Inventory Check</h1>
-        <table className="min-w-full table-auto border-collapse text-zinc-300">
+        <table className="min-w-full table-auto border-collapse">
           <thead>
             <tr className="text-center text-sm">
               <th className="px-2 py-2">Name</th>
