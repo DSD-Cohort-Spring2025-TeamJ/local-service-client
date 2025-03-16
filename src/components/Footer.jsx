@@ -1,7 +1,7 @@
 import Logo from '/src/components/Logo.jsx'
 export default function Footer() {
     return (
-        <footer className="flex flex-row justify-between items-center p-4 align-bottom bg-[#F0F0F0] text-green-800 w-full">
+        <footer className="flex flex-row justify-between items-center p-4 pr-6 pl-6 align-bottom bg-[#F0F0F0] text-green-800 w-full">
                 <div>
                 <p>200 Agile Avenue</p>
                 <p>Plungerville, TX</p>
