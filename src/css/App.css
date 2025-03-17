@@ -213,3 +213,8 @@ footer {
 .failure {
   background-color: red;
 }
+
+:disabled {
+  cursor: not-allowed;
+  opacity: 50%;
+}
