@@ -5,6 +5,8 @@ function AppointmentDetails({ appointment, setAppointment }) {
   const { appointment_id, client_name, client_email, client_phone, start_time, end_time, issue_description, estimated_time, status, service_id, location, admin_note, assigned_technician_list, quoted_price, missing_item_list } = appointment.appointment;
 
   const [disabled, setDisabled] = useState(false)
+  const [note, setNote] = useState(admin_note ?? "") // admin_note comes in as null by default, and the value prop of a textarea cannot be null
+
   const handleUpdateStatus = async (newStatus) => {
     fetch(`https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${appointment_id}`,
       {
@@ -91,9 +93,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
           </tbody>
         </table>
         <h1>Notes</h1>
-        <textarea className="w-full h-32 border">
-
-        </textarea>
+        <textarea className="w-full h-32 border" value={note} onChange={(e) => setNote(e.target.value)}></textarea>
         <br />
         <button className="button">DISCARD</button>
         <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("Accepted")}>Accept</button>
