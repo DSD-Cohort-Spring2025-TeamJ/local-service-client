@@ -23,6 +23,18 @@ function AppointmentDetails({ appointment, setAppointment }) {
       })
   }
 
+  const handleSaveNotes = async () => {
+    fetch(`https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${appointment_id}`,
+      {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...appointment.appointment,
+          admin_note: note
+        })
+      })
+  }
+
   const itemTable = appointment.items.map(i => {
     return (
       <tr key={i.item_id} className="text-center text-sm" style={{ padding: "10px" }}>
@@ -98,7 +110,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
         <button className="button" onClick={() => setNote("")}>Discard</button>
         <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("Accepted")}>Accept</button>
         <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("Declined")}>Decline</button>
-        <button className="button">Save</button>
+        <button className="button" onClick={handleSaveNotes}>Save</button>
       </div>
     </>
   );
