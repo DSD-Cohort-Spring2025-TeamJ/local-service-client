@@ -70,6 +70,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
               <th className="px-2 py-2">Date Selected</th>
               <th className="px-2 py-2">Time Selected</th>
               <th className="px-2 py-2">Estimated Time</th>
+              <th className="px-2 py-2">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -108,9 +109,10 @@ function AppointmentDetails({ appointment, setAppointment }) {
         <textarea className="w-full h-32 border" value={note} onChange={(e) => setNote(e.target.value)}></textarea>
         <br />
         <button className="button" onClick={() => setNote("")}>Discard</button>
+        <button className="button" onClick={handleSaveNotes}>Save</button>
+        <br /><br />
         <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("Accepted")}>Accept</button>
         <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("Declined")}>Decline</button>
-        <button className="button" onClick={handleSaveNotes}>Save</button>
       </div>
     </>
   );
