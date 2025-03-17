@@ -5,6 +5,21 @@ function AppointmentDetails({ appointment, setAppointment }) {
   const { appointment_id, client_name, client_email, client_phone, start_time, end_time, issue_description, estimated_time, status, service_id, location, admin_note, assigned_technician_list, quoted_price, missing_item_list } = appointment.appointment;
 
   const [disabled, setDisabled] = useState(false)
+  const handleUpdateStatus = async (newStatus) => {
+    fetch(`https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${appointment_id}`,
+      {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...appointment.appointment,
+          status: newStatus
+        })
+      })
+      .then(() => { // this part can be changed to work from the response object; ideally we will show a confirmation to the admin
+        if (newStatus === "Accepted") setDisabled(true)
+        if (newStatus === "Declined") setAppointment(null)
+      })
+  }
 
   const itemTable = appointment.items.map(i => {
     return (
@@ -81,8 +96,8 @@ function AppointmentDetails({ appointment, setAppointment }) {
         </textarea>
         <br />
         <button className="button">DISCARD</button>
-        <button disabled={disabled} className="button" onClick={() => setDisabled(true)}>Accept</button>
-        <button disabled={disabled} className="button" onClick={() => setAppointment(null)}>Decline</button>
+        <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("Accepted")}>Accept</button>
+        <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("Declined")}>Decline</button>
         <button className="button">Save</button>
       </div>
     </>
