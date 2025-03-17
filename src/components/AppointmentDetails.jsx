@@ -76,13 +76,13 @@ function AppointmentDetails({ appointment, setAppointment }) {
           </tbody>
         </table>
         <h1>Notes</h1>
-        <textarea className="w-full h-32">
+        <textarea className="w-full h-32 border">
 
         </textarea>
         <br />
         <button className="button">DISCARD</button>
         <button disabled={disabled} className="button" onClick={() => setDisabled(true)}>Accept</button>
-        <button className="button" onClick={() => setAppointment(null)}>Decline</button>
+        <button disabled={disabled} className="button" onClick={() => setAppointment(null)}>Decline</button>
         <button className="button">Save</button>
       </div>
     </>
