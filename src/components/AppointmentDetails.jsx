@@ -11,7 +11,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
       <tr key={i.item_id} className="text-center text-sm" style={{ padding: "10px" }}>
         <td className="px-2 py-2">{i.item.item_name}</td>
         <td className="px-2 py-2">{i.qty_needed}</td>
-        <td className="px-2 py-2">{i.outOfStock ? "Yes" : "No"}</td>
+        <td className="px-2 py-2">{i.outOfStock === false ? "Yes" : "No"}</td>
         <td className="px-2 py-2">{i.item.unit_price}</td>
         {/* Total Cost */}
       </tr>
