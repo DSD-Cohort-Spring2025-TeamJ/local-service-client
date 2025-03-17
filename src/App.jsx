@@ -18,7 +18,7 @@ function App() {
         <Switch>
           <Route
             exact
-            path="/dashboard"
+            path="/admin"
             render={(props) => <Dashboard {...props} />}
           />
         </Switch>
