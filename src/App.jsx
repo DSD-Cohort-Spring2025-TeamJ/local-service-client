@@ -5,6 +5,7 @@ import ServiceRequest from "./pages/ServiceRequest";
 import Header from "/src/components/Header.jsx"
 import Modal from "./components/Modal";
 import Footer from "./components/Footer.jsx";
+import Pipe from "./components/Pipe.jsx"
 import "./css/App.css";
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
     <div className="flex flex-col min-h-screen pt-8 pb-2">
       <div className="flex-grow">
         <Header setOpen={setOpen} />
+
+        <Pipe className="pipe h-[40px] mt-5"/>
+        
         <Switch>
           <Route
             exact

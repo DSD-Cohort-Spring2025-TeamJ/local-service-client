@@ -56,7 +56,7 @@ export default function Services() {
   return (
     <>
       <h1 className="-mt-2 mb-2 font-mono font-semibold text-[#4B4B4B]">Select a Service</h1>
-      <Pipe />
+      <Pipe className="pipe h-[20px] mt-0" />
       <div className="services-nav">
         {renderServiceButtons}
       </div>

@@ -18,6 +18,10 @@
   w-[50vw] p-2 z-1000 text-center text-xl
 }
 
+.pipe {
+  @apply w-full
+}
+
 html {
   background: url("/src/assets/plumbing1.png");
   background-repeat: no-repeat;

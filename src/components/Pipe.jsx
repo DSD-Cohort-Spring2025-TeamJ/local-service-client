@@ -1,9 +1,9 @@
 import pipe from '/src/assets/pipe.png'
 
-export default function Pipe() {
+export default function Pipe({className}) {
     return (
-        <img src={pipe} 
-        className="w-full h-5 mt-1"
+        <img src={pipe}
+        className={className} 
         alt="metal pipe" />
     )
 }
