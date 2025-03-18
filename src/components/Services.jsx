@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react"
 import { Context } from "../context/Context"
 import Pipe from '/src/components/pipe.jsx'
+import Button from '/src/components/Button.jsx'
 
 export default function Services() {
   const {
@@ -35,29 +36,21 @@ export default function Services() {
   };
 
   const renderServiceButtons = services.map((s) => (
-    <button
-      className="services main-button bg-[#4BCE4B] px-[5px] py-[5px] w-[100px] 
-      text-[#4B4B4B] font-sans text-lg"
-
-        // services bg-[#4BCE4B] rounded-[1rem] no-underline px-[5px] py-[5px] w-[100px]
-        // shadow-[inset_0_-25px_18px_-14px_rgba(1,185,38,0.35),0_1px_2px_rgba(1,177,30,0.35),0_2px_4px_rgba(3,194,79,0.35),0_4px_8px_rgba(1,192,17,0.35),0_8px_16px_rgba(1,119,42,0.35),0_16px_32px_rgba(2,199,78,0.35)]
-        // text-[#4B4B4B] font-sans border-[1px] border-[#4BCE4B]
-        // hover:bg-green-700 hover:text-white
-        // active:scale-90
+    <Button className="services main-button bg-[#4BCE4B] w-[150px] h-[40px]
+      text-black font-sans text-lg flex justify-center align-center leading-none p-5 rounded-lg"
       type="button"
       key={s.service_id}
       onClick={handleSelectService}
       id={s.service_id}
-    >
-      {s.service_name}
-    </button>
+      text={s.service_name}
+    />
   ));
 
   return (
     <>
       <h1 className="-mt-2 mb-2 font-mono font-semibold text-[#4B4B4B]">Select a Service</h1>
       <Pipe className="pipe h-[20px] mt-0" />
-      <div className="services-nav">
+      <div className="services-nav rounded-lg bg-[#005701] flex flex-wrap justify-around align-center m-6 p-3 ">
         {renderServiceButtons}
       </div>
     </>
