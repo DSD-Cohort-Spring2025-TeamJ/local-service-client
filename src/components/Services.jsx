@@ -50,7 +50,7 @@ export default function Services() {
     <>
       <h1 className="-mt-2 mb-2 font-mono font-semibold text-[#4B4B4B]">Select a Service</h1>
       <Pipe className="pipe h-[20px] mt-0" />
-      <div className="services-nav rounded-lg bg-[#005701] flex flex-wrap justify-around align-center m-6 p-3 ">
+      <div className="services-nav rounded-lg bg-gray-200 flex flex-wrap justify-around align-center m-6 p-3 ">
         {renderServiceButtons}
       </div>
     </>
