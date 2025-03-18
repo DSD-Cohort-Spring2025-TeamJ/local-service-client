@@ -108,8 +108,8 @@ function AppointmentDetails({ appointment, setAppointment }) {
         <h1>Notes</h1>
         <textarea className="w-full h-32 border" value={note} onChange={(e) => setNote(e.target.value)}></textarea>
         <br />
+        <button className="button" onClick={handleSaveNotes}>Save Notes</button>
         <button className="button" onClick={() => setNote("")}>Discard</button>
-        <button className="button" onClick={handleSaveNotes}>Save</button>
         <br /><br />
         <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("Accepted")}>Accept</button>
         <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("Declined")}>Decline</button>
