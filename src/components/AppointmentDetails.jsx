@@ -9,21 +9,16 @@ function AppointmentDetails({ appointment, setAppointment }) {
   const [note, setNote] = useState(admin_note ?? "") // admin_note comes in as null by default, and the value prop of a textarea cannot be null
 
   const handleUpdateStatus = async (newStatus) => {
-    fetch(`https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${appointment_id}`,
+    fetch(`https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${appointment_id}/${newStatus}`,
       {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...appointment.appointment,
-          status: newStatus
-        })
       })
-      .then(() => { // this part can be changed to work from the response object; ideally we will show a confirmation to the admin
-        if (newStatus === "Accepted") setDisabled(true)
-        if (newStatus === "Declined") setAppointment(null)
-      })
+      .then(res => res.json())
+      .then(data => alert(`You have ${data.status} this appointment.`))
   }
 
+  const disabled = status === "ACCEPTED" || "REJECTED" ? true : false
   const handleSaveNotes = async () => {
     fetch(`https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${appointment_id}`,
       {
@@ -64,8 +59,8 @@ function AppointmentDetails({ appointment, setAppointment }) {
         <button className="button" onClick={handleSaveNotes}>Save Notes</button>
         <button className="button" onClick={() => setNote("")}>Discard</button>
         <br /><br />
-        <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("Accepted")}>Accept</button>
-        <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("Declined")}>Decline</button>
+        <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("ACCEPTED")}>Accept</button>
+        <button disabled={disabled} className="button" onClick={() => handleUpdateStatus("REJECTED")}>Decline</button>
       </div>
     </>
   );
