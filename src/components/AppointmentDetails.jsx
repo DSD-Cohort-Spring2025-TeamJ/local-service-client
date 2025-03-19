@@ -6,7 +6,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
   const { appointment_id, client_name, client_email, client_phone, start_time, end_time, issue_description, estimated_time, status, service_id, location, admin_note, assigned_technician_list, quoted_price, missing_item_list } = appointment.appointment;
 
   const [note, setNote] = useState(admin_note ?? "") // admin_note comes in as null by default, and the value prop of a textarea cannot be null
-  const [disabled, setDisabled] = useState(status === ("ACCEPTED" || "REJECTED") ? true : false)
+  const [disabled, setDisabled] = useState(status === "ACCEPTED" || status === "REJECTED" ? true : false)
   const handleUpdateStatus = async (newStatus) => {
     fetch(`https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${appointment_id}/${newStatus}`,
       {
