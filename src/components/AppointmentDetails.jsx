@@ -5,7 +5,6 @@ function AppointmentDetails({ appointment, setAppointment }) {
   if (!appointment) return <h1>Loading...</h1>
   const { appointment_id, client_name, client_email, client_phone, start_time, end_time, issue_description, estimated_time, status, service_id, location, admin_note, assigned_technician_list, quoted_price, missing_item_list } = appointment.appointment;
 
-  const [disabled, setDisabled] = useState(false)
   const [note, setNote] = useState(admin_note ?? "") // admin_note comes in as null by default, and the value prop of a textarea cannot be null
 
   const handleUpdateStatus = async (newStatus) => {
@@ -20,12 +19,12 @@ function AppointmentDetails({ appointment, setAppointment }) {
 
   const disabled = status === "ACCEPTED" || "REJECTED" ? true : false
   const handleSaveNotes = async () => {
-    fetch(`https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${appointment_id}`,
+    fetch(`https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/`,
       {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...appointment.appointment,
+          appointment_id: appointment_id,
           admin_note: note
         })
       })
@@ -36,6 +35,8 @@ function AppointmentDetails({ appointment, setAppointment }) {
 
   const itemRowData = appointment.items.map(i => ({ "Name": i.item.item_name, "Qty Needed": i.qty_needed, "In Stock": i.outOfStock ? "No" : "Yes", "Unit Price": i.item.unit_price }))
   const itemColDefs = [{ field: "Name" }, { field: "Qty Needed" }, { field: "In Stock" }, { field: "Unit Price" }]
+
+
   return (
     <>
       <div>
