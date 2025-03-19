@@ -72,7 +72,7 @@ function AppointmentsList({ setAppointment }) {
   return (
     <div>
       <h1>Appointments</h1>
-      <DataGrid colDefs={colDefs} rowData={rowData} />
+      <DataGrid colDefs={colDefs} rowData={rowData} height={500} />
     </div>
   );
 }
