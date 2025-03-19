@@ -14,10 +14,17 @@ function AppointmentDetails({ appointment, setAppointment }) {
         headers: { 'Content-Type': 'application/json' },
       })
       .then(res => res.json())
-      .then(data => alert(`You have ${data.status} this appointment.`))
+      .then(data => {
+        setAppointment({
+          ...appointment,
+          status: data.status
+        })
+        setDisabled(true)
+        alert(`You have ${data.status} this appointment.`)
+      })
   }
 
-  const disabled = status === "ACCEPTED" || "REJECTED" ? true : false
+
   const handleSaveNotes = async () => {
     fetch(`https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/`,
       {
