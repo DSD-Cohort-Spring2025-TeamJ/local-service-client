@@ -31,7 +31,7 @@ export default function FeaturedImageGallery() {
     <div className="grid gap-4 flex justify-center items-center m-5 ">
       <div>
         <img
-          className="h-[200px] w-[700px] rounded-lg object-cover object-center md:h-[480px] shadow-xl shadow-green-500/50"
+          className="h-[300px] w-[700px] rounded-lg object-cover object-center shadow-xl shadow-green-500/50"
           src={active}
           alt=""
         />
