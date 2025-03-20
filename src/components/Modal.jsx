@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Button from "/src/components/Button.jsx";
 
 const Modal = ({ isOpen, onClose, children }) => {
@@ -17,6 +18,12 @@ const Modal = ({ isOpen, onClose, children }) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node,
 };
 
 export default Modal;
