@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import { Context } from "../context/Context";
 import Pipe from "./Pipe";
+import Button from "./Button";
 
 export default function Services() {
   const {
@@ -35,15 +36,15 @@ export default function Services() {
   };
 
   const renderServiceButtons = services.map((s) => (
-    <button
-      className="services main-button bg-[#4BCE4B] w-[150px] h-[40px]"
+    <Button
+      className="services main-button bg-[#4BCE4B] w-[150px] h-[40px]
+      text-black font-sans text-lg flex justify-center align-center leading-non p-5 rounded-lg"
       type="button"
       key={s.service_id}
       onClick={handleSelectService}
       id={s.service_id}
-    >
-      {s.service_name}
-    </button>
+      text={s.service_name}
+    />
   ));
 
   return (
