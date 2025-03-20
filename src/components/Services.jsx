@@ -37,8 +37,7 @@ export default function Services() {
 
   const renderServiceButtons = services.map((s) => (
     <Button
-      className="services main-button bg-[#4BCE4B] w-[150px] h-[40px]
-      text-black font-sans text-lg flex justify-center align-center leading-non p-5 rounded-lg"
+      className="services main-button bg-[#4BCE4B] w-[150px] h-[40px] text-black font-sans text-lg flex justify-center align-center leading-none p-5 rounded-lg"
       type="button"
       key={s.service_id}
       onClick={handleSelectService}
