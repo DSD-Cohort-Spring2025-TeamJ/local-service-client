@@ -3,7 +3,7 @@
 .main-button {
   @apply rounded-[3rem] no-underline m-0
   shadow-xl shadow-green-500/50
-  text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] flex items-center
+  text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] flex items-center justify-center
   hover:bg-green-700
   hover:text-white
   active:scale-90;
