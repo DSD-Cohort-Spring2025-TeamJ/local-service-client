@@ -8,7 +8,7 @@ export default function Header({ setOpen }) {
 
   return (
     <div className="flex flex-col items-center pl-8">
-      <div className="flex flex-row gap-10 items-center pl-8">
+      <div className="flex flex-row m-10 gap-40 items-center pl-8">
         <Logo />
         {location.pathname === "/admin" ? null : (
           <Button
