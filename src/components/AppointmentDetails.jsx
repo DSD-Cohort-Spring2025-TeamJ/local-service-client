@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import DataGrid from "./DataGrid";
+import Button from "./Button"
 
 function AppointmentDetails({ appointment, setAppointment }) {
   if (!appointment) return <h1>Loading...</h1>;
@@ -122,33 +123,28 @@ function AppointmentDetails({ appointment, setAppointment }) {
         <DataGrid rowData={itemRowData} colDefs={itemColDefs} height={300} />
         <h1>Notes</h1>
         <textarea
-          className="w-full h-32 border"
+          className="w-250 h-32 border bg-white"
           value={note}
           onChange={(e) => setNote(e.target.value)}
         ></textarea>
         <br />
-        <button className="button" onClick={handleSaveNotes}>
-          Save Notes
-        </button>
-        <button className="button" onClick={() => setNote("")}>
-          Discard
-        </button>
+        <Button className="details-button" text="Save Notes" onClick={handleSaveNotes} />
+        <Button className="details-button" text="Discard" onClick={() => setNote("")} />
         <br />
         <br />
-        <button
+        <Button
           disabled={disabled}
-          className="button"
+          className="details-button"
+          text="Accept"
           onClick={() => handleUpdateStatus("ACCEPTED")}
-        >
-          Accept
-        </button>
-        <button
+        />
+
+        <Button
           disabled={disabled}
-          className="button"
+          className="details-button"
+          text="Decline"
           onClick={() => handleUpdateStatus("REJECTED")}
-        >
-          Decline
-        </button>
+        />
       </div>
     </>
   );
