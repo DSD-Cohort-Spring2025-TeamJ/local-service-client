@@ -51,7 +51,9 @@ function AppointmentScheduler() {
       <h1>Select an appointment slot:</h1>
       <p>Estimated completion time: {timeEstimate()}</p>
       <br />
-      {renderDayCards()}
+      <div className="day-wrapper">
+        {renderDayCards()}
+      </div>
       <br />
     </div>
   );
