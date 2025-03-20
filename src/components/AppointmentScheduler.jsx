@@ -8,21 +8,14 @@ function AppointmentScheduler() {
 
   if (!selectedService) return <h3>Loading...</h3>;
 
-  const currentDate = new Date();
-  const todayString = currentDate.toISOString().split("T")[0];
-  const nextWeekString = add(currentDate, { days: 6 })
-    .toISOString()
-    .split("T")[0];
-
-  const [day, setDay] = useState(todayString);
-
-  const sortByTime = (arr) => {
-    return arr.sort((a, b) => {
-      const dateA = new Date(`01/01/2000 ${a}`);
-      const dateB = new Date(`01/01/2000 ${b}`);
-      return dateA - dateB;
-    });
-  };
+  // NOTE: Just in case the time slots ever appear out of order we can use this again
+  // const sortByTime = (arr) => {
+  //   return arr.sort((a, b) => {
+  //     const dateA = new Date(`01/01/2000 ${a}`);
+  //     const dateB = new Date(`01/01/2000 ${b}`);
+  //     return dateA - dateB;
+  //   });
+  // };
 
   // NOTE - this is the logic for grabbing all technicians' time slots and condensing them into an ordered list with no duplicates
   // const times = () => {
@@ -32,25 +25,11 @@ function AppointmentScheduler() {
   //   return sortByTime([...new Set(slots)])
   // }
 
-  // NOTE - this grabs only the first technician's time slots
-  const times = () => {
-    let firstTechSlots = Object.values(
-      selectedService.availableTimeSlotsByTechnician,
-    )[0];
-    let slots = firstTechSlots[day];
-    return sortByTime(slots);
-  };
 
-  const handleDayChange = (e) => {
-    setDay(e.target.value);
-    setAppointment({
-      ...appointment,
-      date: e.target.value,
-    });
-  };
   const handleSlotSelection = (e) => {
     setAppointment({
       ...appointment,
+      date: e.target.id,
       time_slot: e.target.value,
       tech_id: 1, // NOTE - here we are hard-coding the first technician's tech_id into the future POST body
     });
@@ -66,24 +45,11 @@ function AppointmentScheduler() {
     return minutes >= 60 ? `${minutes / 60} hour(s)` : `${minutes} minutes`;
   };
 
-  const renderTimeButtons = times().map((t, i) => {
-    return (
-      <button type="button" key={i} value={t} onClick={handleSlotSelection}>
-        {t}
-      </button>
-    );
-  });
 
   return (
     <div>
-      <h1>Select a Date and a Start Time</h1>
+      <h1>Select an appointment slot:</h1>
       <p>Estimated completion time: {timeEstimate()}</p>
-      <input
-        type="date"
-        min={todayString}
-        max={nextWeekString}
-        onChange={handleDayChange}
-      />
       <br />
       {renderDayCards()}
       <br />
