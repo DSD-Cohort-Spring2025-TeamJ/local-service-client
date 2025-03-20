@@ -10,9 +10,15 @@
 }
 
 .modal-content {
-  @apply fixed top-1/2 transform -translate-x-1/2 -translate-y-1/2
-  bg-[#F0F0F0] border-3 border-black rounded-lg shadow-xl shadow-green-500/50
-  w-[50vw] p-2 z-1000 text-center text-xl;
+  @apply fixed top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#F0F0F0] border-3 border-black rounded-lg shadow-xl shadow-green-500/50 w-[50vw] p-2 z-1000 text-center text-xl;
+}
+
+.modal-overlay {
+  @apply w-full h-full fixed top-1/2 left-1/2 transform -translate-y-1/2 z-1000
+}
+
+.modal-overlay {
+  @apply w-full h-full fixed top-1/2 left-1/2 transform -translate-y-1/2 z-1000
 }
 
 .modal-overlay {
