@@ -1,7 +1,6 @@
-import { useEffect, useContext } from "react"
-import { Context } from "../context/Context"
-import Pipe from './Pipe'
-import Button from './Button'
+import { useEffect, useContext } from "react";
+import { Context } from "../context/Context";
+import Pipe from "./Pipe";
 
 export default function Services() {
   const {
@@ -36,20 +35,24 @@ export default function Services() {
   };
 
   const renderServiceButtons = services.map((s) => (
-    <Button className="services main-button bg-[#4BCE4B] w-[150px] h-[40px]
-      text-black font-sans text-lg flex justify-center align-center leading-none p-5 rounded-lg"
+    <button
+      className="services main-button bg-[#4BCE4B] w-[150px] h-[40px]"
       type="button"
       key={s.service_id}
       onClick={handleSelectService}
       id={s.service_id}
-      text={s.service_name}
-    />
+    >
+      {s.service_name}
+    </button>
   ));
 
   return (
     <>
-      <h1 className="-mt-2 mb-2 font-mono font-semibold text-[#4B4B4B]">Select a Service</h1>
+      <h1 className="-mt-2 mb-2 font-mono font-semibold text-[#4B4B4B]">
+        Select a Service
+      </h1>
       <Pipe className="pipe h-[20px] mt-0" />
+
       <div className="services-nav rounded-lg bg-gray-200 flex flex-wrap justify-around align-center m-6 p-3 ">
         {renderServiceButtons}
       </div>

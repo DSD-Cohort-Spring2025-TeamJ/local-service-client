@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import DataGrid from "./DataGrid";
+import PropTypes from "prop-types";
 
 function AppointmentsList({ setAppointment }) {
   const [appointments, setAppointments] = useState([]);
@@ -39,42 +40,130 @@ function AppointmentsList({ setAppointment }) {
   const handleAppointmentClick = async (id) => {
     try {
       const response = await fetch(
-        `s://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${id}`
+        `s://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${id}`,
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
       setAppointment(data);
-
     } catch (error) {
       setError(error.message);
       setLoading(false);
     }
   };
 
-  const customButton = props => {
+  const customButton = (props) => {
     return (
       <button
         onClick={() => handleAppointmentClick(props.data["Appointment ID"])}
-        className="button">
-        View Details
-      </button>)
-  }
-  const rowData = appointments.map(a => ({ "Appointment ID": a.appointment_id, "Service ID": a.service_id.service_id, "Description": a.issue_description, "Location": a.location, "Admin Note": a.admin_note, "Estimated Time": a.estimated_time, "Status": a.status }))
-  const colDefs = [{ field: "Appointment ID" }, { field: "Service ID" }, { field: "Description" }, { field: "Location" }, { field: "Admin Note" }, { field: "Estimated Time" }, { field: "Status" }, {
-    field: "actions",
-    headerName: "Actions",
-    cellRenderer: customButton
+        className="text-gray-700 font-semibold hover:underline hover:cursor-pointer  transition "
+      >
+        View Details &rarr;
+      </button>
+    );
+  };
 
-  }]
+  const customCellRenderer = (props) => {
+    return (
+      <div className="text-sm text-gray-700 px-0 text-left py-1">
+        {props.value}
+      </div>
+    );
+  };
+
+  const CustomHeader = (props) => {
+    return (
+      <div className=" text-white px-0 py-2 font-bold">{props.displayName}</div>
+    );
+  };
+
+  CustomHeader.propTypes = {
+    displayName: PropTypes.string.isRequired,
+  };
+
+  const rowData = appointments.map((a) => ({
+    "Appointment ID": a.appointment_id,
+    "Service ID": a.service_id.service_id,
+    Description: a.issue_description,
+    Location: a.location,
+    "Admin Note": a.admin_note,
+    "Estimated Time": a.estimated_time,
+    Status: a.status,
+  }));
+
+  const colDefs = [
+    {
+      field: "Appointment ID",
+      cellRenderer: customCellRenderer,
+      headerComponent: CustomHeader,
+      flex: 1,
+      minWidth: 140,
+    },
+    {
+      field: "Service ID",
+      cellRenderer: customCellRenderer,
+      headerComponent: CustomHeader,
+      flex: 1,
+      minWidth: 100,
+    },
+    {
+      field: "Description",
+      cellRenderer: customCellRenderer,
+      headerComponent: CustomHeader,
+      flex: 2,
+      minWidth: 200,
+    },
+    {
+      field: "Location",
+      cellRenderer: customCellRenderer,
+      headerComponent: CustomHeader,
+      flex: 1,
+      minWidth: 150,
+      tooltipField: "Location",
+      tooltipComponent: "customTooltip",
+    },
+    {
+      field: "Admin Note",
+      cellRenderer: customCellRenderer,
+      headerComponent: CustomHeader,
+      flex: 2,
+      minWidth: 200,
+    },
+    {
+      field: "Estimated Time",
+      cellRenderer: customCellRenderer,
+      headerComponent: CustomHeader,
+      flex: 1,
+      minWidth: 130,
+    },
+    {
+      field: "Status",
+      cellRenderer: customCellRenderer,
+      headerComponent: CustomHeader,
+      flex: 1,
+      minWidth: 100,
+    },
+    {
+      field: "actions",
+      headerName: "Actions",
+      headerComponent: CustomHeader,
+      cellRenderer: customButton,
+      flex: 1,
+      minWidth: 140,
+    },
+  ];
 
   return (
-    <div>
-      <h1>Appointments</h1>
-      <DataGrid colDefs={colDefs} rowData={rowData} height={500} />
+    <div className="my-8">
+      <h1 className="text-xl font-semibold text-left p-2">Appointments</h1>
+      <DataGrid colDefs={colDefs} rowData={rowData} height={700} />
     </div>
   );
 }
 
 export default AppointmentsList;
+
+AppointmentsList.propTypes = {
+  setAppointment: PropTypes.func.isRequired,
+};

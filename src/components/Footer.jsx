@@ -1,17 +1,22 @@
-import Logo from "/src/components/Logo.jsx";
 export default function Footer() {
   return (
-    <footer className="flex flex-row justify-between items-center p-4 pr-6 pl-6 align-bottom bg-[#F0F0F0] text-green-800 w-full">
-      <div>
-        <p>200 Agile Avenue</p>
-        <p>Plungerville, TX</p>
+    <footer className=" py-6 px-8 mt-12">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="text-gray-700 text-sm text-center md:text-left">
+          <p>200 Agile Avenue</p>
+          <p>Pflugerville, TX</p>
+        </div>
+
+        <p className="text-gray-500 text-sm text-center">
+          &copy; 2025 The Pragmatic Plumber. All rights reserved.
+        </p>
+
+        <p className="text-blue-600 text-sm hover:underline">
+          <a href="mailto:ThePragPlumb@Plumbing.com">
+            ThePragPlumb@Plumbing.com
+          </a>
+        </p>
       </div>
-
-      <p>Copyright 2025 The Pragmatic Plumber</p>
-
-      <p>
-        <a href="mail to:">ThePragPlumb@Plumbing.com</a>
-      </p>
     </footer>
   );
 }

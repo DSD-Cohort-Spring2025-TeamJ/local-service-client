@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
-import add from 'date-fns/add'
-import { Context } from '../context/Context';
+import React, { useContext, useState } from "react";
+import add from "date-fns/add";
+import { Context } from "../context/Context";
 
 function AppointmentScheduler() {
   const { selectedService, appointment, setAppointment } = useContext(Context);
 
-  if (!selectedService) return <h3>Loading...</h3>
+  if (!selectedService) return <h3>Loading...</h3>;
 
   const currentDate = new Date();
   const todayString = currentDate.toISOString().split("T")[0];
@@ -56,9 +56,9 @@ function AppointmentScheduler() {
   };
 
   const timeEstimate = () => {
-    let minutes = parseInt(selectedService.estimated_time)
-    return (minutes >= 60) ? `${minutes / 60} hour(s)` : `${minutes} minutes`
-  }
+    let minutes = parseInt(selectedService.estimated_time);
+    return minutes >= 60 ? `${minutes / 60} hour(s)` : `${minutes} minutes`;
+  };
 
   const renderTimeButtons = times().map((t, i) => {
     return (
