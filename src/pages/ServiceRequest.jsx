@@ -5,23 +5,25 @@ import AppointmentScheduler from "../components/AppointmentScheduler";
 import ClientInfoForm from "../components/ClientInfoForm";
 import Message from "../components/Message";
 import { Context } from "../context/Context";
-import Button from "/src/components/Button.jsx"
+import Button from "/src/components/Button.jsx";
 
 const ServiceRequest = () => {
   const { selectedService, appointment } = useContext(Context);
   const { date, time_slot } = appointment;
-  const [message, setMessage] = useState(null)
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } = useMultistepForm([
-    <Services />,
-    <AppointmentScheduler />,
-    <ClientInfoForm />
-  ])
+  const [message, setMessage] = useState(null);
+  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
+    useMultistepForm([
+      <Services />,
+      <AppointmentScheduler />,
+      <ClientInfoForm />,
+    ]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedService) return alert("Please select a service")
-    if (currentStepIndex === 1 && (!date || !time_slot)) return alert("Please select a date and time for your appointment")
-    if (!isLastStep) return next()
+    if (!selectedService) return alert("Please select a service");
+    if (currentStepIndex === 1 && (!date || !time_slot))
+      return alert("Please select a date and time for your appointment");
+    if (!isLastStep) return next();
 
     console.log("Form Data Submitted:", appointment);
     try {
@@ -39,18 +41,18 @@ const ServiceRequest = () => {
       const result = await response.json(); // response could be used to interpolate the date and time info into the success message
       setMessage({
         style: "success",
-        text: "You have successfully booked your appointment! You will receive a confirmation email shortly."
-      })
+        text: "You have successfully booked your appointment! You will receive a confirmation email shortly.",
+      });
     } catch (error) {
       console.error("Error:", error);
       setMessage({
         style: "failure",
-        text: "We were unable to submit your appointment request. Please try again."
-      })
+        text: "We were unable to submit your appointment request. Please try again.",
+      });
     }
   };
 
-  if (message) return <Message style={message.style} text={message.text} />
+  if (message) return <Message style={message.style} text={message.text} />;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -71,17 +73,17 @@ const ServiceRequest = () => {
             className="main-button bg-[#4BCE4B] w-[80px] h-[25px] text-[#4B4B4B] font-sans border-[1px] flex justify-center"
             type="button"
             onClick={back}
-            text="Back" />
+            text="Back"
+          />
         )}
-        <Button className="main-button bg-[#4BCE4B] w-[80px] h-[25px] text-[#4B4B4B] font-sans border-[1px] flex justify-center"
+        <Button
+          className="main-button bg-[#4BCE4B] w-[80px] h-[25px] text-[#4B4B4B] font-sans border-[1px] flex justify-center"
           type="submit"
-          text={isLastStep ? "Finish" : "Next"} />
+          text={isLastStep ? "Finish" : "Next"}
+        />
       </div>
     </form>
-
   );
 };
 
 export default ServiceRequest;
-
-

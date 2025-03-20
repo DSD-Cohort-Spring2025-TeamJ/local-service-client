@@ -1,7 +1,7 @@
-import { useEffect, useContext } from "react"
-import { Context } from "../context/Context"
-import Pipe from './Pipe'
-import Button from './Button'
+import { useEffect, useContext } from "react";
+import { Context } from "../context/Context";
+import Pipe from "./Pipe";
+import Button from "./Button";
 
 export default function Services() {
   const {
@@ -14,7 +14,7 @@ export default function Services() {
 
   useEffect(() => {
     fetch(
-      "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services",
+      "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services"
     )
       .then((r) => r.json())
       .then((data) => setServices(data));
@@ -22,7 +22,7 @@ export default function Services() {
 
   const handleSelectService = async (e) => {
     fetch(
-      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${e.target.id}/timeSlots`,
+      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${e.target.id}/timeSlots`
     )
       .then((r) => r.json())
       .then((data) => {
@@ -36,7 +36,8 @@ export default function Services() {
   };
 
   const renderServiceButtons = services.map((s) => (
-    <Button className="services main-button bg-[#4BCE4B] w-[150px] h-[40px]
+    <Button
+      className="services main-button bg-[#4BCE4B] w-[150px] h-[40px]
       text-black font-sans text-lg flex justify-center align-center leading-none p-5 rounded-lg"
       type="button"
       key={s.service_id}
@@ -48,7 +49,9 @@ export default function Services() {
 
   return (
     <>
-      <h1 className="-mt-2 mb-2 font-mono font-semibold text-[#4B4B4B]">Select a Service</h1>
+      <h1 className="-mt-2 mb-2 font-mono font-semibold text-[#4B4B4B]">
+        Select a Service
+      </h1>
       <Pipe className="pipe h-[20px] mt-0" />
       <div className="services-nav rounded-lg bg-gray-200 flex flex-wrap justify-around align-center m-6 p-3 ">
         {renderServiceButtons}
