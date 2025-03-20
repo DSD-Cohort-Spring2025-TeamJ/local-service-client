@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react"
 import { Context } from "../context/Context"
-import Pipe from '/src/components/Pipe.jsx'
-import Button from '/src/components/Button.jsx'
+import Pipe from './Pipe'
+import Button from './Button'
 
 export default function Services() {
   const {
