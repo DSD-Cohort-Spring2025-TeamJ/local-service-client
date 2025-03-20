@@ -1,10 +1,11 @@
 import Button from '/src/components/Button.jsx'
 import Logo from '/src/components/Logo.jsx'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 export default function Header({ setOpen }) {
 
     const history = useHistory();
+    const location = useLocation();
 
     return (
         <div className="flex flex-col items-center pl-8 w-full">
@@ -17,10 +18,11 @@ bg-[#4BCE4B]"
                     onClick={() => setOpen(true)}
                 />
                 
+
                 <Button
                     className="main-button bg-gray-300 rounded-[2rem] w-[90px] h-[30px] p-3 text-lg flex items-center text-center"
                     text="ADMIN"
-                    onClick={() => history.push('/dashboard')}
+                    onClick={() => history.push('/admin')}
                 />
 
             </div>

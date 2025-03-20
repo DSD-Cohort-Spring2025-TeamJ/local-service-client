@@ -52,7 +52,7 @@ body {
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.16, rgb(207, 207, 207)), color-stop(0.79, rgb(252, 252, 252)));
   background-image: -moz-linear-gradient(center bottom, rgb(207, 207, 207) 16%, rgb(252, 252, 252) 79%);
   background-image: linear-gradient(to top, rgb(207, 207, 207) 16%, rgb(252, 252, 252) 79%);
-  padding: 3px;
+  margin-inline: 5px;
   border: 1px solid #000;
   color: black;
   text-decoration: none;
@@ -78,6 +78,7 @@ button.services {
   margin-bottom: 15px;
 }
 
+
 /* Styling for Message component */
 .success {
   background-color: green;
@@ -85,4 +86,9 @@ button.services {
 
 .failure {
   background-color: red;
+}
+
+:disabled {
+  cursor: not-allowed;
+  opacity: 50%;
 }

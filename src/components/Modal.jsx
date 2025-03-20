@@ -2,11 +2,15 @@ import React from 'react';
 import Button from '/src/components/Button.jsx'
 
 const Modal = ({ isOpen, onClose, children }) => {
+
   if (!isOpen) return null;
   return (
-    <div className="fixed top-1/2 left-1/2 transform translate-x-1/2 -translate-y-1/2 z-999"
+    <div
+      className="modal-overlay"
       onClick={onClose}>
-      <div className="modal-content"
+      <div
+        className="modal-content"
+
         onClick={(e) => e.stopPropagation()}>
         <div className="flex justify-end">
         <Button className="main-button w-[20px] h-[20px] bg-[#4BCE4B] px-[5px] py-[5px] text-[#4B4B4B] text-sm 
