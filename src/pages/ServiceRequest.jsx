@@ -28,14 +28,14 @@ const ServiceRequest = () => {
     console.log("Form Data Submitted:", appointment);
     try {
       const response = await fetch(
-        "http://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments",
+        "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(appointment),
-        },
+        }
       );
 
       const result = await response.json(); // response could be used to interpolate the date and time info into the success message
