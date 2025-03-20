@@ -20,7 +20,9 @@ export default function Header({ setOpen }) {
         <Button
           className="main-button bg-gray-300 rounded-[2rem] w-[90px] h-[30px] p-3 text-lg flex items-center text-center"
           text="ADMIN"
-          onClick={() => window.open("/admin", "_blank")}
+          onClick={() =>
+            window.open(window.location.origin + "/admin", "_blank")
+          }
         />
       </div>
     </div>
