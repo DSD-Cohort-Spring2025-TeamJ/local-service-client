@@ -1,13 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const Button = ({ className, text, onClick, type, id, key, ...otherProps }) => {
-    return (
-        <button type={type} className={className} 
-            onClick={onClick}>
-            {text}
-        </button>
-    )
-}
+  return (
+    <button type={type} className={className} onClick={onClick}>
+      {text}
+    </button>
+  );
+};
 
 export default Button;
 
@@ -20,5 +19,3 @@ export default Button;
         onClick={}
         text="click me"
         /> */
-
-    
