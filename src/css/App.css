@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
 .main-button {
-  @apply rounded-[3rem] no-underline m-0
-  shadow-xl shadow-green-500/50
-  text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] flex items-center
-  hover:bg-green-700
-  hover:text-white
-  active:scale-90;
+  @apply rounded-[3rem] no-underline m-0 shadow-xl shadow-green-500/50 bg-green-500 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] hover:bg-green-700 hover:text-white active:scale-90;
+}
+
+.details-button {
+  @apply rounded-[3rem] no-underline m-0 shadow-xl shadow-green-500/50 bg-green-500 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] enabled:hover:bg-green-700 enabled:hover:text-white enabled:active:scale-90 px-2 mx-2;
 }
 
 .modal-content {
-  @apply fixed top-1/2 transform -translate-x-1/2 -translate-y-1/2
-  bg-[#F0F0F0] border-3 border-black rounded-lg shadow-xl shadow-green-500/50
-  w-[50vw] p-2 z-1000 text-center text-xl;
+  @apply fixed top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#F0F0F0] border-3 border-black rounded-lg shadow-xl shadow-green-500/50 w-[50vw] p-2 z-1000 text-center text-xl;
+}
+
+.modal-overlay {
+  @apply w-full h-full fixed top-1/2 left-1/2 transform -translate-y-1/2 z-1000
 }
 
 .modal-overlay {
@@ -55,6 +56,15 @@ button.services {
 
 button.services:active {
   transform: scale(0.9);
+}
+
+button.services:hover {
+  box-shadow: rgba(1, 111, 23, 0.35) 0 -25px 18px -14px inset,
+    rgba(1, 143, 25, 0.35) 0 1px 2px, rgba(2, 139, 57, 0.35) 0 2px 4px,
+    rgba(1, 107, 10, 0.35) 0 4px 8px, rgba(1, 119, 42, 0.35) 0 8px 16px,
+    rgba(1, 128, 50, 0.35) 0 16px 32px;
+  color: rgb(255, 255, 255);
+  border: 1px solid black;
 }
 
 .modal-close {
