@@ -39,7 +39,7 @@ function AppointmentsList({ setAppointment }) {
   const handleAppointmentClick = async (id) => {
     try {
       const response = await fetch(
-        `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${id}`
+        `s://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${id}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
