@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import DayCard from "./DayCard";
 import add from "date-fns/add";
 import { Context } from "../context/Context";
 
@@ -55,6 +56,11 @@ function AppointmentScheduler() {
     });
   };
 
+  const renderDayCards = () => {
+    let firstTechSlots = Object.values(selectedService.availableTimeSlotsByTechnician)[0];
+    return Object.entries(firstTechSlots).map((arr, i) => <DayCard key={i} date={arr[0]} slots={arr[1]} buttonFunction={handleSlotSelection} />)
+  }
+
   const timeEstimate = () => {
     let minutes = parseInt(selectedService.estimated_time);
     return minutes >= 60 ? `${minutes / 60} hour(s)` : `${minutes} minutes`;
@@ -79,7 +85,7 @@ function AppointmentScheduler() {
         onChange={handleDayChange}
       />
       <br />
-      {renderTimeButtons}
+      {renderDayCards()}
       <br />
     </div>
   );
