@@ -17,11 +17,14 @@ export default function Header({ setOpen }) {
             onClick={() => setOpen(true)}
           />
         )}
-        <Button
-          className="main-button bg-gray-300 rounded-[2rem] w-[90px] h-[30px] p-3 text-lg flex items-center text-center"
-          text="ADMIN"
-          onClick={() => window.open("/admin", "_blank")}
-        />
+        <a
+          href="/admin"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="main-button bg-gray-300 rounded-[2rem] w-[90px] h-[30px] p-3 text-lg flex items-center text-center justify-center"
+        >
+          ADMIN
+        </a>
       </div>
     </div>
   );
