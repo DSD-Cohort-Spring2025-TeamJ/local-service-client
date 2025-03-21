@@ -20,18 +20,18 @@ export default function Services() {
       .then((data) => setServices(data));
   }, []);
 
-  const handleSelectService = async (e) => {
+  const handleSelectService = async (id, time) => {
+    setAppointment({
+      ...appointment,
+      service_id: id,
+      estimated_time: time,
+    });
     fetch(
-      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${e.target.id}/timeSlots`,
+      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${id}/timeSlots`,
     )
       .then((r) => r.json())
       .then((data) => {
         setSelectedService(data);
-        setAppointment({
-          ...appointment,
-          service_id: data.service_id,
-          estimated_time: data.estimated_time,
-        });
       });
   };
 
@@ -40,7 +40,7 @@ export default function Services() {
       className="services main-button bg-[#4BCE4B] w-[150px] h-[40px] text-black font-sans text-lg flex justify-center align-center leading-none rounded-lg"
       type="button"
       key={s.service_id}
-      onClick={handleSelectService}
+      onClick={() => handleSelectService(s.service_id, s.estimated_time)}
       id={s.service_id}
       text={s.service_name}
     />
