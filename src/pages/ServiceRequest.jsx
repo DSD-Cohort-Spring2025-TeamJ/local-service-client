@@ -9,7 +9,7 @@ import Button from "/src/components/Button.jsx";
 
 const ServiceRequest = () => {
   const { selectedService, appointment } = useContext(Context);
-  const { date, time_slot } = appointment;
+  const { date } = appointment;
   const [message, setMessage] = useState(null);
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepForm([
@@ -21,7 +21,7 @@ const ServiceRequest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!selectedService) return alert("Please select a service");
-    if (currentStepIndex === 1 && (!date || !time_slot))
+    if (currentStepIndex === 1 && (!date))
       return alert("Please select a date and time for your appointment");
     if (!isLastStep) return next();
 
