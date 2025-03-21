@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Dashboard from "./pages/Dashboard";
 import ServiceRequest from "./pages/ServiceRequest";
 import Header from "/src/components/Header.jsx";
@@ -8,11 +8,28 @@ import Footer from "./components/Footer.jsx";
 import Pipe from "./components/Pipe.jsx";
 import "./css/App.css";
 import FeaturedImageGallery from "./components/Gallery.jsx";
+import { Context } from "./context/Context.jsx";
 
 
 function App() {
+  const { setAppointment } = useContext(Context);
   const [open, setOpen] = useState(false);
-  const handleCloseModal = () => setOpen(!open);
+  const handleCloseModal = () => {
+    setOpen(!open);
+    setAppointment({
+      service_id: "",
+      estimated_time: "",
+      tech_id: "",
+      date: "",
+      start_time: "",
+      end_time: "",
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      comment: ""
+    })
+  }
 
   return (
     <div className="flex flex-col min-h-screen ">
