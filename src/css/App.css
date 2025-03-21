@@ -10,9 +10,19 @@
 }
 
 .modal-content {
-  @apply fixed top-1/2 transform -translate-x-1/2 -translate-y-1/2
-  bg-[#F0F0F0] border-3 border-black rounded-lg shadow-xl shadow-green-500/50
-  w-[50vw] p-2 z-1000 text-center text-xl;
+  @apply fixed top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#F0F0F0] border-3 border-black rounded-lg shadow-xl shadow-green-500/50 w-[50vw] p-2 z-1000 text-center text-xl;
+}
+
+.modal-overlay {
+  @apply w-full h-full fixed top-1/2 left-1/2 transform -translate-y-1/2 z-1000
+}
+
+.modal-overlay {
+  @apply w-full h-full fixed top-1/2 left-1/2 transform -translate-y-1/2 z-1000
+}
+
+.modal-overlay {
+  @apply w-full h-full fixed top-1/2 left-1/2 transform -translate-y-1/2 z-1000
 }
 
 .modal-overlay {
@@ -75,4 +85,20 @@ button.services:active {
 :disabled {
   cursor: not-allowed;
   opacity: 50%;
+}
+
+.day-wrapper {
+  @apply flex flex-row;
+}
+
+.day-header {
+  @apply text-sm font-bold bg-[#f0f0f0];
+}
+
+.button-grid {
+  @apply grid grid-cols-1;
+}
+
+.slot-button {
+  @apply text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm text-center me-2 mb-2;
 }
