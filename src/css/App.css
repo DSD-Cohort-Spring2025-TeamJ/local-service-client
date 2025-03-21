@@ -4,12 +4,6 @@
   @apply rounded-[3rem] no-underline m-0 shadow-xl shadow-green-500/50 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] flex items-center justify-center hover:bg-green-700 hover:text-white active:scale-90;
 }
 
-.main-button:focus {
-  @apply outline-none;
-  @apply ring-4 ring-green-300;
-  @apply dark:ring-green-800;
-}
-
 .modal-content {
   @apply fixed top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#F0F0F0] border-3 border-black rounded-lg shadow-xl shadow-green-500/50 w-[50vw] p-2 z-1000 text-center text-xl;
 }
@@ -56,6 +50,10 @@ button.services:active {
   transform: scale(0.9);
 }
 
+button.services {
+  @apply focus:ring-4 focus:ring-green-300 focus:dark:ring-green-800 focus:text-white
+}
+
 .modal-close {
   position: absolute;
   top: 0.5rem;
@@ -85,9 +83,13 @@ button.services:active {
 }
 
 .button-grid {
-  @apply grid grid-cols-1 overflow-scroll h-[50%];
+  @apply grid grid-cols-1 overflow-scroll max-h-[75%];
 }
 
 .slot-button {
   @apply text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm text-center me-2 mb-2;
+}
+
+.details-button {
+  @apply rounded-[3rem] no-underline m-0 shadow-xl shadow-green-500/50 bg-green-500 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] enabled:hover:bg-green-700 enabled:hover:text-white enabled:active:scale-90 px-2 mx-2;
 }
