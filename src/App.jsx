@@ -7,6 +7,8 @@ import Modal from "./components/Modal";
 import Footer from "./components/Footer.jsx";
 import Pipe from "./components/Pipe.jsx";
 import "./css/App.css";
+import FeaturedImageGallery from "./components/Gallery.jsx";
+
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -30,6 +32,7 @@ function App() {
           <ServiceRequest />
         </Modal>
       </div>
+      <FeaturedImageGallery />
       <Footer />
     </div>
   );
