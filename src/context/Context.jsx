@@ -12,12 +12,13 @@ function Provider({ children }) {
     estimated_time: "",
     tech_id: "",
     date: "",
-    time_slot: "",
+    start_time: "",
+    end_time: "",
     name: "",
     email: "",
     phone: "",
     address: "",
-    comment: "",
+    comment: ""
   });
 
   const history = useHistory();

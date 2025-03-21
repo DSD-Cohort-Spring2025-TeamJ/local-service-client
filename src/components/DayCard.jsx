@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 
 const DayCard = ({ date, slots, buttonFunction }) => {
 
-  const slotButtons = slots.map((s, i) => <Button key={i} id={date} value={s} className="slot-button" text={s} onClick={buttonFunction} />)
+  const slotButtons = slots.map((s, i) => <Button key={i} className="slot-button" text={s.start + " - " + s.end} onClick={() => buttonFunction(date, s.start, s.end)} />)
   return (
     <div className="day-card">
       {/* for some reason, date-fns format() returns one day previous with a hyphenated date, so we switch to slashes here */}
