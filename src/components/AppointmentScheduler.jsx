@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import DayCard from "./DayCard";
-import add from "date-fns/add";
 import { Context } from "../context/Context";
 
 function AppointmentScheduler() {
@@ -17,15 +16,6 @@ function AppointmentScheduler() {
   //   });
   // };
 
-  // NOTE - this is the logic for grabbing all technicians' time slots and condensing them into an ordered list with no duplicates
-  // const times = () => {
-  //   let slots = [];
-  //   let arrays = Object.values(selectedService.availableTimeSlotsByTechnician)
-  //   arrays.map(t => t[day].map(d => slots.push(d)))
-  //   return sortByTime([...new Set(slots)])
-  // }
-
-
   const handleSlotSelection = (date, start, end) => {
     setAppointment({
       ...appointment,
@@ -40,10 +30,6 @@ function AppointmentScheduler() {
     let firstTechSlots = selectedService.filter(obj => obj.techId === 1)
     return firstTechSlots.map((obj, i) => <DayCard key={i} date={obj.date} slots={obj.availableWindows} buttonFunction={handleSlotSelection} />)
   }
-  // const renderDayCards = () => {
-  //   let firstTechSlots = Object.values(selectedService.availableTimeSlotsByTechnician)[0];
-  //   return Object.entries(firstTechSlots).map((arr, i) => <DayCard key={i} date={arr[0]} slots={arr[1]} buttonFunction={handleSlotSelection} />)
-  // }
 
   const timeEstimate = () => {
     let minutes = parseInt(appointment.estimated_time);
