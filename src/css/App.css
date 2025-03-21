@@ -85,7 +85,7 @@ button.services:active {
 }
 
 .button-grid {
-  @apply grid grid-cols-1 overflow-scroll h-[50%];
+  @apply grid grid-cols-1 overflow-scroll max-h-[75%];
 }
 
 .slot-button {
