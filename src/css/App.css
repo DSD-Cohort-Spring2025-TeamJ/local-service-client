@@ -1,12 +1,7 @@
 @import "tailwindcss";
 
 .main-button {
-  @apply rounded-[3rem] no-underline m-0
-  shadow-xl shadow-green-500/50
-  text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] flex items-center justify-center
-  hover:bg-green-700
-  hover:text-white
-  active:scale-90;
+  @apply rounded-[3rem] no-underline m-0 shadow-xl shadow-green-500/50 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] flex items-center justify-center hover:bg-green-700 hover:text-white active:scale-90;
 }
 
 .main-button:focus {
@@ -17,18 +12,6 @@
 
 .modal-content {
   @apply fixed top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#F0F0F0] border-3 border-black rounded-lg shadow-xl shadow-green-500/50 w-[50vw] p-2 z-1000 text-center text-xl;
-}
-
-.modal-overlay {
-  @apply w-full h-full fixed top-1/2 left-1/2 transform -translate-y-1/2 z-1000
-}
-
-.modal-overlay {
-  @apply w-full h-full fixed top-1/2 left-1/2 transform -translate-y-1/2 z-1000
-}
-
-.modal-overlay {
-  @apply w-full h-full fixed top-1/2 left-1/2 transform -translate-y-1/2 z-1000
 }
 
 .modal-overlay {
@@ -102,7 +85,7 @@ button.services:active {
 }
 
 .button-grid {
-  @apply grid grid-cols-1;
+  @apply grid grid-cols-1 overflow-scroll h-[50%];
 }
 
 .slot-button {
