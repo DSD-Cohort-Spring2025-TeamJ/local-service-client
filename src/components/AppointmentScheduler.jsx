@@ -26,12 +26,13 @@ function AppointmentScheduler() {
   // }
 
 
-  const handleSlotSelection = (e) => {
+  const handleSlotSelection = (date, start, end) => {
     setAppointment({
       ...appointment,
-      date: e.target.id,
-      time_slot: e.target.value,
-      tech_id: 1, // NOTE - here we are hard-coding the first technician's tech_id into the future POST body
+      date: date,
+      start_time: start,
+      end_time: end,
+      tech_id: 1 // NOTE - here we are hard-coding the first technician's tech_id into the future POST body
     });
   };
 
