@@ -37,9 +37,13 @@ function AppointmentScheduler() {
   };
 
   const renderDayCards = () => {
-    let firstTechSlots = Object.values(selectedService.availableTimeSlotsByTechnician)[0];
-    return Object.entries(firstTechSlots).map((arr, i) => <DayCard key={i} date={arr[0]} slots={arr[1]} buttonFunction={handleSlotSelection} />)
+    let firstTechSlots = selectedService.filter(obj => obj.techId === 1)
+    return firstTechSlots.map((obj, i) => <DayCard key={i} date={obj.date} slots={obj.availableWindows} buttonFunction={handleSlotSelection} />)
   }
+  // const renderDayCards = () => {
+  //   let firstTechSlots = Object.values(selectedService.availableTimeSlotsByTechnician)[0];
+  //   return Object.entries(firstTechSlots).map((arr, i) => <DayCard key={i} date={arr[0]} slots={arr[1]} buttonFunction={handleSlotSelection} />)
+  // }
 
   const timeEstimate = () => {
     let minutes = parseInt(appointment.estimated_time);
