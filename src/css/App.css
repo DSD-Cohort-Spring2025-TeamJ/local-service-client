@@ -91,3 +91,7 @@ button.services:active {
 .slot-button {
   @apply text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm text-center me-2 mb-2;
 }
+
+.details-button {
+  @apply rounded-[3rem] no-underline m-0 shadow-xl shadow-green-500/50 bg-green-500 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] enabled:hover:bg-green-700 enabled:hover:text-white enabled:active:scale-90 px-2 mx-2;
+}
