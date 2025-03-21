@@ -4,12 +4,6 @@
   @apply rounded-[3rem] no-underline m-0 shadow-xl shadow-green-500/50 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] flex items-center justify-center hover:bg-green-700 hover:text-white active:scale-90;
 }
 
-.main-button:focus {
-  @apply outline-none;
-  @apply ring-4 ring-green-300;
-  @apply dark:ring-green-800;
-}
-
 .modal-content {
   @apply fixed top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#F0F0F0] border-3 border-black rounded-lg shadow-xl shadow-green-500/50 w-[50vw] p-2 z-1000 text-center text-xl;
 }
@@ -54,6 +48,10 @@ button.services {
 
 button.services:active {
   transform: scale(0.9);
+}
+
+button.services {
+  @apply focus:ring-4 focus:ring-green-300 focus:dark:ring-green-800 focus:text-white
 }
 
 .modal-close {
