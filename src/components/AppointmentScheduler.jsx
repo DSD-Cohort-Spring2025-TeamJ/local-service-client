@@ -42,7 +42,7 @@ function AppointmentScheduler() {
   }
 
   const timeEstimate = () => {
-    let minutes = parseInt(selectedService.estimated_time);
+    let minutes = parseInt(appointment.estimated_time);
     return minutes >= 60 ? `${minutes / 60} hour(s)` : `${minutes} minutes`;
   };
 
