@@ -3,23 +3,23 @@ import React from "react";
 export default function FeaturedImageGallery() {
   const data = [
     {
-      imgelink: "/src/assets/plumbing3.png",
+      imgelink: "./plumbing3.png",
     },
     {
-      imgelink: "/src/assets/plumbing4.png",
+      imgelink: "./plumbing4.png",
     },
     {
-      imgelink: "/src/assets/plumbing6.png",
+      imgelink: "./plumbing6.png",
     },
     {
-      imgelink: "/src/assets/plumbing7.png",
+      imgelink: "./plumbing7.png",
     },
     {
-      imgelink: "/src/assets/plumbing8.png",
+      imgelink: "./plumbing8.png",
     },
   ];
 
-  const [active, setActive] = React.useState("/src/assets/plumbing3.png");
+  const [active, setActive] = React.useState("./plumbing3.png");
   return (
     <div className="grid gap-4 justify-center items-center m-5 ">
       <div>
