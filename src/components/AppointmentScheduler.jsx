@@ -17,25 +17,32 @@ function AppointmentScheduler({ selectedSlot, setSelectedSlot }) {
     setSelectedSlot({ date, start, end });
   };
 
-  const renderDayCards = () => {
-    const firstTechSlots = selectedService.filter((obj) => obj.techId === 1);
-    return firstTechSlots.map((obj, i) => (
-      <DayCard
-        key={i}
-        date={obj.date}
-        slots={obj.availableWindows}
-        buttonFunction={handleSlotSelection}
-        selectedSlot={selectedSlot}
-      />
-    ));
-  };
+  const firstTechSlots = selectedService.filter((obj) => obj.techId === 1);
 
   return (
     <div className="max-w-2xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-2 text-center">
         Select an appointment slot
       </h1>
-      <div className="flex flex-col gap-6">{renderDayCards()}</div>
+
+      {firstTechSlots.length === 0 ? (
+        <p className="text-center text-red-500 mt-6">
+          No appointment slots are currently available in the next 7 days.
+          Please check back later or contact support.
+        </p>
+      ) : (
+        <div className="flex flex-col gap-6">
+          {firstTechSlots.map((obj, i) => (
+            <DayCard
+              key={i}
+              date={obj.date}
+              slots={obj.availableWindows}
+              buttonFunction={handleSlotSelection}
+              selectedSlot={selectedSlot}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

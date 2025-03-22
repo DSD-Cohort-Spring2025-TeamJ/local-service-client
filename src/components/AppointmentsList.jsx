@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import DataGrid from "./DataGrid";
 import PropTypes from "prop-types";
+import { format } from "date-fns";
 
 function AppointmentsList({ setAppointment }) {
   const [appointments, setAppointments] = useState([]);
@@ -28,23 +29,17 @@ function AppointmentsList({ setAppointment }) {
     };
 
     fetchAppointments();
-  }, []); //Empty array to run only once
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  }, []);
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
+  if (loading) return <p>Loading appointments...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   const handleAppointmentClick = async (id) => {
     try {
       const response = await fetch(
         `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${id}`,
       );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+      if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
       setAppointment(data);
     } catch (error) {
@@ -53,24 +48,28 @@ function AppointmentsList({ setAppointment }) {
     }
   };
 
-  const customButton = (props) => {
-    return (
-      <button
-        onClick={() => handleAppointmentClick(props.data["Appointment ID"])}
-        className="text-gray-700 font-semibold hover:underline hover:cursor-pointer  transition "
-      >
-        View Details &rarr;
-      </button>
-    );
-  };
-
   const customCellRenderer = (props) => {
+    if (props.colDef.field === "Start / End Time") {
+      const startDate = format(new Date(props.data.start_time), "MMM d, yyyy");
+      const startTime = format(new Date(props.data.start_time), "h:mm a");
+      const endTime = format(new Date(props.data.end_time), "h:mm a");
+      return (
+        <div className="flex flex-col gap-1">
+          <span className="text-green-800 text-xs font-semibold">
+            {startDate}
+          </span>
+          <div className="text-sm text-gray-700">
+            {startTime} — {endTime}
+          </div>
+        </div>
+      );
+    }
     if (props.colDef.field === "Status") {
       const colorMap = {
-        PENDING: "bg-yellow-200 text-yellow-800",
-        ACCEPTED: "bg-green-200 text-green-800",
-        REJECTED: "bg-red-200 text-red-800",
-        COMPLETED: "bg-blue-200 text-blue-800",
+        PENDING: "bg-yellow-100 text-yellow-800",
+        ACCEPTED: "bg-green-100 text-green-800",
+        REJECTED: "bg-red-100 text-red-700",
+        COMPLETED: "bg-blue-100 text-blue-700",
       };
       return (
         <span
@@ -85,76 +84,89 @@ function AppointmentsList({ setAppointment }) {
     return <div className="text-sm text-gray-700 py-1">{props.value}</div>;
   };
 
-  const CustomHeader = (props) => {
-    return (
-      <div className=" text-white px-0 py-2 font-bold">{props.displayName}</div>
-    );
-  };
+  const customButton = (props) => (
+    <button
+      onClick={() => handleAppointmentClick(props.data["ID"])}
+      className="border border-gray-300 text-gray-700 rounded px-3 py-1 text-sm hover:cursor-pointer hover:bg-gray-100 transition"
+    >
+      View &rarr;
+    </button>
+  );
 
-  CustomHeader.propTypes = {
-    displayName: PropTypes.string.isRequired,
-  };
+  const CustomHeader = (props) => (
+    <div className="text-black px-0 py-2 font-bold">{props.displayName}</div>
+  );
 
-  const rowData = appointments.map((a) => ({
-    "Appointment ID": a.appointment_id,
-    "Service ID": a.service_id.service_id,
+  CustomHeader.propTypes = { displayName: PropTypes.string.isRequired };
+
+  const sortedAppointments = [...appointments].sort(
+    (a, b) => b.appointment_id - a.appointment_id,
+  );
+
+  const rowData = sortedAppointments.map((a) => ({
+    ID: a.appointment_id,
+    Service: a.service_id.service_name,
     Description: a.issue_description,
     Location: a.location,
-    "Admin Note": a.admin_note,
-    "Estimated Time": a.estimated_time,
+    start_time: a.start_time,
+    end_time: a.end_time,
+    "Start / End Time": "time",
     Status: a.status,
   }));
 
   const colDefs = [
     {
-      field: "Appointment ID",
+      field: "ID",
+      sortable: true,
       cellRenderer: customCellRenderer,
       headerComponent: CustomHeader,
       flex: 1,
-      minWidth: 140,
+      minWidth: 80,
+      cellClass: "text-left",
     },
     {
-      field: "Service ID",
+      field: "Service",
+      sortable: true,
       cellRenderer: customCellRenderer,
       headerComponent: CustomHeader,
       flex: 1,
-      minWidth: 100,
+      cellClass: "text-left",
+      minWidth: 150,
     },
     {
       field: "Description",
+      sortable: false,
       cellRenderer: customCellRenderer,
       headerComponent: CustomHeader,
       flex: 2,
-      minWidth: 200,
+      cellClass: "text-left",
+      minWidth: 120,
     },
     {
       field: "Location",
+      sortable: true,
       cellRenderer: customCellRenderer,
       headerComponent: CustomHeader,
       flex: 1,
-      minWidth: 150,
-      tooltipField: "Location",
-      tooltipComponent: "customTooltip",
-    },
-    {
-      field: "Admin Note",
-      cellRenderer: customCellRenderer,
-      headerComponent: CustomHeader,
-      flex: 2,
+      cellClass: "text-left",
       minWidth: 200,
     },
     {
-      field: "Estimated Time",
+      field: "Start / End Time",
+      sortable: false,
       cellRenderer: customCellRenderer,
       headerComponent: CustomHeader,
-      flex: 1,
-      minWidth: 130,
+      flex: 1.5,
+      cellClass: "text-left",
+      minWidth: 200,
     },
     {
       field: "Status",
+      sortable: true,
       cellRenderer: customCellRenderer,
       headerComponent: CustomHeader,
       flex: 1,
+      cellClass: "text-left",
       minWidth: 100,
     },
     {
@@ -163,6 +175,7 @@ function AppointmentsList({ setAppointment }) {
       headerComponent: CustomHeader,
       cellRenderer: customButton,
       flex: 1,
+      cellClass: "text-left",
       minWidth: 140,
     },
   ];
@@ -170,13 +183,17 @@ function AppointmentsList({ setAppointment }) {
   return (
     <div className="my-8">
       <h1 className="text-xl font-semibold text-left p-2">Appointments</h1>
-      <DataGrid colDefs={colDefs} rowData={rowData} height={700} />
+      <DataGrid
+        colDefs={colDefs}
+        rowData={rowData}
+        defaultSortCol="Appointment ID"
+      />
     </div>
   );
 }
 
-export default AppointmentsList;
-
 AppointmentsList.propTypes = {
   setAppointment: PropTypes.func.isRequired,
 };
+
+export default AppointmentsList;
