@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
 import pragmaticplumber from "/src/assets/pragmaticplumberlogo.png";
 
 export default function Logo() {
   return (
-    <img
-      src={pragmaticplumber}
-      style={{ width: "350px" }}
-      alt="pragmatic plumber logo"
-    />
+    <Link to="/">
+      <img
+        src={pragmaticplumber}
+        className="w-[275px] sm:w-[350px]"
+        alt="pragmatic plumber logo"
+      />
+    </Link>
   );
 }

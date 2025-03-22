@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Provider } from "./context/Context.jsx";
 import "./index.css";
 import App from "./App.jsx";
@@ -11,9 +11,9 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider>
-      <Router>
+      <BrowserRouter>
         <App />
-      </Router>
+      </BrowserRouter>
     </Provider>
-  </StrictMode>,
+  </StrictMode>
 );

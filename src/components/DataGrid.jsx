@@ -1,8 +1,7 @@
 import { AgGridReact } from "ag-grid-react";
 import PropTypes from "prop-types";
-import { useCallback } from "react";
 
-const DataGrid = ({ rowData, colDefs, defaultSortCol }) => {
+const DataGrid = ({ rowData, colDefs }) => {
   const CustomTooltip = (props) => (
     <div className="bg-gray-900 text-white text-xs p-2 rounded shadow-xl max-w-xs transition-opacity duration-150">
       {props.value}
@@ -17,18 +16,7 @@ const DataGrid = ({ rowData, colDefs, defaultSortCol }) => {
     sortable: true,
     resizable: true,
     filter: false,
-    tooltipComponent: "customTooltip",
-    tooltipShowDelay: 200,
   };
-
-  const onGridReady = useCallback(
-    (params) => {
-      if (defaultSortCol) {
-        params.api.setSortModel([{ colId: defaultSortCol, sort: "desc" }]);
-      }
-    },
-    [defaultSortCol]
-  );
 
   return (
     <div>
@@ -41,9 +29,9 @@ const DataGrid = ({ rowData, colDefs, defaultSortCol }) => {
         pagination={true}
         paginationPageSize={10}
         paginationAutoPageSize={false}
+        paginationPageSizeSelector={[10, 25, 50, 100]}
         domLayout="autoHeight"
         components={{ customTooltip: CustomTooltip }}
-        onGridReady={onGridReady}
       />
     </div>
   );

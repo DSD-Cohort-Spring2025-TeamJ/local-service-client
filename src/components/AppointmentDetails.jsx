@@ -68,6 +68,8 @@ function AppointmentDetails({ appointment, setAppointment }) {
         }),
       }
     );
+    setNotification("Saved!");
+    setTimeout(() => setNotification(""), 3000);
   };
 
   const statusColors = {
@@ -89,7 +91,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
         </div>
       )}
 
-      <div className="p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-xl relative m-4">
+      <div className="p-2 pt-8 sm:pt-0 sm:p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-xl relative m-2 sm:m-4">
         <button
           className="absolute top-2 right-2 bg-green-500 text-white w-7 h-7 flex items-center justify-center rounded-full hover:bg-green-700 transition"
           onClick={() => setAppointment(null)}
@@ -103,7 +105,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
         </h1>
 
         {/* Client Information */}
-        <div className="bg-white p-6 rounded-xl shadow-md space-y-4">
+        <div className="bg-white p-2 sm:p-6 rounded-xl sm:shadow-md space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold flex items-center gap-2">
               👤 {client_name}
@@ -157,7 +159,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
         </div>
 
         {/* Inventory */}
-        <div className="bg-white p-6 rounded-xl shadow-md mb-8 overflow-x-auto mt-8">
+        <div className="bg-white p-2 sm:p-6 rounded-xl sm:shadow-md mb-8 overflow-x-auto mt-8">
           <h2 className="text-xl font-semibold text-left mb-4 border-b pb-2">
             Inventory Check
           </h2>
@@ -209,7 +211,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
         </div>
 
         {/* Notes */}
-        <div className="bg-white p-6 rounded-2xl shadow-md mb-8 relative">
+        <div className="bg-white p-2 sm:p-6 rounded-2xl sm:shadow-md mb-8 relative">
           <h2 className="text-xl font-semibold mb-4 border-b pb-2 flex items-center gap-2">
             🗒️ Admin Notes
           </h2>
