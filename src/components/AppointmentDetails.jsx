@@ -25,7 +25,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
   const [showDeclineConfirm, setShowDeclineConfirm] = useState(false);
   const [note, setNote] = useState(admin_note ?? "");
   const [disabled, setDisabled] = useState(
-    status === "ACCEPTED" || status === "REJECTED",
+    status === "ACCEPTED" || status === "REJECTED"
   );
   const [notification, setNotification] = useState("");
 
@@ -35,7 +35,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-      },
+      }
     )
       .then((res) => res.json())
       .then((data) => {
@@ -50,7 +50,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
         setNotification(
           data.status === "ACCEPTED"
             ? "✅ Appointment Accepted"
-            : "❌ Appointment Declined",
+            : "❌ Appointment Declined"
         );
         setTimeout(() => setNotification(""), 3000);
       });
@@ -66,7 +66,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
           appointment_id,
           admin_note: note,
         }),
-      },
+      }
     );
   };
 
@@ -158,7 +158,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
 
         {/* Inventory */}
         <div className="bg-white p-6 rounded-xl shadow-md mb-8 overflow-x-auto mt-8">
-          <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+          <h2 className="text-xl font-semibold text-left mb-4 border-b pb-2">
             Inventory Check
           </h2>
           {items.length > 0 ? (
@@ -209,28 +209,33 @@ function AppointmentDetails({ appointment, setAppointment }) {
         </div>
 
         {/* Notes */}
-        <div className="bg-white p-6 rounded-xl shadow-md mb-8">
-          <h2 className="text-xl font-semibold mb-4">🗒️ Admin Notes</h2>
+        <div className="bg-white p-6 rounded-2xl shadow-md mb-8 relative">
+          <h2 className="text-xl font-semibold mb-4 border-b pb-2 flex items-center gap-2">
+            🗒️ Admin Notes
+          </h2>
           <textarea
-            className="w-full h-32 p-4 border rounded-lg shadow-sm resize-none focus:ring-2 focus:ring-green-300"
-            placeholder="Write admin notes here..."
+            className="w-full h-32 p-4 border rounded-lg resize-none shadow-sm focus:ring-2 focus:ring-blue-200 transition"
+            placeholder="Write any notes here..."
             value={note}
             onChange={(e) => setNote(e.target.value)}
-          />
-          <div className="flex justify-end gap-4 mt-4">
+          ></textarea>
+          <div className="text-right text-sm text-gray-400 mt-1">
+            {note.length} / 500
+          </div>
+          <div className="flex justify-end gap-3 mt-4">
             <button
+              onClick={() => setNote("")}
               disabled={!note.length}
-              onClick={handleSaveNotes}
-              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full transition disabled:opacity-30"
+              className="flex items-center gap-1 px-3 py-2 rounded-full text-gray-600 hover:bg-gray-100 transition disabled:opacity-30"
             >
-              Save Notes
+              🗑️ Clear
             </button>
             <button
+              onClick={handleSaveNotes}
               disabled={!note.length}
-              onClick={() => setNote("")}
-              className="px-4 py-2 text-gray-500 rounded-full hover:bg-gray-100"
+              className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition disabled:opacity-40"
             >
-              Clear
+              💾 Save
             </button>
           </div>
         </div>
