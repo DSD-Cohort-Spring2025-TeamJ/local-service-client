@@ -36,6 +36,17 @@ function Provider({ children }) {
   //     })
   // }, [])
 
+  useEffect(() => {
+    if (services.length === 0) {
+      fetch(
+        "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services"
+      )
+        .then((res) => res.json())
+        .then((data) => setServices(data))
+        .catch((err) => console.error("Error fetching services:", err));
+    }
+  }, [services.length]);
+
   const logout = () => {
     fetch("/api/logout", {
       method: "DELETE",
