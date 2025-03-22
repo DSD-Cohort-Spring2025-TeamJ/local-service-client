@@ -16,6 +16,7 @@ const DayCard = ({ date, slots, buttonFunction, selectedSlot }) => {
           return (
             <button
               key={i}
+              type="button"
               onClick={() => buttonFunction(date, s.start, s.end)}
               className={`px-4 py-2 rounded-full text-sm shadow-sm transition ${
                 isSelected
@@ -38,7 +39,7 @@ DayCard.propTypes = {
     PropTypes.shape({
       start: PropTypes.string.isRequired,
       end: PropTypes.string.isRequired,
-    }),
+    })
   ).isRequired,
   buttonFunction: PropTypes.func.isRequired,
   selectedSlot: PropTypes.shape({
