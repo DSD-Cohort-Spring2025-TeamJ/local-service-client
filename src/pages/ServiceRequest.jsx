@@ -6,6 +6,7 @@ import ClientInfoForm from "../components/ClientInfoForm";
 import Message from "../components/Message";
 import { Context } from "../context/Context";
 import Button from "/src/components/Button.jsx";
+import IssueDescriptionForm from "../components/IssueDescriptionForm";
 
 const ServiceRequest = () => {
   const { selectedService, appointment, setAppointment } = useContext(Context);
@@ -19,6 +20,15 @@ const ServiceRequest = () => {
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepForm([
+      <IssueDescriptionForm
+        onClassify={(data) => {
+          setAppointment((prev) => ({
+            ...prev,
+            issue_description: data.category,
+            estimated_time: data.estimatedTime,
+          }));
+        }}
+      />,
       <Services />,
       <AppointmentScheduler
         selectedSlot={selectedSlot}
@@ -63,7 +73,7 @@ const ServiceRequest = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(appointment),
-        },
+        }
       );
 
       const result = await response.json();
@@ -93,6 +103,17 @@ const ServiceRequest = () => {
           Please select a date and time before continuing.
         </p>
       )}
+      {currentStepIndex === 0 && (
+        <div className="flex justify-end gap-3 mt-4">
+          <Button
+            className="main-button border border-gray-400 text-gray-700 p-2 px-4 h-[30px] flex justify-center"
+            type="button"
+            onClick={next}
+            text="Skip & choose without AI"
+          />
+        </div>
+      )}
+
       <div
         style={{
           marginTop: "1rem",
