@@ -4,7 +4,7 @@ import { Context } from "../context/Context";
 import PropTypes from "prop-types";
 
 function AppointmentScheduler({ selectedSlot, setSelectedSlot }) {
-  const { selectedService } = useContext(Context);
+  const { selectedService, appointment } = useContext(Context);
 
   if (!selectedService)
     return (
@@ -19,16 +19,21 @@ function AppointmentScheduler({ selectedSlot, setSelectedSlot }) {
 
   const firstTechSlots = selectedService.filter((obj) => obj.techId === 1);
 
+  const timeEstimate = () => {
+    let minutes = parseInt(appointment.estimated_time);
+    return minutes >= 60 ? `${minutes / 60} hour(s)` : `${minutes} minutes`;
+  };
+
   return (
     <div className="max-w-2xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-2 text-center">
         Select an appointment slot
       </h1>
-
+      <p>Estimated completion time: {timeEstimate()}</p>
       {firstTechSlots.length === 0 ? (
         <p className="text-center text-red-500 mt-6">
-          No appointment slots are currently available in the next 7 days.
-          Please check back later or contact support.
+          No appointment slots are currently available in the next 7. Please
+          check back later or contact support.
         </p>
       ) : (
         <div className="flex flex-col gap-6">
