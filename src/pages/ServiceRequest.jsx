@@ -49,12 +49,12 @@ const ServiceRequest = () => {
       return;
     }
 
-    if (currentStepIndex === 1 && !selectedSlot.date) {
+    if (currentStepIndex === 2 && !selectedSlot.date) {
       setSlotError(true);
       return;
     }
 
-    if (currentStepIndex === 1) {
+    if (currentStepIndex === 2) {
       setAppointment({
         ...appointment,
         date: selectedSlot.date,
