@@ -9,18 +9,18 @@
 }
 
 .modal-overlay {
-  @apply w-full h-full fixed top-1/2 left-1/2 transform -translate-y-1/2 z-1000
+  @apply w-full h-full fixed top-1/2 left-1/2 transform -translate-y-1/2 z-1000;
 }
 
 .pipe {
   @apply w-full;
 }
 
-html {
+/* html {
   background: url("/src/assets/plumbing1.png");
   background-repeat: no-repeat;
   background-size: cover;
-}
+} */
 
 body {
   width: 100vw;
@@ -51,7 +51,7 @@ button.services:active {
 }
 
 button.services {
-  @apply focus:ring-4 focus:ring-green-300 focus:dark:ring-green-800 focus:text-white
+  @apply focus:ring-4 focus:ring-green-300 focus:dark:ring-green-800 focus:text-white;
 }
 
 .modal-close {

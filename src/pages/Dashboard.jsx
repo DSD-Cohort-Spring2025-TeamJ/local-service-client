@@ -5,7 +5,7 @@ import AppointmentDetails from "../components/AppointmentDetails";
 const Dashboard = () => {
   const [appointment, setAppointment] = useState(null);
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       {!appointment ? (
         <AppointmentsList
           setAppointment={setAppointment}
