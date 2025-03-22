@@ -39,8 +39,7 @@ const IssueDescriptionForm = ({ onClassify }) => {
       </div>
       <p className="text-gray-600 mb-2">
         Describe your plumbing issue below, and let our AI suggest the best
-        service category and estimated time. Click &quot;Next&quot; button to
-        skip!
+        service category and estimated time.
       </p>
       <textarea
         value={description}
