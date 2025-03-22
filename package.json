@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.0.15",
     "@docsearch/react": "^3.9.0",
+    "@tailwindcss/vite": "^4.0.15",
     "ag-grid-react": "^33.1.1",
     "date-fns": "^4.1.0",
     "local-service-client": "file:",
