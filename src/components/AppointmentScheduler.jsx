@@ -1,53 +1,52 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import DayCard from "./DayCard";
 import { Context } from "../context/Context";
+import PropTypes from "prop-types";
 
-function AppointmentScheduler() {
-  const { selectedService, appointment, setAppointment } = useContext(Context);
+function AppointmentScheduler({ selectedSlot, setSelectedSlot }) {
+  const { selectedService } = useContext(Context);
 
-  if (!selectedService) return <h3>Loading...</h3>;
-
-  // NOTE: Just in case the time slots ever appear out of order we can use this again
-  // const sortByTime = (arr) => {
-  //   return arr.sort((a, b) => {
-  //     const dateA = new Date(`01/01/2000 ${a}`);
-  //     const dateB = new Date(`01/01/2000 ${b}`);
-  //     return dateA - dateB;
-  //   });
-  // };
+  if (!selectedService)
+    return (
+      <h3 className="text-center text-gray-500 mt-10">
+        Loading appointment slots...
+      </h3>
+    );
 
   const handleSlotSelection = (date, start, end) => {
-    setAppointment({
-      ...appointment,
-      date: date,
-      start_time: start,
-      end_time: end,
-      tech_id: 1 // NOTE - here we are hard-coding the first technician's tech_id into the future POST body
-    });
+    setSelectedSlot({ date, start, end });
   };
 
   const renderDayCards = () => {
-    let firstTechSlots = selectedService.filter(obj => obj.techId === 1)
-    return firstTechSlots.map((obj, i) => <DayCard key={i} date={obj.date} slots={obj.availableWindows} buttonFunction={handleSlotSelection} />)
-  }
-
-  const timeEstimate = () => {
-    let minutes = parseInt(appointment.estimated_time);
-    return minutes >= 60 ? `${minutes / 60} hour(s)` : `${minutes} minutes`;
+    const firstTechSlots = selectedService.filter((obj) => obj.techId === 1);
+    return firstTechSlots.map((obj, i) => (
+      <DayCard
+        key={i}
+        date={obj.date}
+        slots={obj.availableWindows}
+        buttonFunction={handleSlotSelection}
+        selectedSlot={selectedSlot}
+      />
+    ));
   };
 
-
   return (
-    <div>
-      <h1>Select an appointment slot:</h1>
-      <p>Estimated completion time: {timeEstimate()}</p>
-      <br />
-      <div className="day-wrapper">
-        {renderDayCards()}
-      </div>
-      <br />
+    <div className="max-w-2xl mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-2 text-center">
+        Select an appointment slot
+      </h1>
+      <div className="flex flex-col gap-6">{renderDayCards()}</div>
     </div>
   );
 }
+
+AppointmentScheduler.propTypes = {
+  selectedSlot: PropTypes.shape({
+    date: PropTypes.string,
+    start: PropTypes.string,
+    end: PropTypes.string,
+  }).isRequired,
+  setSelectedSlot: PropTypes.func.isRequired,
+};
 
 export default AppointmentScheduler;

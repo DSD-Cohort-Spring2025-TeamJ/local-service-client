@@ -9,11 +9,13 @@ import Pipe from "./components/Pipe.jsx";
 import "./css/App.css";
 import FeaturedImageGallery from "./components/Gallery.jsx";
 import { Context } from "./context/Context.jsx";
+import { useLocation } from "react-router-dom";
 
-
-function App() {
+export default function App() {
   const { setAppointment } = useContext(Context);
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+
   const handleCloseModal = () => {
     setOpen(!open);
     setAppointment({
@@ -27,13 +29,13 @@ function App() {
       email: "",
       phone: "",
       address: "",
-      comment: ""
-    })
-  }
+      comment: "",
+    });
+  };
 
   return (
-    <div className="flex flex-col min-h-screen ">
-      <div className="flex-grow">
+    <div className="flex flex-col justify-between min-h-screen bg-green-50">
+      <div className="">
         <Header setOpen={setOpen} />
 
         <Pipe className="pipe h-[40px] mt-5" />
@@ -45,14 +47,14 @@ function App() {
             render={(props) => <Dashboard {...props} />}
           />
         </Switch>
+
         <Modal isOpen={open} onClose={handleCloseModal}>
           <ServiceRequest />
         </Modal>
       </div>
-      <FeaturedImageGallery />
+
+      {location.pathname === "/" && <FeaturedImageGallery />}
       <Footer />
     </div>
   );
 }
-
-export default App;

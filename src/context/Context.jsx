@@ -18,7 +18,7 @@ function Provider({ children }) {
     email: "",
     phone: "",
     address: "",
-    comment: ""
+    comment: "",
   });
 
   const history = useHistory();

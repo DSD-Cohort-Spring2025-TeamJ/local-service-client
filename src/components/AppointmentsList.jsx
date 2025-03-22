@@ -11,7 +11,7 @@ function AppointmentsList({ setAppointment }) {
     const fetchAppointments = async () => {
       try {
         const response = await fetch(
-          "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments"
+          "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments",
         );
 
         if (!response.ok) {
@@ -40,7 +40,7 @@ function AppointmentsList({ setAppointment }) {
   const handleAppointmentClick = async (id) => {
     try {
       const response = await fetch(
-        `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${id}`
+        `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${id}`,
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -65,11 +65,24 @@ function AppointmentsList({ setAppointment }) {
   };
 
   const customCellRenderer = (props) => {
-    return (
-      <div className="text-sm text-gray-700 px-0 text-left py-1">
-        {props.value}
-      </div>
-    );
+    if (props.colDef.field === "Status") {
+      const colorMap = {
+        PENDING: "bg-yellow-200 text-yellow-800",
+        ACCEPTED: "bg-green-200 text-green-800",
+        REJECTED: "bg-red-200 text-red-800",
+        COMPLETED: "bg-blue-200 text-blue-800",
+      };
+      return (
+        <span
+          className={`px-3 py-1 rounded-full text-xs font-semibold ${
+            colorMap[props.value] || "bg-gray-200 text-gray-700"
+          }`}
+        >
+          {props.value}
+        </span>
+      );
+    }
+    return <div className="text-sm text-gray-700 py-1">{props.value}</div>;
   };
 
   const CustomHeader = (props) => {

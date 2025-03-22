@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useMultistepForm } from "../hooks/useMultistepForm";
 import Services from "../components/Services";
 import AppointmentScheduler from "../components/AppointmentScheduler";
@@ -8,37 +8,65 @@ import { Context } from "../context/Context";
 import Button from "/src/components/Button.jsx";
 
 const ServiceRequest = () => {
-  const { selectedService, appointment } = useContext(Context);
-  const { date } = appointment;
+  const { selectedService, appointment, setAppointment } = useContext(Context);
   const [message, setMessage] = useState(null);
+  const [selectedSlot, setSelectedSlot] = useState({
+    date: "",
+    start: "",
+    end: "",
+  });
+  const [slotError, setSlotError] = useState(false);
+
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepForm([
       <Services />,
-      <AppointmentScheduler />,
+      <AppointmentScheduler
+        selectedSlot={selectedSlot}
+        setSelectedSlot={setSelectedSlot}
+      />,
       <ClientInfoForm />,
     ]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedService) return alert("Please select a service");
-    if (currentStepIndex === 1 && (!date))
-      return alert("Please select a date and time for your appointment");
+    setSlotError(false);
+
+    if (!selectedService) {
+      setMessage({
+        style: "failure",
+        text: "Please select a service before continuing.",
+      });
+      return;
+    }
+
+    if (currentStepIndex === 1 && !selectedSlot.date) {
+      setSlotError(true);
+      return;
+    }
+
+    if (currentStepIndex === 1) {
+      setAppointment({
+        ...appointment,
+        date: selectedSlot.date,
+        start_time: selectedSlot.start,
+        end_time: selectedSlot.end,
+        tech_id: 1,
+      });
+    }
+
     if (!isLastStep) return next();
 
-    console.log("Form Data Submitted:", appointment);
     try {
       const response = await fetch(
         "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(appointment),
-        }
+        },
       );
 
-      const result = await response.json(); // response could be used to interpolate the date and time info into the success message
+      const result = await response.json();
       setMessage({
         style: "success",
         text: "You have successfully booked your appointment! You will receive a confirmation email shortly.",
@@ -60,6 +88,11 @@ const ServiceRequest = () => {
         {currentStepIndex + 1} / {steps.length}
       </div>
       {step}
+      {slotError && (
+        <p className="text-center text-red-500 mt-3">
+          Please select a date and time before continuing.
+        </p>
+      )}
       <div
         style={{
           marginTop: "1rem",
