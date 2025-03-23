@@ -10,6 +10,7 @@ export default function Header({ setOpen }) {
     <div className="flex flex-col items-center ">
       <div className="flex flex-row mt-10 sm:gap-40 items-center sm:pl-8">
         <Logo />
+        <img src="/public/golden-plunger.png" className="w-[85px] -ml-30"/>
         {location.pathname === "/admin" ? null : (
           <>
             <Button
