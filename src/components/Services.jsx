@@ -5,13 +5,8 @@ import Button from "./Button";
 import IssueDescriptionForm from "./IssueDescriptionForm";
 
 export default function Services() {
-  const {
-    services,
-    setServices,
-    setSelectedService,
-    appointment,
-    setAppointment,
-  } = useContext(Context);
+  const { services, setServices, setSelectedService, setAppointment } =
+    useContext(Context);
   const [selectedServiceId, setSelectedServiceId] = useState(null);
   const [aiRecommendedServiceId, setAiRecommendedServiceId] = useState(null);
 
@@ -24,11 +19,12 @@ export default function Services() {
   }, []);
 
   const handleSelectService = async (id, time) => {
-    setAppointment({
-      ...appointment,
+    setAppointment((prev) => ({
+      ...prev,
       service_id: id,
       estimated_time: time,
-    });
+    }));
+
     fetch(
       `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${id}/timeSlots`
     )
@@ -61,6 +57,7 @@ export default function Services() {
     setAppointment((prev) => ({
       ...prev,
       issue_description: data.category,
+      comment: data.userPrompt || data.category,
       estimated_time: data.estimatedTime,
     }));
 
