@@ -160,17 +160,13 @@ function AppointmentDetails({ appointment, setAppointment }) {
             Inventory Check
           </h2>
           {items.length > 0 ? (
-            <table className="w-full table-auto border-collapse">
+            <table className="w-full table-auto border-collapse text-left">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="px-4 py-2 text-left font-semibold">
-                    Item Name
-                  </th>
-                  <th className="px-4 py-2 text-left font-semibold">Qty</th>
-                  <th className="px-4 py-2 text-left font-semibold">Stock</th>
-                  <th className="px-4 py-2 text-left font-semibold">
-                    Unit Price
-                  </th>
+                  <th className="px-4 py-2 font-semibold">Item Name</th>
+                  <th className="px-4 py-2 font-semibold">Qty</th>
+                  <th className="px-4 py-2 font-semibold">Stock</th>
+                  <th className="px-4 py-2 font-semibold">Unit Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -224,14 +220,14 @@ function AppointmentDetails({ appointment, setAppointment }) {
             <button
               onClick={() => setNote("")}
               disabled={!note.length}
-              className="flex items-center gap-1 px-3 py-2 rounded-full text-gray-600 hover:bg-gray-100 transition disabled:opacity-30"
+              className="flex items-center gap-1 px-3 py-2 rounded-full hover:cursor-pointer text-gray-600 hover:bg-gray-100 transition disabled:opacity-30"
             >
               🗑️ Clear
             </button>
             <button
               onClick={handleSaveNotes}
               disabled={!note.length}
-              className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition disabled:opacity-40"
+              className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full hover:cursor-pointer transition disabled:opacity-40"
             >
               💾 Save
             </button>
@@ -243,14 +239,14 @@ function AppointmentDetails({ appointment, setAppointment }) {
           <button
             disabled={disabled}
             onClick={() => setShowDeclineConfirm(true)}
-            className="bg-red-400 hover:bg-red-500 text-white px-4 py-2 rounded-full transition disabled:opacity-30"
+            className="bg-red-400 hover:bg-red-500 text-white px-4 py-2 rounded-full hover:cursor-pointer transition disabled:opacity-30"
           >
             Decline
           </button>
           <button
             disabled={disabled}
             onClick={() => handleUpdateStatus("ACCEPTED")}
-            className="bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded-full transition disabled:opacity-30"
+            className="bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded-full hover:cursor-pointer transition disabled:opacity-30"
           >
             Accept
           </button>
