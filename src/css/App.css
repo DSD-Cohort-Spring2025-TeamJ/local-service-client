@@ -102,3 +102,12 @@ button.services {
     -ms-overflow-style: scrollbar; 
    }
    
+
+img {
+  transition: all 1s;
+}
+
+img:hover {
+	transform: scale(1.05);
+}
+

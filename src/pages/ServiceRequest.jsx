@@ -19,12 +19,13 @@ const ServiceRequest = () => {
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepForm([
-      <Services />,
+      <Services key="services" />,
       <AppointmentScheduler
+        key="appointment-scheduler"
         selectedSlot={selectedSlot}
         setSelectedSlot={setSelectedSlot}
       />,
-      <ClientInfoForm />,
+      <ClientInfoForm key="client-info-form" />,
     ]);
 
   const handleSubmit = async (e) => {
@@ -63,10 +64,11 @@ const ServiceRequest = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(appointment),
-        },
+        }
       );
 
       const result = await response.json();
+      console.log("Booking confirmation:", result);
       setMessage({
         style: "success",
         text: "You have successfully booked your appointment! You will receive a confirmation email shortly.",

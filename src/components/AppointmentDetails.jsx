@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { format } from "date-fns";
+import { formatDateRange } from "../utils/formatDateRange";
+import { useNotification } from "../hooks/useNotification";
 
 function AppointmentDetails({ appointment, setAppointment }) {
-  if (!appointment) return <h1>Loading...</h1>;
-
   const {
     appointment_id,
     client_name,
@@ -27,7 +26,9 @@ function AppointmentDetails({ appointment, setAppointment }) {
   const [disabled, setDisabled] = useState(
     status === "ACCEPTED" || status === "REJECTED"
   );
-  const [notification, setNotification] = useState("");
+  const { notification, showNotification } = useNotification();
+
+  if (!appointment) return <h1>Loading...</h1>;
 
   const handleUpdateStatus = async (newStatus) => {
     fetch(
@@ -47,12 +48,11 @@ function AppointmentDetails({ appointment, setAppointment }) {
           },
         });
         setDisabled(true);
-        setNotification(
+        showNotification(
           data.status === "ACCEPTED"
             ? "✅ Appointment Accepted"
             : "❌ Appointment Declined"
         );
-        setTimeout(() => setNotification(""), 3000);
       });
   };
 
@@ -68,8 +68,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
         }),
       }
     );
-    setNotification("Saved!");
-    setTimeout(() => setNotification(""), 3000);
+    showNotification("Saved Notes!");
   };
 
   const statusColors = {
@@ -79,9 +78,10 @@ function AppointmentDetails({ appointment, setAppointment }) {
     COMPLETED: "bg-blue-300 text-blue-800",
   };
 
-  const formattedDate = format(new Date(start_time), "MMM d, yyyy");
-  const formattedStart = format(new Date(start_time), "h:mm a");
-  const formattedEnd = format(new Date(end_time), "h:mm a");
+  const { startDate, startTime, endTime } = formatDateRange(
+    start_time,
+    end_time
+  );
 
   return (
     <div className="relative">
@@ -137,12 +137,8 @@ function AppointmentDetails({ appointment, setAppointment }) {
           </div>
 
           <div className="flex flex-wrap gap-4 mt-4">
-            <Pill icon="📅" text={formattedDate} color="blue" />
-            <Pill
-              icon="⏰"
-              text={`${formattedStart} — ${formattedEnd}`}
-              color="purple"
-            />
+            <Pill icon="📅" text={startDate} color="blue" />
+            <Pill icon="⏰" text={`${startTime} — ${endTime}`} color="purple" />
             <Pill icon="⏳" text={`${estimated_time} minutes`} color="green" />
           </div>
 
