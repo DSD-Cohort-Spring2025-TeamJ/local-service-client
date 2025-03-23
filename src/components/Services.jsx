@@ -39,16 +39,36 @@ export default function Services() {
     setSelectedServiceId(id);
   };
 
+  const serviceKeywords = {
+    "Toilet Install": ["toilet", "commode"],
+    "Shower Install": [
+      "shower",
+      "shower leak",
+      "shower repair",
+      "bath leak",
+      "shower head",
+    ],
+    "Water Pressure": ["water pressure", "low pressure", "pressure issues"],
+    "Sump Pump": ["sump pump", "basement water"],
+    Leaks: ["leak", "pipe burst", "water drip", "general leak"],
+    "Faucet Install": ["faucet", "tap", "kitchen sink"],
+    Clogs: ["clog", "slow drain", "backup"],
+    "Water Heater": ["water heater", "hot water issue", "no hot water"],
+    "Bathroom Plumbing": ["bathroom plumbing", "sink", "bathroom issues"],
+  };
+
   const handleClassifyAndSelect = (data) => {
     setAppointment((prev) => ({
       ...prev,
       issue_description: data.category,
       estimated_time: data.estimatedTime,
     }));
+
+    const aiDescription = data.category.toLowerCase();
+
     const matchedService = services.find((service) => {
-      const serviceTokens = service.service_name.toLowerCase().split(" ");
-      const aiTokens = data.category.toLowerCase().split(" ");
-      return aiTokens.some((token) => serviceTokens.includes(token));
+      const keywords = serviceKeywords[service.service_name] || [];
+      return keywords.some((keyword) => aiDescription.includes(keyword));
     });
 
     if (matchedService) {
