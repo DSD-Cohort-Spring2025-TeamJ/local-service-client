@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@docsearch/react": "^3.9.0",
+    "@fullcalendar/daygrid": "^6.1.15",
+    "@fullcalendar/interaction": "^6.1.15",
+    "@fullcalendar/react": "^6.1.15",
     "@tailwindcss/vite": "^4.0.15",
     "ag-grid-react": "^33.1.1",
     "date-fns": "^4.1.0",
