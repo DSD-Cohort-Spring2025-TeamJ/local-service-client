@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Context } from "../context/Context";
 
 const Signup = () => {
@@ -32,7 +32,7 @@ const Signup = () => {
     });
     const user = await r.json();
     if (user.error) {
-      setErrors(user.error);
+      // setErrors(user.error);
     } else {
       setUser(user);
     }

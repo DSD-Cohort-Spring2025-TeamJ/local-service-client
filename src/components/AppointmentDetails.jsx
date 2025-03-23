@@ -3,6 +3,15 @@ import { useState } from "react";
 import { format } from "date-fns";
 
 function AppointmentDetails({ appointment, setAppointment }) {
+  const serviceName = service_id?.service_name || "Service";
+  const items = appointment.items || [];
+  const [showDeclineConfirm, setShowDeclineConfirm] = useState(false);
+  const [note, setNote] = useState(admin_note ?? "");
+  const [disabled, setDisabled] = useState(
+    status === "ACCEPTED" || status === "REJECTED"
+  );
+  const [notification, setNotification] = useState("");
+
   if (!appointment) return <h1>Loading...</h1>;
 
   const {
@@ -19,15 +28,6 @@ function AppointmentDetails({ appointment, setAppointment }) {
     admin_note,
     service_id,
   } = appointment.appointment;
-
-  const serviceName = service_id?.service_name || "Service";
-  const items = appointment.items || [];
-  const [showDeclineConfirm, setShowDeclineConfirm] = useState(false);
-  const [note, setNote] = useState(admin_note ?? "");
-  const [disabled, setDisabled] = useState(
-    status === "ACCEPTED" || status === "REJECTED"
-  );
-  const [notification, setNotification] = useState("");
 
   const handleUpdateStatus = async (newStatus) => {
     fetch(
