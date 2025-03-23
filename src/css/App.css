@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 .main-button {
   @apply rounded-[3rem] no-underline m-0 shadow-xl shadow-green-500/50 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] flex items-center justify-center hover:bg-green-700 hover:text-white active:scale-90;
@@ -93,3 +94,11 @@ button.services {
 .details-button {
   @apply rounded-[3rem] no-underline m-0 shadow-xl shadow-green-500/50 bg-green-500 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] enabled:hover:bg-green-700 enabled:hover:text-white enabled:active:scale-90 px-2 mx-2;
 }
+
+.carousel {
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  overflow-y: scroll; 
+    -ms-overflow-style: scrollbar; 
+   }
+   
