@@ -1,35 +1,10 @@
-import { useState, useEffect } from "react";
+import { useAppointments } from "../hooks/useAppointments";
+import { formatDateRange } from "../utils/formatDateRange";
 import DataGrid from "./DataGrid";
 import PropTypes from "prop-types";
-import { format } from "date-fns";
 
-function AppointmentsList({ setAppointment }) {
-  const [appointments, setAppointments] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        const response = await fetch(
-          "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments",
-        );
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const data = await response.json();
-        setAppointments(data);
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    fetchAppointments();
-  }, []);
+export default function AppointmentsList({ setAppointment }) {
+  const { appointments, loading, error } = useAppointments();
 
   if (loading) return <p>Loading appointments...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -37,22 +12,22 @@ function AppointmentsList({ setAppointment }) {
   const handleAppointmentClick = async (id) => {
     try {
       const response = await fetch(
-        `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${id}`,
+        `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${id}`
       );
       if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
       setAppointment(data);
     } catch (error) {
-      setError(error.message);
-      setLoading(false);
+      console.error(error);
     }
   };
 
   const customCellRenderer = (props) => {
     if (props.colDef.field === "Start / End Time") {
-      const startDate = format(new Date(props.data.start_time), "MMM d, yyyy");
-      const startTime = format(new Date(props.data.start_time), "h:mm a");
-      const endTime = format(new Date(props.data.end_time), "h:mm a");
+      const { startDate, startTime, endTime } = formatDateRange(
+        props.data.start_time,
+        props.data.end_time
+      );
       return (
         <div className="flex flex-col gap-1">
           <span className="text-green-800 text-xs font-semibold">
@@ -97,10 +72,8 @@ function AppointmentsList({ setAppointment }) {
     <div className="text-black px-0 py-2 font-bold">{props.displayName}</div>
   );
 
-  CustomHeader.propTypes = { displayName: PropTypes.string.isRequired };
-
   const sortedAppointments = [...appointments].sort(
-    (a, b) => b.appointment_id - a.appointment_id,
+    (a, b) => b.appointment_id - a.appointment_id
   );
 
   const rowData = sortedAppointments.map((a) => ({
@@ -195,5 +168,3 @@ function AppointmentsList({ setAppointment }) {
 AppointmentsList.propTypes = {
   setAppointment: PropTypes.func.isRequired,
 };
-
-export default AppointmentsList;
