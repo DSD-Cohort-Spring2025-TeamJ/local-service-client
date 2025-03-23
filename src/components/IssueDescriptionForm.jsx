@@ -23,7 +23,7 @@ const IssueDescriptionForm = ({ onClassify }) => {
       );
       const data = await res.json();
       setResult(data);
-      onClassify(data);
+      onClassify({ ...data, userPrompt: description });
     } catch (err) {
       setError(`Failed to classify the issue. ${err}`);
     } finally {

@@ -57,12 +57,12 @@ const ClientInfoForm = () => {
         </label>
         <textarea
           id="comment"
-          value={appointment.comment}
+          value={appointment.comment || ""}
           onChange={handleInputChange}
           placeholder="Add any notes or special requests..."
           rows={4}
           className="w-full border rounded-lg p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 transition"
-        ></textarea>
+        />
       </div>
     </div>
   );
