@@ -39,7 +39,7 @@ DayCard.propTypes = {
     PropTypes.shape({
       start: PropTypes.string.isRequired,
       end: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   buttonFunction: PropTypes.func.isRequired,
   selectedSlot: PropTypes.shape({

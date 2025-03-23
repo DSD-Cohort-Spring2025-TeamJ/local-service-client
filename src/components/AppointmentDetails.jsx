@@ -2,7 +2,8 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { formatDateRange } from "../utils/formatDateRange";
 import { useNotification } from "../hooks/useNotification";
-
+import { useAppointmentDetailActions } from "../hooks/useAppointmentDetailActions";
+import { statusColors } from "../utils/statusColors";
 function AppointmentDetails({ appointment, setAppointment }) {
   const {
     appointment_id,
@@ -23,60 +24,23 @@ function AppointmentDetails({ appointment, setAppointment }) {
   const items = appointment.items || [];
   const [showDeclineConfirm, setShowDeclineConfirm] = useState(false);
   const [note, setNote] = useState(admin_note ?? "");
-  const [disabled, setDisabled] = useState(
-    status === "ACCEPTED" || status === "REJECTED"
-  );
+
   const { notification, showNotification } = useNotification();
 
+  const {
+    handleUpdateStatus,
+    handleSaveNotes,
+    handleRestock,
+    restockInputs,
+    setRestockInputs,
+    disabled,
+  } = useAppointmentDetailActions(
+    appointment,
+    setAppointment,
+    showNotification
+  );
+
   if (!appointment) return <h1>Loading...</h1>;
-
-  const handleUpdateStatus = async (newStatus) => {
-    fetch(
-      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${appointment_id}/${newStatus}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setAppointment({
-          ...appointment,
-          appointment: {
-            ...appointment.appointment,
-            status: data.status,
-          },
-        });
-        setDisabled(true);
-        showNotification(
-          data.status === "ACCEPTED"
-            ? "✅ Appointment Accepted"
-            : "❌ Appointment Declined"
-        );
-      });
-  };
-
-  const handleSaveNotes = async () => {
-    await fetch(
-      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          appointment_id,
-          admin_note: note,
-        }),
-      }
-    );
-    showNotification("Saved Notes!");
-  };
-
-  const statusColors = {
-    PENDING: "bg-yellow-300 text-yellow-800",
-    ACCEPTED: "bg-green-300 text-green-800",
-    REJECTED: "bg-red-300 text-red-800",
-    COMPLETED: "bg-blue-300 text-blue-800",
-  };
 
   const { startDate, startTime, endTime } = formatDateRange(
     start_time,
@@ -84,7 +48,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
   );
 
   return (
-    <div className="relative">
+    <div className="relative text-black">
       {notification && (
         <div className="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50 transition-opacity">
           {notification}
@@ -164,8 +128,9 @@ function AppointmentDetails({ appointment, setAppointment }) {
               <thead>
                 <tr className="bg-gray-100">
                   <th className="px-4 py-2 font-semibold">Item Name</th>
-                  <th className="px-4 py-2 font-semibold">Qty</th>
+                  <th className="px-4 py-2 font-semibold">Qty Needed</th>
                   <th className="px-4 py-2 font-semibold">Stock</th>
+                  <th className="px-4 py-2 font-semibold">Restock</th>
                   <th className="px-4 py-2 font-semibold">Unit Price</th>
                 </tr>
               </thead>
@@ -184,12 +149,46 @@ function AppointmentDetails({ appointment, setAppointment }) {
                         className={`px-3 py-1 rounded-full text-xs font-semibold ${
                           item.outOfStock
                             ? "bg-red-200 text-red-700"
-                            : "bg-green-200 text-green-700"
+                            : `bg-green-200 text-green-700`
                         }`}
                       >
-                        {item.outOfStock ? "Out of Stock" : "In Stock"}
+                        {item.outOfStock
+                          ? "Out of Stock"
+                          : `In Stock (${item.item.stock_qty})`}
                       </span>
                     </td>
+                    <td className="px-4 py-2">
+                      {/* {item.outOfStock && ( */}
+                      <div className="flex gap-2 items-center">
+                        <input
+                          type="number"
+                          min="1"
+                          placeholder="Qty?"
+                          value={restockInputs[item.item.item_id] || ""}
+                          onChange={(e) =>
+                            setRestockInputs({
+                              ...restockInputs,
+                              [item.item.item_id]: e.target.value,
+                            })
+                          }
+                          className="w-20 border p-1 rounded-md"
+                        />
+                        <button
+                          onClick={() =>
+                            handleRestock(
+                              item.item.item_id,
+                              item.item.stock_qty,
+                              item
+                            )
+                          }
+                          className="text-blue-600 underline text-xs hover:text-blue-800 hover:cursor-pointer"
+                        >
+                          Order now
+                        </button>
+                      </div>
+                      {/* )} */}
+                    </td>
+
                     <td className="px-4 py-2">${item.item.unit_price}</td>
                   </tr>
                 ))}

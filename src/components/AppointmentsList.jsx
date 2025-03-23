@@ -1,21 +1,19 @@
 import { useAppointments } from "../hooks/useAppointments";
 import { formatDateRange } from "../utils/formatDateRange";
+import { statusColors } from "../utils/statusColors";
 import DataGrid from "./DataGrid";
 import PropTypes from "prop-types";
 
 export default function AppointmentsList({ setAppointment }) {
-  const { appointments, loading, error } = useAppointments();
+  const { appointments, loading, error, getAppointmentById } =
+    useAppointments();
 
   if (loading) return <p>Loading appointments...</p>;
   if (error) return <p>Error: {error}</p>;
 
   const handleAppointmentClick = async (id) => {
     try {
-      const response = await fetch(
-        `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${id}`
-      );
-      if (!response.ok) throw new Error("Network response was not ok");
-      const data = await response.json();
+      const data = await getAppointmentById(id);
       setAppointment(data);
     } catch (error) {
       console.error(error);
@@ -26,7 +24,7 @@ export default function AppointmentsList({ setAppointment }) {
     if (props.colDef.field === "Start / End Time") {
       const { startDate, startTime, endTime } = formatDateRange(
         props.data.start_time,
-        props.data.end_time
+        props.data.end_time,
       );
       return (
         <div className="flex flex-col gap-1">
@@ -39,23 +37,19 @@ export default function AppointmentsList({ setAppointment }) {
         </div>
       );
     }
+
     if (props.colDef.field === "Status") {
-      const colorMap = {
-        PENDING: "bg-yellow-100 text-yellow-800",
-        ACCEPTED: "bg-green-100 text-green-800",
-        REJECTED: "bg-red-100 text-red-700",
-        COMPLETED: "bg-blue-100 text-blue-700",
-      };
       return (
         <span
           className={`px-3 py-1 rounded-full text-xs font-semibold ${
-            colorMap[props.value] || "bg-gray-200 text-gray-700"
+            statusColors[props.value] || "bg-gray-200 text-gray-700"
           }`}
         >
           {props.value}
         </span>
       );
     }
+
     return <div className="text-sm text-gray-700 py-1">{props.value}</div>;
   };
 
@@ -73,7 +67,7 @@ export default function AppointmentsList({ setAppointment }) {
   );
 
   const sortedAppointments = [...appointments].sort(
-    (a, b) => b.appointment_id - a.appointment_id
+    (a, b) => b.appointment_id - a.appointment_id,
   );
 
   const rowData = sortedAppointments.map((a) => ({

@@ -98,16 +98,14 @@ button.services {
 .carousel {
   scrollbar-width: thin;
   scroll-behavior: smooth;
-  overflow-y: scroll; 
-    -ms-overflow-style: scrollbar; 
-   }
-   
+  overflow-y: scroll;
+  -ms-overflow-style: scrollbar;
+}
 
 img {
   transition: all 1s;
 }
 
 img:hover {
-	transform: scale(1.05);
+  transform: scale(1.05);
 }
-
