@@ -37,18 +37,18 @@ function AppointmentDetails({ appointment, setAppointment }) {
   } = useAppointmentDetailActions(
     appointment,
     setAppointment,
-    showNotification,
+    showNotification
   );
 
   if (!appointment) return <h1>Loading...</h1>;
 
   const { startDate, startTime, endTime } = formatDateRange(
     start_time,
-    end_time,
+    end_time
   );
 
   return (
-    <div className="relative">
+    <div className="relative text-black">
       {notification && (
         <div className="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50 transition-opacity">
           {notification}
@@ -178,7 +178,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
                             handleRestock(
                               item.item.item_id,
                               item.item.stock_qty,
-                              item,
+                              item
                             )
                           }
                           className="text-blue-600 underline text-xs hover:text-blue-800 hover:cursor-pointer"
