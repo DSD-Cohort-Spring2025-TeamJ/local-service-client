@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Context = React.createContext();
 
@@ -74,5 +75,9 @@ function Provider({ children }) {
     </Context.Provider>
   );
 }
+
+Provider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export { Context, Provider };

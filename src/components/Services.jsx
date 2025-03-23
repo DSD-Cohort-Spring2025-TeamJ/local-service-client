@@ -13,6 +13,7 @@ export default function Services() {
     setAppointment,
   } = useContext(Context);
   const [selectedServiceId, setSelectedServiceId] = useState(null);
+  const [aiRecommendedServiceId, setAiRecommendedServiceId] = useState(null);
 
   useEffect(() => {
     fetch(
@@ -55,6 +56,7 @@ export default function Services() {
         matchedService.service_id,
         matchedService.estimated_time
       );
+      setAiRecommendedServiceId(matchedService.service_id);
     }
   };
 
@@ -84,12 +86,12 @@ export default function Services() {
         Or select a service manually:
       </h1>
       <Pipe className="pipe h-[20px] mt-0" />
-      {selectedServiceId && (
+      {aiRecommendedServiceId && (
         <div className="bg-green-100 border border-green-400 text-green-800 rounded-lg px-4 py-2 my-4 text-center">
           ✅ Recommended service auto-selected:{" "}
           <strong>
             {
-              services.find((s) => s.service_id === selectedServiceId)
+              services.find((s) => s.service_id === aiRecommendedServiceId)
                 ?.service_name
             }
           </strong>
