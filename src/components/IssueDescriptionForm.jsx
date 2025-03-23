@@ -19,7 +19,7 @@ const IssueDescriptionForm = ({ onClassify }) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ issueDescription: description }),
-        }
+        },
       );
       const data = await res.json();
       setResult(data);

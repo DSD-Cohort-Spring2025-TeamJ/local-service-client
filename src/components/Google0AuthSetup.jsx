@@ -20,8 +20,8 @@ export default function GoogleOAuthSetup() {
     try {
       const response = await fetch(
         `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/calendar/oauth/login?userId=${encodeURIComponent(
-          email
-        )}`
+          email,
+        )}`,
       );
 
       if (!response.ok) throw new Error("Failed to get authorization URL.");
