@@ -13,6 +13,7 @@ import { useLocation } from "react-router-dom";
 import ScrollingReviews from './components/Reviews.jsx'
 import Contact from './components/Contact.jsx'
 
+
 export default function App() {
   const { setAppointment } = useContext(Context);
   const [open, setOpen] = useState(false);
