@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AppointmentsList from "../components/AppointmentsList";
 import AppointmentDetails from "../components/AppointmentDetails";
+import CalendarEvents from "../components/CalendarEvents";
 
 const Dashboard = () => {
   const [appointment, setAppointment] = useState(null);
@@ -17,6 +18,8 @@ const Dashboard = () => {
           setAppointment={setAppointment}
         />
       )}
+
+      <CalendarEvents />
     </div>
   );
 };

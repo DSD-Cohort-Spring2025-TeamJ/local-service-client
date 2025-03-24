@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { format } from "date-fns";
-
+import { formatDateRange } from "../utils/formatDateRange";
+import { useNotification } from "../hooks/useNotification";
+import { useAppointmentDetailActions } from "../hooks/useAppointmentDetailActions";
+import { statusColors } from "../utils/statusColors";
 function AppointmentDetails({ appointment, setAppointment }) {
-  if (!appointment) return <h1>Loading...</h1>;
-
   const {
     appointment_id,
     client_name,
@@ -24,67 +24,31 @@ function AppointmentDetails({ appointment, setAppointment }) {
   const items = appointment.items || [];
   const [showDeclineConfirm, setShowDeclineConfirm] = useState(false);
   const [note, setNote] = useState(admin_note ?? "");
-  const [disabled, setDisabled] = useState(
-    status === "ACCEPTED" || status === "REJECTED"
+
+  const { notification, showNotification } = useNotification();
+
+  const {
+    handleUpdateStatus,
+    handleSaveNotes,
+    handleRestock,
+    restockInputs,
+    setRestockInputs,
+    disabled,
+  } = useAppointmentDetailActions(
+    appointment,
+    setAppointment,
+    showNotification
   );
-  const [notification, setNotification] = useState("");
 
-  const handleUpdateStatus = async (newStatus) => {
-    fetch(
-      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/${appointment_id}/${newStatus}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setAppointment({
-          ...appointment,
-          appointment: {
-            ...appointment.appointment,
-            status: data.status,
-          },
-        });
-        setDisabled(true);
-        setNotification(
-          data.status === "ACCEPTED"
-            ? "✅ Appointment Accepted"
-            : "❌ Appointment Declined"
-        );
-        setTimeout(() => setNotification(""), 3000);
-      });
-  };
+  if (!appointment) return <h1>Loading...</h1>;
 
-  const handleSaveNotes = async () => {
-    await fetch(
-      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/appointments/admin/`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          appointment_id,
-          admin_note: note,
-        }),
-      }
-    );
-    setNotification("Saved!");
-    setTimeout(() => setNotification(""), 3000);
-  };
-
-  const statusColors = {
-    PENDING: "bg-yellow-300 text-yellow-800",
-    ACCEPTED: "bg-green-300 text-green-800",
-    REJECTED: "bg-red-300 text-red-800",
-    COMPLETED: "bg-blue-300 text-blue-800",
-  };
-
-  const formattedDate = format(new Date(start_time), "MMM d, yyyy");
-  const formattedStart = format(new Date(start_time), "h:mm a");
-  const formattedEnd = format(new Date(end_time), "h:mm a");
+  const { startDate, startTime, endTime } = formatDateRange(
+    start_time,
+    end_time
+  );
 
   return (
-    <div className="relative">
+    <div className="relative text-black">
       {notification && (
         <div className="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50 transition-opacity">
           {notification}
@@ -137,12 +101,8 @@ function AppointmentDetails({ appointment, setAppointment }) {
           </div>
 
           <div className="flex flex-wrap gap-4 mt-4">
-            <Pill icon="📅" text={formattedDate} color="blue" />
-            <Pill
-              icon="⏰"
-              text={`${formattedStart} — ${formattedEnd}`}
-              color="purple"
-            />
+            <Pill icon="📅" text={startDate} color="blue" />
+            <Pill icon="⏰" text={`${startTime} — ${endTime}`} color="purple" />
             <Pill icon="⏳" text={`${estimated_time} minutes`} color="green" />
           </div>
 
@@ -164,17 +124,14 @@ function AppointmentDetails({ appointment, setAppointment }) {
             Inventory Check
           </h2>
           {items.length > 0 ? (
-            <table className="w-full table-auto border-collapse">
+            <table className="w-full table-auto border-collapse text-left">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="px-4 py-2 text-left font-semibold">
-                    Item Name
-                  </th>
-                  <th className="px-4 py-2 text-left font-semibold">Qty</th>
-                  <th className="px-4 py-2 text-left font-semibold">Stock</th>
-                  <th className="px-4 py-2 text-left font-semibold">
-                    Unit Price
-                  </th>
+                  <th className="px-4 py-2 font-semibold">Item Name</th>
+                  <th className="px-4 py-2 font-semibold">Qty Needed</th>
+                  <th className="px-4 py-2 font-semibold">Stock</th>
+                  <th className="px-4 py-2 font-semibold">Restock</th>
+                  <th className="px-4 py-2 font-semibold">Unit Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -192,12 +149,46 @@ function AppointmentDetails({ appointment, setAppointment }) {
                         className={`px-3 py-1 rounded-full text-xs font-semibold ${
                           item.outOfStock
                             ? "bg-red-200 text-red-700"
-                            : "bg-green-200 text-green-700"
+                            : `bg-green-200 text-green-700`
                         }`}
                       >
-                        {item.outOfStock ? "Out of Stock" : "In Stock"}
+                        {item.outOfStock
+                          ? "Out of Stock"
+                          : `In Stock (${item.item.stock_qty})`}
                       </span>
                     </td>
+                    <td className="px-4 py-2">
+                      {/* {item.outOfStock && ( */}
+                      <div className="flex gap-2 items-center">
+                        <input
+                          type="number"
+                          min="1"
+                          placeholder="Qty?"
+                          value={restockInputs[item.item.item_id] || ""}
+                          onChange={(e) =>
+                            setRestockInputs({
+                              ...restockInputs,
+                              [item.item.item_id]: e.target.value,
+                            })
+                          }
+                          className="w-20 border p-1 rounded-md"
+                        />
+                        <button
+                          onClick={() =>
+                            handleRestock(
+                              item.item.item_id,
+                              item.item.stock_qty,
+                              item
+                            )
+                          }
+                          className="text-blue-600 underline text-xs hover:text-blue-800 hover:cursor-pointer"
+                        >
+                          Order now
+                        </button>
+                      </div>
+                      {/* )} */}
+                    </td>
+
                     <td className="px-4 py-2">${item.item.unit_price}</td>
                   </tr>
                 ))}
@@ -228,14 +219,14 @@ function AppointmentDetails({ appointment, setAppointment }) {
             <button
               onClick={() => setNote("")}
               disabled={!note.length}
-              className="flex items-center gap-1 px-3 py-2 rounded-full text-gray-600 hover:bg-gray-100 transition disabled:opacity-30"
+              className="flex items-center gap-1 px-3 py-2 rounded-full hover:cursor-pointer text-gray-600 hover:bg-gray-100 transition disabled:opacity-30"
             >
               🗑️ Clear
             </button>
             <button
-              onClick={handleSaveNotes}
+              onClick={() => handleSaveNotes(appointment_id, note)}
               disabled={!note.length}
-              className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition disabled:opacity-40"
+              className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full hover:cursor-pointer transition disabled:opacity-40"
             >
               💾 Save
             </button>
@@ -247,14 +238,14 @@ function AppointmentDetails({ appointment, setAppointment }) {
           <button
             disabled={disabled}
             onClick={() => setShowDeclineConfirm(true)}
-            className="bg-red-400 hover:bg-red-500 text-white px-4 py-2 rounded-full transition disabled:opacity-30"
+            className="bg-red-400 hover:bg-red-500 text-white px-4 py-2 rounded-full hover:cursor-pointer transition disabled:opacity-30"
           >
             Decline
           </button>
           <button
             disabled={disabled}
             onClick={() => handleUpdateStatus("ACCEPTED")}
-            className="bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded-full transition disabled:opacity-30"
+            className="bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded-full hover:cursor-pointer transition disabled:opacity-30"
           >
             Accept
           </button>

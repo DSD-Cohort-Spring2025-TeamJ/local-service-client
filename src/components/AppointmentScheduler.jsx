@@ -19,6 +19,10 @@ function AppointmentScheduler({ selectedSlot, setSelectedSlot }) {
 
   const firstTechSlots = selectedService.filter((obj) => obj.techId === 1);
 
+  const sortedSlots = [...firstTechSlots].sort((a, b) => {
+    return new Date(a.date) - new Date(b.date);
+  });
+
   const timeEstimate = () => {
     let minutes = parseInt(appointment.estimated_time);
     return minutes >= 60 ? `${minutes / 60} hour(s)` : `${minutes} minutes`;
@@ -37,7 +41,7 @@ function AppointmentScheduler({ selectedSlot, setSelectedSlot }) {
         </p>
       ) : (
         <div className="flex flex-col gap-6">
-          {firstTechSlots.map((obj, i) => (
+          {sortedSlots.map((obj, i) => (
             <DayCard
               key={i}
               date={obj.date}
