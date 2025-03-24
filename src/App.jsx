@@ -61,6 +61,7 @@ export default function App() {
       {location.pathname === "/" && <ScrollingReviews /> } 
       </div>
       {location.pathname === "/" && <FeaturedImageGallery />}
+
       </div>
       <Footer />
     </div>

@@ -48,11 +48,3 @@ export default ScrollingReviews;
 
 
 
-// export default function Reviews() {
-// return (
-//     <div className=" mr-10 bg-[#005701] w-[400px] h-[350px] rounded-lg shadow-xl shadow-green-500/50 pt-2 border-black-2">
-//         <img src="./reviews.png" className="w-100"/>
-//     </div>
-// )
-// }
-

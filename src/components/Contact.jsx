@@ -1,5 +1,4 @@
 
-
 export default function Contact() {
     return (
         <div className="ml-35 mb-10 contact bg-yellow-200 w-50">
