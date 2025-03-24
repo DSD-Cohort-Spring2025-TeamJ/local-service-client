@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import pragmaticplumber from "/public/pragmaticplumberlogo.png";
+import pragmaticplumber from "/pragmaticplumberlogo.png";
 
 export default function Logo() {
   return (

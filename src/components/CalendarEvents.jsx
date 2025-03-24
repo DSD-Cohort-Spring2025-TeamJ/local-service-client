@@ -36,6 +36,7 @@ export default function CalendarEvents() {
           url: event.htmlLink,
           allDay: !!event.start?.date,
         }));
+        console.log(mappedEvents);
 
         setEvents(mappedEvents);
       } catch (err) {

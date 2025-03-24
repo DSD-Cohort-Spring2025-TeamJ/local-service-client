@@ -50,14 +50,16 @@ function AppointmentDetails({ appointment, setAppointment }) {
   return (
     <div className="relative text-black">
       {notification && (
-        <div className="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50 transition-opacity">
-          {notification}
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+          <div className="bg-green-500 text-white px-6 py-4 rounded-2xl shadow-2xl text-center max-w-sm w-full">
+            {notification}
+          </div>
         </div>
       )}
 
       <div className="p-2 pt-8 sm:pt-0 sm:p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-xl relative m-2 sm:m-4">
         <button
-          className="absolute top-2 right-2 bg-green-500 text-white w-7 h-7 flex items-center justify-center rounded-full hover:bg-green-700 transition"
+          className="absolute top-2 right-2 bg-green-200 text-green-800 w-7 h-7 flex items-center justify-center rounded-full hover:bg-green-300 hover:cursor-pointer transition"
           onClick={() => setAppointment(null)}
         >
           ✕
@@ -130,7 +132,10 @@ function AppointmentDetails({ appointment, setAppointment }) {
                   <th className="px-4 py-2 font-semibold">Item Name</th>
                   <th className="px-4 py-2 font-semibold">Qty Needed</th>
                   <th className="px-4 py-2 font-semibold">Stock</th>
-                  <th className="px-4 py-2 font-semibold">Restock</th>
+                  {items.outOfStock && (
+                    <th className="px-4 py-2 font-semibold">Restock</th>
+                  )}
+
                   <th className="px-4 py-2 font-semibold">Unit Price</th>
                 </tr>
               </thead>
@@ -157,38 +162,37 @@ function AppointmentDetails({ appointment, setAppointment }) {
                           : `In Stock (${item.item.stock_qty})`}
                       </span>
                     </td>
-                    <td className="px-4 py-2">
-                      {/* {item.outOfStock && ( */}
-                      <div className="flex gap-2 items-center">
-                        <input
-                          type="number"
-                          min="1"
-                          placeholder="Qty?"
-                          value={restockInputs[item.item.item_id] || ""}
-                          onChange={(e) =>
-                            setRestockInputs({
-                              ...restockInputs,
-                              [item.item.item_id]: e.target.value,
-                            })
-                          }
-                          className="w-20 border p-1 rounded-md"
-                        />
-                        <button
-                          onClick={() =>
-                            handleRestock(
-                              item.item.item_id,
-                              item.item.stock_qty,
-                              item
-                            )
-                          }
-                          className="text-blue-600 underline text-xs hover:text-blue-800 hover:cursor-pointer"
-                        >
-                          Order now
-                        </button>
-                      </div>
-                      {/* )} */}
-                    </td>
-
+                    {item.outOfStock && (
+                      <td className="px-4 py-2">
+                        <div className="flex gap-2 items-center">
+                          <input
+                            type="number"
+                            min="1"
+                            placeholder="Qty?"
+                            value={restockInputs[item.item.item_id] || ""}
+                            onChange={(e) =>
+                              setRestockInputs({
+                                ...restockInputs,
+                                [item.item.item_id]: e.target.value,
+                              })
+                            }
+                            className="w-20 border p-1 rounded-md"
+                          />
+                          <button
+                            onClick={() =>
+                              handleRestock(
+                                item.item.item_id,
+                                item.item.stock_qty,
+                                item
+                              )
+                            }
+                            className="text-blue-600 underline text-xs hover:text-blue-800 hover:cursor-pointer"
+                          >
+                            Order now
+                          </button>
+                        </div>
+                      </td>
+                    )}
                     <td className="px-4 py-2">${item.item.unit_price}</td>
                   </tr>
                 ))}
