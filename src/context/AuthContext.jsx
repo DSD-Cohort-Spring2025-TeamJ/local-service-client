@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("authToken") || "");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -13,11 +13,6 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("authToken", urlToken);
       setToken(urlToken);
       window.history.replaceState({}, document.title, window.location.pathname);
-    } else {
-      const storedToken = localStorage.getItem("authToken");
-      if (storedToken) {
-        setToken(storedToken);
-      }
     }
   }, []);
 
