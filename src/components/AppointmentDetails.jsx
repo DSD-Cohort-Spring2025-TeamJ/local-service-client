@@ -57,7 +57,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
 
       <div className="p-2 pt-8 sm:pt-0 sm:p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-xl relative m-2 sm:m-4">
         <button
-          className="absolute top-2 right-2 bg-green-500 text-white w-7 h-7 flex items-center justify-center rounded-full hover:bg-green-700 transition"
+          className="absolute top-2 right-2 bg-green-500 text-white w-7 h-7 flex items-center justify-center rounded-full hover:bg-green-400 transition"
           onClick={() => setAppointment(null)}
         >
           ✕
@@ -149,7 +149,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
                         className={`px-3 py-1 rounded-full text-xs font-semibold ${
                           item.outOfStock
                             ? "bg-red-200 text-red-700"
-                            : `bg-green-200 text-green-700`
+                            : `bg-green-200 text-green-400`
                         }`}
                       >
                         {item.outOfStock
