@@ -5,15 +5,18 @@ import { Provider } from "./context/Context.jsx";
 import "./index.css";
 import App from "./App.jsx";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Provider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </StrictMode>,
+    <AuthProvider>
+      <Provider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </AuthProvider>
+  </StrictMode>
 );

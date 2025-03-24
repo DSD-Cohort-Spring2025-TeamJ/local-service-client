@@ -17,19 +17,29 @@ export default function GoogleOAuthSetup() {
     setLoading(true);
     setError("");
 
+    const popup = window.open("", "_blank", "width=500,height=700");
+
     try {
       const response = await fetch(
         `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/calendar/oauth/login?userId=${encodeURIComponent(
-          email,
-        )}`,
+          email
+        )}`
       );
 
       if (!response.ok) throw new Error("Failed to get authorization URL.");
-
       const authUrl = await response.text();
-      window.location.href = authUrl;
+
+      popup.location.href = authUrl;
+
+      window.addEventListener("message", (event) => {
+        if (event.data?.token) {
+          localStorage.setItem("authToken", event.data.token);
+          window.location.reload();
+        }
+      });
     } catch (err) {
       setError(err.message);
+      popup.close();
     } finally {
       setLoading(false);
     }
