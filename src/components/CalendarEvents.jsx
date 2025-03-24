@@ -4,17 +4,20 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { Calendar } from "lucide-react";
 import GoogleOAuthSetup from "./Google0AuthSetup";
+import { useAuth } from "../context/AuthContext";
+import { useFetchWithAuth } from "../hooks/useFetchWithAuth";
 
 export default function CalendarEvents() {
   const [events, setEvents] = useState([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState("");
+  const { token } = useAuth();
+  const { fetchWithAuth } = useFetchWithAuth();
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch(
-          "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/calendar/events",
+        const res = await fetchWithAuth(
+          "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/calendar/events"
         );
         if (!res.ok) throw new Error("Failed to fetch events.");
 
@@ -22,30 +25,36 @@ export default function CalendarEvents() {
 
         const mappedEvents = data.map((event) => ({
           title: event.summary,
-          start: event.start?.dateTime || event.start?.date,
-          end: event.end?.dateTime || event.end?.date,
+          start: event.start?.dateTime
+            ? new Date(event.start.dateTime.value).toISOString()
+            : event.start?.date,
+          end: event.end?.dateTime
+            ? new Date(event.end.dateTime.value).toISOString()
+            : event.end?.date,
           description: event.description,
           location: event.location,
           url: event.htmlLink,
+          allDay: !!event.start?.date,
         }));
 
         setEvents(mappedEvents);
-        setIsAuthenticated(true);
       } catch (err) {
+        console.error(err);
         setError(err.message);
-        setIsAuthenticated(false);
       }
     };
 
-    fetchEvents();
-  }, []);
+    if (token) {
+      fetchEvents();
+    }
+  }, [token, fetchWithAuth]);
 
-  if (!isAuthenticated) {
+  if (!token) {
     return <GoogleOAuthSetup />;
   }
 
   return (
-    <div className="p-10 bg-white shadow-xl rounded-3xl max-w-7xl mx-auto mt-12">
+    <div className="p-10 bg-white shadow-xl rounded-3xl max-w-7xl mx-auto mt-12 text-black">
       <h1 className="text-4xl font-extrabold mb-8 flex items-center gap-3 text-gray-800">
         <Calendar className="w-8 h-8 text-green-600" /> Your Google Calendar
       </h1>
