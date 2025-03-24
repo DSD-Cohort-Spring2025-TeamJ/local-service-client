@@ -17,12 +17,6 @@
   @apply w-full;
 }
 
-/* html {
-  background: url("/src/assets/plumbing1.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
-
 body {
   width: 100vw;
 }
@@ -97,8 +91,16 @@ button.services {
 
 .carousel {
   scrollbar-width: thin;
-  scroll-behavior: smooth;
-  overflow-y: scroll; 
-    -ms-overflow-style: scrollbar; 
+  scroll-behavior: auto;
    }
    
+   .contact {
+    animation: tilt 2s linear infinite;
+  }
+  
+  @keyframes tilt {
+    0%, 100% { transform: translate(-50%, -50%) rotate(-15deg); } 
+    25% { transform: translate(-50%, -50%) rotate(0deg); } 
+    50% { transform: translate(-50%, -50%) rotate(15deg); } 
+    75% { transform: translate(-50%, -50%) rotate(0deg); } 
+  }
