@@ -10,8 +10,9 @@ import "./css/App.css";
 import FeaturedImageGallery from "./components/Gallery.jsx";
 import { Context } from "./context/Context.jsx";
 import { useLocation } from "react-router-dom";
-import Reviews from "./components/Reviews.jsx";
-import Contact from "./components/Contact.jsx";
+import ScrollingReviews from './components/Reviews.jsx'
+import Contact from './components/Contact.jsx'
+
 
 export default function App() {
   const { setAppointment } = useContext(Context);
@@ -56,10 +57,10 @@ export default function App() {
       </div>
       <div className="flex flex-row justify-center items-center w-full">
         <div className="flex flex-col">
-          {location.pathname === "/" && <Reviews />}
-          {location.pathname === "/" && <Contact />}
-        </div>
-        {location.pathname === "/" && <FeaturedImageGallery />}
+      {location.pathname === "/" && <Contact />} 
+      {location.pathname === "/" && <ScrollingReviews /> } 
+      </div>
+      {location.pathname === "/" && <FeaturedImageGallery />}
       </div>
       <Footer />
     </div>
