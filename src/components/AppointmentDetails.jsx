@@ -224,7 +224,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
               🗑️ Clear
             </button>
             <button
-              onClick={handleSaveNotes}
+              onClick={() => handleSaveNotes(appointment_id, note)}
               disabled={!note.length}
               className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full hover:cursor-pointer transition disabled:opacity-40"
             >
