@@ -17,6 +17,7 @@
     "@tailwindcss/vite": "^4.0.15",
     "ag-grid-react": "^33.1.1",
     "date-fns": "^4.1.0",
+    "framer-motion": "^12.5.0",
     "local-service-client": "file:",
     "lucide-react": "^0.483.0",
     "prop-types": "^15.8.1",
