@@ -2,7 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import { useState, useContext } from "react";
 import Dashboard from "./pages/Dashboard";
 import ServiceRequest from "./pages/ServiceRequest";
-import Header from "/src/components/Header.jsx";
+// import Header from "/src/components/Header.jsx";
 import Modal from "./components/Modal";
 import Footer from "./components/Footer.jsx";
 import Pipe from "./components/Pipe.jsx";
@@ -10,9 +10,12 @@ import "./css/App.css";
 import Gallery from "./components/Gallery.jsx";
 import { Context } from "./context/Context.jsx";
 import { useLocation } from "react-router-dom";
-import ScrollingReviews from './components/Reviews.jsx'
-import Contact from './components/Contact.jsx'
-
+// import ScrollingReviews from "./components/Reviews.jsx";
+// import Contact from "./components/Contact.jsx";
+import StickyHeader, {
+  HeroSection,
+  TestimonialCarousel,
+} from "./pages/Home.jsx";
 
 export default function App() {
   const { setAppointment } = useContext(Context);
@@ -39,7 +42,8 @@ export default function App() {
   return (
     <div className="flex flex-col justify-between min-h-screen bg-green-50">
       <div className="">
-        <Header setOpen={setOpen} />
+        {/* <Header setOpen={setOpen} /> */}
+        <StickyHeader setOpen={setOpen} />
 
         <Pipe className="pipe h-[40px] mt-5" />
 
@@ -55,15 +59,16 @@ export default function App() {
           <ServiceRequest />
         </Modal>
       </div>
-      <div className="flex flex-row items-center content-evenly justify-around">
-        <div className="flex flex-col">
-          {location.pathname === "/" && <Contact />}
-          {location.pathname === "/" && <ScrollingReviews />}
-        </div>
-        <div>
-          {location.pathname === "/" && <Gallery />}
-        </div>
+      {/* <div className="flex flex-row justify-center items-center w-full"> */}
+      {/* <div className="flex flex-col"> */}
+      {location.pathname === "/" && <HeroSection setOpen={setOpen} />}
+      {/* {location.pathname === "/" && <ScrollingReviews />} */}
+      {/* </div> */}
+      <div className="flex flex-col items-center w-full">
+        {location.pathname === "/" && <TestimonialCarousel />}
+        {location.pathname === "/" && <FeaturedImageGallery />}
       </div>
+      {/* </div> */}
       <Footer />
     </div>
   );

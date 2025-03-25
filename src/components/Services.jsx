@@ -1,6 +1,5 @@
 import { useEffect, useContext, useState } from "react";
 import { Context } from "../context/Context";
-import Pipe from "./Pipe";
 import Button from "./Button";
 import IssueDescriptionForm from "./IssueDescriptionForm";
 
@@ -12,7 +11,7 @@ export default function Services() {
 
   useEffect(() => {
     fetch(
-      "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services",
+      "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services"
     )
       .then((r) => r.json())
       .then((data) => setServices(data));
@@ -26,7 +25,7 @@ export default function Services() {
     }));
 
     fetch(
-      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${id}/timeSlots`,
+      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${id}/timeSlots`
     )
       .then((r) => r.json())
       .then((data) => {
@@ -71,7 +70,7 @@ export default function Services() {
     if (matchedService) {
       handleSelectService(
         matchedService.service_id,
-        matchedService.estimated_time,
+        matchedService.estimated_time
       );
       setAiRecommendedServiceId(matchedService.service_id);
     }
@@ -99,10 +98,9 @@ export default function Services() {
       </h1>
       <IssueDescriptionForm onClassify={handleClassifyAndSelect} />
 
-      <h1 className="mt-8 mb-2 font-mono font-semibold text-[#4B4B4B]">
+      <h1 className="mt-4 mb-2 font-semibold text-xl">
         Or select a service manually:
       </h1>
-      <Pipe className="pipe h-[20px] mt-0" />
       {aiRecommendedServiceId && (
         <div className="bg-green-100 border border-green-400 text-green-600 rounded-lg px-4 py-2 my-4 text-center">
           ✅ Recommended service auto-selected:{" "}
@@ -115,7 +113,7 @@ export default function Services() {
         </div>
       )}
 
-      <div className="services-nav rounded-lg bg-gray-200 flex flex-wrap justify-around align-center m-6 p-3 ">
+      <div className="services-nav rounded-lg bg-green-50 ring-1 ring-green-100 flex flex-wrap justify-around items-center p-4 ">
         {renderServiceButtons}
       </div>
     </>

@@ -132,9 +132,14 @@ function AppointmentDetails({ appointment, setAppointment }) {
                   <th className="px-4 py-2 font-semibold">Item Name</th>
                   <th className="px-4 py-2 font-semibold">Qty Needed</th>
                   <th className="px-4 py-2 font-semibold">Stock</th>
-                  <th className="px-4 py-2 font-semibold">{items.outOfStock
-                    ? "Restock"
-                    : (<div className="text-gray-300 text-xs italic text-center">—</div>)}
+                  <th className="px-4 py-2 font-semibold">
+                    {items.outOfStock ? (
+                      "Restock"
+                    ) : (
+                      <div className="text-gray-300 text-xs italic text-center">
+                        —
+                      </div>
+                    )}
                   </th>
                   <th className="px-4 py-2 font-semibold">Unit Price</th>
                 </tr>
@@ -146,10 +151,11 @@ function AppointmentDetails({ appointment, setAppointment }) {
                     <td className="px-4 py-2">{item.qty_needed}</td>
                     <td className="px-4 py-2">
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-semibold ${item.outOfStock
-                          ? "bg-red-200 text-red-700"
-                          : "bg-green-200 text-green-700"
-                          }`}
+                        className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                          item.outOfStock
+                            ? "bg-red-200 text-red-700"
+                            : "bg-green-200 text-green-700"
+                        }`}
                       >
                         {item.outOfStock
                           ? "Out of Stock"
