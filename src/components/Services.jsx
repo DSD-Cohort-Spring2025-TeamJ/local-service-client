@@ -1,6 +1,5 @@
 import { useEffect, useContext, useState } from "react";
 import { Context } from "../context/Context";
-import Pipe from "./Pipe";
 import Button from "./Button";
 import IssueDescriptionForm from "./IssueDescriptionForm";
 
