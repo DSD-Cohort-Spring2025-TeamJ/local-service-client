@@ -66,7 +66,7 @@ export default function App() {
       {/* </div> */}
       <div className="flex flex-col items-center w-full">
         {location.pathname === "/" && <TestimonialCarousel />}
-        {location.pathname === "/" && <FeaturedImageGallery />}
+        {location.pathname === "/" && <Gallery />}
       </div>
       {/* </div> */}
       <Footer />
