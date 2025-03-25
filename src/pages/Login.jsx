@@ -16,7 +16,7 @@ const Login = () => {
     const value = e.target.value;
     setForm({
       ...form,
-      [e.target.name]: value,
+      [e.target.id]: value,
     });
   };
 
