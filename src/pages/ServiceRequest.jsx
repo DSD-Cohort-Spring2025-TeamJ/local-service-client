@@ -36,6 +36,8 @@ const ServiceRequest = () => {
     if (currentStepIndex === 0 && !appointment.service_id) {
       setServiceError(true);
       return;
+    } else {
+      setServiceError(false);
     }
 
     if (currentStepIndex === 1 && !selectedSlot.date) {
@@ -62,7 +64,7 @@ const ServiceRequest = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(appointment),
-        },
+        }
       );
 
       const result = await response.json();
