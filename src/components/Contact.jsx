@@ -1,11 +1,21 @@
+import Button from '/src/components/Button.jsx'
+import { useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export default function Contact() {
+export default function Contact({ setOpen }) {
+    const location = useLocation();
     return (
-        <div className="ml-35 mb-10 contact bg-yellow-200 w-50">
-        <div className="flex flex-col justify-center rounded-lg items-center shadow-xl shadow-green-400/40 w-50 py-1">
-        <h2>Call today!</h2>
-        <h1>(555)555-5555</h1>
-        </div>
-        </div>
+        <div className="flex justify-end -mr-15 mb-10">
+        {location.pathname === "/admin" ? null : (
+        <Button className="main-button contact bg-yellow-200 w-50 h-10 rounded-lg shadow-green-500/50"
+        text="Book online!"
+        onClick={() => setOpen(true)}/>
     )
+
 }
+</div>
+)}
+
+Contact.propTypes = {
+  setOpen: PropTypes.func.isRequired,
+};
