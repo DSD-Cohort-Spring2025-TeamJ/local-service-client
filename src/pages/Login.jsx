@@ -46,12 +46,13 @@ const Login = () => {
   }
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow space-y-6 mt-5 w-[25%] mx-auto">
+    <div className="bg-white p-6 rounded-xl shadow space-y-6 mt-10 w-[25%] mx-auto">
       <h1 className="text-2xl font-bold mb-4">Admin Login</h1>
       <form className="grid grid-cols-1 justify-items-center gap-6" onSubmit={handleFakeSubmit}>
         <InputField
           id="email"
           label="Email"
+          type="email"
           value={form.email}
           onChange={handleChange}
           placeholder="Enter your email"
@@ -60,6 +61,7 @@ const Login = () => {
           <InputField
             id="password"
             label="Password"
+            type="password"
             value={form.password}
             onChange={handleChange}
             placeholder="Enter your password"
