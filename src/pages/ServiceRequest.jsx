@@ -8,7 +8,7 @@ import { Context } from "../context/Context";
 import Button from "/src/components/Button.jsx";
 
 const ServiceRequest = () => {
-  const { selectedService, appointment, setAppointment } = useContext(Context);
+  const { appointment, setAppointment } = useContext(Context);
   const [message, setMessage] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState({
     date: "",
@@ -32,7 +32,7 @@ const ServiceRequest = () => {
     e.preventDefault();
     setSlotError(false);
 
-    if (!selectedService) {
+    if (!appointment.service_id) {
       setMessage({
         style: "failure",
         text: "Please select a service before continuing.",
