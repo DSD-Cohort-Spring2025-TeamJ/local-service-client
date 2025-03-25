@@ -132,21 +132,13 @@ function AppointmentDetails({ appointment, setAppointment }) {
                   <th className="px-4 py-2 font-semibold">Item Name</th>
                   <th className="px-4 py-2 font-semibold">Qty Needed</th>
                   <th className="px-4 py-2 font-semibold">Stock</th>
-                  {items.outOfStock && (
-                    <th className="px-4 py-2 font-semibold">Restock</th>
-                  )}
-
+                  <th className="px-4 py-2 font-semibold">Restock</th>
                   <th className="px-4 py-2 font-semibold">Unit Price</th>
                 </tr>
               </thead>
               <tbody>
                 {items.map((item, idx) => (
-                  <tr
-                    key={idx}
-                    className={`hover:bg-gray-50 ${
-                      idx % 2 === 0 ? "bg-gray-50/50" : ""
-                    }`}
-                  >
+                  <tr key={idx} className="hover:bg-gray-50">
                     <td className="px-4 py-2">{item.item.item_name}</td>
                     <td className="px-4 py-2">{item.qty_needed}</td>
                     <td className="px-4 py-2">
@@ -154,7 +146,7 @@ function AppointmentDetails({ appointment, setAppointment }) {
                         className={`px-3 py-1 rounded-full text-xs font-semibold ${
                           item.outOfStock
                             ? "bg-red-200 text-red-700"
-                            : `bg-green-200 text-green-700`
+                            : "bg-green-200 text-green-700"
                         }`}
                       >
                         {item.outOfStock
@@ -162,8 +154,8 @@ function AppointmentDetails({ appointment, setAppointment }) {
                           : `In Stock (${item.item.stock_qty})`}
                       </span>
                     </td>
-                    {item.outOfStock && (
-                      <td className="px-4 py-2">
+                    <td className="px-4 py-2">
+                      {item.outOfStock ? (
                         <div className="flex gap-2 items-center">
                           <input
                             type="number"
@@ -191,8 +183,12 @@ function AppointmentDetails({ appointment, setAppointment }) {
                             Order now
                           </button>
                         </div>
-                      </td>
-                    )}
+                      ) : (
+                        <div className="text-gray-300 text-xs italic text-center">
+                          —
+                        </div>
+                      )}
+                    </td>
                     <td className="px-4 py-2">${item.item.unit_price}</td>
                   </tr>
                 ))}
