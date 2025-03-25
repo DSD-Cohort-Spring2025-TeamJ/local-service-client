@@ -110,7 +110,9 @@ export function TestimonialCarousel() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <p className="text-gray-700 mb-2">"{reviews[index].text}"</p>
+            <p className="text-gray-700 mb-2">
+              &quot;{reviews[index].text}&quot;
+            </p>
             <p className="text-green-600 font-semibold">
               - {reviews[index].author}
             </p>
