@@ -2,11 +2,11 @@
 @plugin "daisyui";
 
 .main-button {
-  @apply rounded-[3rem] no-underline m-0 shadow-xl shadow-green-500/50 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] flex items-center justify-center hover:bg-green-700 hover:text-white active:scale-90;
+  @apply rounded-[3rem] bg-green-300 m-0 shadow-xl shadow-green-400/40 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] flex items-center justify-center hover:bg-green-600 hover:text-white active:scale-90;
 }
 
 .modal-content {
-  @apply fixed top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#F0F0F0] border-3 border-black rounded-lg shadow-xl shadow-green-500/50 w-[50vw] p-2 z-1000 text-center text-xl;
+  @apply fixed top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#F0F0F0] border-3 border-black rounded-lg shadow-xl shadow-green-300/30 w-[50vw] p-2 z-1000 text-center text-xl;
 }
 
 .modal-overlay {
@@ -29,14 +29,14 @@ body {
 }
 
 .book-online {
-  background-image: url("/src/assets/plumbing2.png");
+  /*background-image: url("/src/assets/plumbing2.png");*/
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 button.services {
-  background-color: rgb(76, 227, 76);
-  background-image: url("/src/assets/plumbing5.png");
+  /*background-color: rgb(76, 227, 76);
+  /*background-image: url("/src/assets/plumbing5.png");*/
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: 10px;
@@ -47,7 +47,7 @@ button.services:active {
 }
 
 button.services {
-  @apply focus:ring-4 focus:ring-green-300 focus:dark:ring-green-800 focus:text-white;
+  @apply focus:ring-4 focus:ring-green-600 focus:dark:ring-green-400;
 }
 
 .modal-close {
@@ -58,7 +58,7 @@ button.services {
 
 /* Styling for Message component */
 .success {
-  background-color: green;
+  @apply bg-green-300;
 }
 
 .failure {
@@ -83,26 +83,25 @@ button.services {
 }
 
 .slot-button {
-  @apply text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm text-center me-2 mb-2;
+  @apply text-white bg-gradient-to-r from-green-300 via-green-600 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-600 font-medium rounded-lg text-sm text-center me-2 mb-2;
 }
 
 .details-button {
-  @apply rounded-[3rem] no-underline m-0 shadow-xl shadow-green-500/50 bg-green-500 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] enabled:hover:bg-green-700 enabled:hover:text-white enabled:active:scale-90 px-2 mx-2;
+  @apply rounded-[3rem] no-underline m-0 shadow-xl shadow-green-300/30 bg-green-300 text-[black-100] font-sans font-extrabold border-[1px] border-[#4BCE4B] enabled:hover:bg-green-600 enabled:hover:text-white enabled:active:scale-90 px-2 mx-2;
 }
 
 .carousel {
   scrollbar-width: thin;
   scroll-behavior: auto;
    }
-   
+
    .contact {
     animation: tilt 2s linear infinite;
   }
-  
-  @keyframes tilt {
-    0%, 100% { transform: translate(-50%, -50%) rotate(-15deg); } 
-    25% { transform: translate(-50%, -50%) rotate(0deg); } 
-    50% { transform: translate(-50%, -50%) rotate(15deg); } 
-    75% { transform: translate(-50%, -50%) rotate(0deg); } 
-  }
 
+  @keyframes tilt {
+    0%, 100% { transform: translate(-50%, -50%) rotate(-15deg); }
+    25% { transform: translate(-50%, -50%) rotate(0deg); }
+    50% { transform: translate(-50%, -50%) rotate(15deg); }
+    75% { transform: translate(-50%, -50%) rotate(0deg); }
+  }

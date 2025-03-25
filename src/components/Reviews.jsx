@@ -29,7 +29,7 @@ const ScrollingReviews = ({ scrollSpeed = 5000 }) => {
   }, [currentIndex]);
 
   return (
-    <div className="flex justify-center items-center w-[270px] h-[150px] bg-green-600 border-green-800 border-4 rounded-lg">
+    <div className="flex justify-center items-center w-[270px] h-[150px] bg-green-600 border-green-400 border-4 rounded-lg">
     <div className="flex justify-center itemes-center overflow-hidden h-[100px] w-[250px] mr-1"  ref={reviewsContainerRef}>
       <div className="reviews-wrapper" style={{ transition: 'transform 0.5s ease-in-out' }}>
         {reviews.map((review, index) => (
@@ -45,6 +45,3 @@ const ScrollingReviews = ({ scrollSpeed = 5000 }) => {
 };
 
 export default ScrollingReviews;
-
-
-

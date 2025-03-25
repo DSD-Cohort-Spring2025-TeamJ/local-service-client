@@ -20,8 +20,8 @@ const DayCard = ({ date, slots, buttonFunction, selectedSlot }) => {
               onClick={() => buttonFunction(date, s.start, s.end)}
               className={`px-4 py-2 rounded-full text-sm shadow-sm transition ${
                 isSelected
-                  ? "bg-green-500 text-white scale-105"
-                  : "bg-green-100 text-green-800 hover:bg-green-200"
+                  ? "bg-green-400 text-white scale-105"
+                  : "bg-green-300 text-white hover:bg-green-600"
               }`}
             >
               {s.start} - {s.end}
