@@ -7,7 +7,7 @@ import Modal from "./components/Modal";
 import Footer from "./components/Footer.jsx";
 import Pipe from "./components/Pipe.jsx";
 import "./css/App.css";
-import FeaturedImageGallery from "./components/Gallery.jsx";
+import Gallery from "./components/Gallery.jsx";
 import { Context } from "./context/Context.jsx";
 import { useLocation } from "react-router-dom";
 import ScrollingReviews from './components/Reviews.jsx'
@@ -55,13 +55,14 @@ export default function App() {
           <ServiceRequest />
         </Modal>
       </div>
-      <div className="flex flex-row justify-center items-center w-full">
+      <div className="flex flex-row items-center content-evenly justify-around">
         <div className="flex flex-col">
-      {location.pathname === "/" && <Contact />} 
-      {location.pathname === "/" && <ScrollingReviews /> } 
-      </div>
-      {location.pathname === "/" && <FeaturedImageGallery />}
-
+          {location.pathname === "/" && <Contact />}
+          {location.pathname === "/" && <ScrollingReviews />}
+        </div>
+        <div>
+          {location.pathname === "/" && <Gallery />}
+        </div>
       </div>
       <Footer />
     </div>
