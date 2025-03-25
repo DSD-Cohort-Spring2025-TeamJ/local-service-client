@@ -58,11 +58,11 @@ button.services {
 
 /* Styling for Message component */
 .success {
-  @apply bg-green-300;
+  @apply rounded-xl py-8 px-1 text-xs font-semibold bg-green-300 text-green-800;
 }
 
 .failure {
-  background-color: red;
+  @apply rounded-xl py-8 px-1 text-xs font-semibold bg-red-300 text-red-800;
 }
 
 :disabled {
@@ -93,15 +93,28 @@ button.services {
 .carousel {
   scrollbar-width: thin;
   scroll-behavior: auto;
-   }
+}
 
-   .contact {
-    animation: tilt 2s linear infinite;
+.contact {
+  animation: tilt 2s linear infinite;
+}
+
+@keyframes tilt {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(-15deg);
   }
 
-  @keyframes tilt {
-    0%, 100% { transform: translate(-50%, -50%) rotate(-15deg); }
-    25% { transform: translate(-50%, -50%) rotate(0deg); }
-    50% { transform: translate(-50%, -50%) rotate(15deg); }
-    75% { transform: translate(-50%, -50%) rotate(0deg); }
+  25% {
+    transform: translate(-50%, -50%) rotate(0deg);
   }
+
+  50% {
+    transform: translate(-50%, -50%) rotate(15deg);
+  }
+
+  75% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
