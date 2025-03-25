@@ -33,7 +33,7 @@ const IssueDescriptionForm = ({ onClassify }) => {
 
   return (
     <div className="flex flex-col gap-5 p-6 bg-gradient-to-br from-green-50 to-white rounded-2xl border border-green-100">
-      <div className="flex items-center gap-2 text-green-700 mb-2">
+      <div className="flex items-center gap-2 text-green-600 mb-2">
         <Sparkles className="w-6 h-6 animate-pulse" />
         <h2 className="text-2xl font-bold">AI Issue Classification</h2>
       </div>
@@ -54,14 +54,14 @@ const IssueDescriptionForm = ({ onClassify }) => {
         type="button"
         disabled={loading || !description}
         onClick={handleClassifyClick}
-        className="bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-white px-5 py-3 rounded-full text-lg transition shadow-md disabled:opacity-40 disabled:cursor-not-allowed"
+        className="bg-gradient-to-r from-green-300 to-green-400 hover:from-green-400 hover:to-green-600 text-white px-5 py-3 rounded-full text-lg transition shadow-md disabled:opacity-40 disabled:cursor-not-allowed"
       >
         {loading ? "🔎 Analyzing..." : "✨ Classify with AI"}
       </button>
 
       {result && (
         <div className="bg-green-100 border border-green-300 rounded-xl p-4 mt-6 shadow-inner animate-fade-in">
-          <h3 className="text-xl font-semibold text-green-800 mb-2">
+          <h3 className="text-xl font-semibold text-green-600 mb-2">
             AI Prediction:
           </h3>
           <p className="text-gray-700 mb-1">

@@ -28,7 +28,7 @@ export default function AppointmentsList({ setAppointment }) {
       );
       return (
         <div className="flex flex-col gap-1">
-          <span className="text-green-800 text-xs font-semibold">
+          <span className="text-green-600 text-xs font-semibold">
             {startDate}
           </span>
           <div className="text-sm text-gray-700">

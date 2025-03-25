@@ -81,7 +81,7 @@ export default function Services() {
     <Button
       className={`services main-button bg-[#4BCE4B] w-[150px] h-[40px] text-black font-sans text-lg flex justify-center align-center leading-none rounded-lg ${
         s.service_id === selectedServiceId
-          ? "ring-4 ring-green-500 scale-105"
+          ? "ring-4 ring-green-300 scale-105"
           : ""
       }`}
       type="button"
@@ -104,7 +104,7 @@ export default function Services() {
       </h1>
       <Pipe className="pipe h-[20px] mt-0" />
       {aiRecommendedServiceId && (
-        <div className="bg-green-100 border border-green-400 text-green-800 rounded-lg px-4 py-2 my-4 text-center">
+        <div className="bg-green-100 border border-green-400 text-green-600 rounded-lg px-4 py-2 my-4 text-center">
           ✅ Recommended service auto-selected:{" "}
           <strong>
             {

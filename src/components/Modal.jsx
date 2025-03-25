@@ -15,7 +15,7 @@ const Modal = ({ isOpen, onClose, children }) => {
       >
         <div className="flex justify-end">
           <Button
-            className="w-8 h-8 bg-green-400 text-gray-800 rounded-full hover:cursor-pointer flex items-center justify-center hover:bg-green-500 transition"
+            className="w-8 h-8 bg-green-300 text-gray-800 rounded-full hover:cursor-pointer flex items-center justify-center hover:bg-green-500 transition"
             text="X"
             onClick={onClose}
           />
