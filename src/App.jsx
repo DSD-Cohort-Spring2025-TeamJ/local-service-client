@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import { useState, useContext } from "react";
 import Dashboard from "./pages/Dashboard";
+import Login from "./Login";
 import ServiceRequest from "./pages/ServiceRequest";
 import Header from "/src/components/Header.jsx";
 import Modal from "./components/Modal";
@@ -49,6 +50,11 @@ export default function App() {
             path="/admin"
             render={(props) => <Dashboard {...props} />}
           />
+          <Route
+            exact
+            path="/login"
+            render={(props) => <Login {...props} />}
+          />
         </Switch>
 
         <Modal isOpen={open} onClose={handleCloseModal}>
@@ -57,10 +63,10 @@ export default function App() {
       </div>
       <div className="flex flex-row justify-center items-center w-full">
         <div className="flex flex-col">
-      {location.pathname === "/" && <Contact />} 
-      {location.pathname === "/" && <ScrollingReviews /> } 
-      </div>
-      {location.pathname === "/" && <FeaturedImageGallery />}
+          {location.pathname === "/" && <Contact />}
+          {location.pathname === "/" && <ScrollingReviews />}
+        </div>
+        {location.pathname === "/" && <FeaturedImageGallery />}
 
       </div>
       <Footer />
