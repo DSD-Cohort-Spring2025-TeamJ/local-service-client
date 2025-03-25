@@ -66,28 +66,26 @@ const Gallery = () => {
   }
 
   return (
-    <div className='container'>
-      <div className='relative h-[500px] w-[600px] grid gap-4 my-5 overflow-hidden'>
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.img
-            variants={variants}
-            animate='animate'
-            initial='initial'
-            exit='exit'
-            src={images[index]}
-            alt='slides of course material'
-            className='absolute rounded-lg object-cover object-center shadow-xl shadow-green-400/40 top-0 left-0'
-            key={images[index]}
-            custom={direction}
-          />
-        </AnimatePresence>
-        <button className='details-button prev-btn' onClick={prevStep}>
-          ◀
-        </button>
-        <button className='details-button next-btn' onClick={nextStep}>
-          ▶
-        </button>
-      </div>
+    <div className='relative h-[500px] w-[600px] grid gap-4 my-5 overflow-hidden'>
+      <AnimatePresence initial={false} custom={direction}>
+        <motion.img
+          variants={variants}
+          animate='animate'
+          initial='initial'
+          exit='exit'
+          src={images[index]}
+          alt='slides of course material'
+          className='absolute rounded-lg object-cover object-center shadow-xl shadow-green-400/40 top-0 left-0'
+          key={images[index]}
+          custom={direction}
+        />
+      </AnimatePresence>
+      <button className='details-button prev-btn' onClick={prevStep}>
+        ◀
+      </button>
+      <button className='details-button next-btn' onClick={nextStep}>
+        ▶
+      </button>
     </div>
   )
 }
