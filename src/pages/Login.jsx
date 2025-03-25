@@ -47,7 +47,7 @@ const Login = () => {
 
   return (
     <div className="bg-white p-6 rounded-xl shadow space-y-6 mt-5 w-[25%] mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Admin Log In</h1>
+      <h1 className="text-2xl font-bold mb-4">Admin Login</h1>
       <form className="grid grid-cols-1 justify-items-center gap-6" onSubmit={handleFakeSubmit}>
         <InputField
           id="email"
@@ -66,7 +66,7 @@ const Login = () => {
           />
           <a href="#" className="text-xs font-semibold text-green-600 hover:text-green-500">Forgot Password?</a>
         </div>
-        <button className="main-button bg-[#4BCE4B] w-[80px] h-[25px] text-[#4B4B4B] font-sans border-[1px] my-3" type="submit">Submit</button>
+        <button className="main-button cursor-pointer bg-[#4BCE4B] w-[80px] h-[25px] text-[#4B4B4B] font-sans border-[1px] my-3" type="submit">Log In</button>
       </form>
     </div>
   );
