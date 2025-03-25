@@ -8,13 +8,14 @@ import { Context } from "../context/Context";
 import Button from "/src/components/Button.jsx";
 
 const ServiceRequest = () => {
-  const { selectedService, appointment, setAppointment } = useContext(Context);
+  const { appointment, setAppointment } = useContext(Context);
   const [message, setMessage] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState({
     date: "",
     start: "",
     end: "",
   });
+  const [serviceError, setServiceError] = useState(false);
   const [slotError, setSlotError] = useState(false);
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
@@ -32,11 +33,8 @@ const ServiceRequest = () => {
     e.preventDefault();
     setSlotError(false);
 
-    if (!selectedService) {
-      setMessage({
-        style: "failure",
-        text: "Please select a service before continuing.",
-      });
+    if (currentStepIndex === 0 && !appointment.service_id) {
+      setServiceError(true);
       return;
     }
 
@@ -90,6 +88,11 @@ const ServiceRequest = () => {
         {currentStepIndex + 1} / {steps.length}
       </div>
       {step}
+      {serviceError && (
+        <p className="text-center text-red-500 mt-3">
+          Please select a service before continuing.
+        </p>
+      )}
       {slotError && (
         <p className="text-center text-red-500 mt-3">
           Please select a date and time before continuing.
