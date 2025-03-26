@@ -112,7 +112,6 @@ button.services {
 }
 
 @keyframes tilt {
-
   0%,
   100% {
     transform: translate(-50%, -50%) rotate(-15deg);

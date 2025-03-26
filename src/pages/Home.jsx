@@ -93,7 +93,7 @@ export function TestimonialCarousel() {
   React.useEffect(() => {
     const interval = setInterval(
       () => setIndex((prev) => (prev + 1) % reviews.length),
-      4000
+      4000,
     );
     return () => clearInterval(interval);
   }, []);
