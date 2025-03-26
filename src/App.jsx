@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import { useState, useContext } from "react";
 import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
 import ServiceRequest from "./pages/ServiceRequest";
 // import Header from "/src/components/Header.jsx";
 import Modal from "./components/Modal";
@@ -52,6 +53,11 @@ export default function App() {
             exact
             path="/admin"
             render={(props) => <Dashboard {...props} />}
+          />
+          <Route
+            exact
+            path="/login"
+            render={(props) => <Login {...props} />}
           />
         </Switch>
 

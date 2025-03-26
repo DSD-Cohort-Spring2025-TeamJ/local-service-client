@@ -25,7 +25,7 @@ export default function StickyHeader({ setOpen }) {
           />
         </div>
 
-        {location.pathname !== "/admin" && (
+        {location.pathname === "/" && ( //location.pathname !== "/admin"
           <div className="flex gap-4 items-center">
             <Button
               text="Book Online "
@@ -35,7 +35,7 @@ export default function StickyHeader({ setOpen }) {
             />
 
             <a
-              href="/admin"
+              href="/login"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-full shadow transition"
