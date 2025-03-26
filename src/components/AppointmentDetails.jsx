@@ -37,14 +37,14 @@ function AppointmentDetails({ appointment, setAppointment }) {
   } = useAppointmentDetailActions(
     appointment,
     setAppointment,
-    showNotification
+    showNotification,
   );
 
   if (!appointment) return <h1>Loading...</h1>;
 
   const { startDate, startTime, endTime } = formatDateRange(
     start_time,
-    end_time
+    end_time,
   );
 
   return (
@@ -126,32 +126,35 @@ function AppointmentDetails({ appointment, setAppointment }) {
             Inventory Check
           </h2>
           {items.length > 0 ? (
-            <table className="w-full table-auto border-collapse text-left">
+            <table className="min-w-[600px] w-full border-collapse text-left">
               <thead>
-                <tr className="bg-gray-100">
-                  <th className="px-4 py-2 font-semibold">Item Name</th>
-                  <th className="px-4 py-2 font-semibold">Qty Needed</th>
-                  <th className="px-4 py-2 font-semibold">Stock</th>
+                <tr className="bg-gray-100 text-sm sm:text-base">
+                  <th className="px-2 sm:px-4 py-2">Item Name</th>
+                  <th className="px-2 sm:px-4 py-2">Qty Needed</th>
+                  <th className="px-2 sm:px-4 py-2">Stock</th>
                   <th className="px-4 py-2 font-semibold">
                     {items.outOfStock ? (
                       "Restock"
                     ) : (
-                      <div className="text-gray-300 text-xs italic text-center">
+                      <span className="text-gray-300 text-xs italic text-center">
                         —
-                      </div>
+                      </span>
                     )}
                   </th>
-                  <th className="px-4 py-2 font-semibold">Unit Price</th>
+                  <th className="px-2 sm:px-4 py-2">Unit Price</th>
                 </tr>
               </thead>
               <tbody>
                 {items.map((item, idx) => (
-                  <tr key={idx} className="hover:bg-gray-50">
-                    <td className="px-4 py-2">{item.item.item_name}</td>
-                    <td className="px-4 py-2">{item.qty_needed}</td>
-                    <td className="px-4 py-2">
+                  <tr
+                    key={idx}
+                    className="hover:bg-gray-50 text-sm sm:text-base"
+                  >
+                    <td className="px-2 sm:px-4 py-2">{item.item.item_name}</td>
+                    <td className="px-2 sm:px-4 py-2">{item.qty_needed}</td>
+                    <td className="px-2 sm:px-4 py-2">
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        className={`inline-block px-2 py-1 rounded-full text-xs ${
                           item.outOfStock
                             ? "bg-red-200 text-red-700"
                             : "bg-green-200 text-green-700"
@@ -162,9 +165,9 @@ function AppointmentDetails({ appointment, setAppointment }) {
                           : `In Stock (${item.item.stock_qty})`}
                       </span>
                     </td>
-                    <td className="px-4 py-2">
+                    <td className="px-2 sm:px-4 py-2">
                       {item.outOfStock ? (
-                        <div className="flex gap-2 items-center">
+                        <span className="flex gap-2 items-center">
                           <input
                             type="number"
                             min="1"
@@ -176,28 +179,28 @@ function AppointmentDetails({ appointment, setAppointment }) {
                                 [item.item.item_id]: e.target.value,
                               })
                             }
-                            className="w-20 border p-1 rounded-md"
+                            className="w-16 border p-1 rounded-md text-xs"
                           />
                           <button
                             onClick={() =>
                               handleRestock(
                                 item.item.item_id,
                                 item.item.stock_qty,
-                                item
+                                item,
                               )
                             }
-                            className="text-blue-600 underline text-xs hover:text-blue-800 hover:cursor-pointer"
+                            className="text-blue-600 underline text-xs hover:text-blue-800"
                           >
-                            Order now
+                            Order
                           </button>
-                        </div>
+                        </span>
                       ) : (
-                        <div className="text-gray-300 text-xs italic text-center">
-                          —
-                        </div>
+                        <span className="text-gray-400 text-xs">—</span>
                       )}
                     </td>
-                    <td className="px-4 py-2">${item.item.unit_price}</td>
+                    <td className="px-2 sm:px-4 py-2">
+                      ${item.item.unit_price}
+                    </td>
                   </tr>
                 ))}
               </tbody>

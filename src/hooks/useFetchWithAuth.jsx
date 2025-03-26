@@ -13,7 +13,7 @@ export function useFetchWithAuth() {
 
       return fetch(url, { ...options, headers });
     },
-    [token]
+    [token],
   );
 
   return { fetchWithAuth };

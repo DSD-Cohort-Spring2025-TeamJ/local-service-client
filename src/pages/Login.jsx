@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Context } from "../context/Context";
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const Login = () => {
@@ -42,13 +42,16 @@ const Login = () => {
 
   const handleFakeSubmit = (e) => {
     e.preventDefault();
-    history.push("/admin")
-  }
+    history.push("/admin");
+  };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow space-y-6 mt-10 w-[25%] mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Admin Login</h1>
-      <form className="grid grid-cols-1 justify-items-center gap-6" onSubmit={handleFakeSubmit}>
+    <div className="bg-white p-6 rounded-xl shadow space-y-6 mt-10 w-full max-w-[400px] mx-auto px-4">
+      <h1 className="text-2xl font-bold mb-4 text-center">Admin Login</h1>
+      <form
+        className="grid grid-cols-1 justify-items-center gap-6 w-full"
+        onSubmit={handleFakeSubmit}
+      >
         <InputField
           id="email"
           label="Email"
@@ -57,7 +60,7 @@ const Login = () => {
           onChange={handleChange}
           placeholder="Enter your email"
         />
-        <div>
+        <div className="w-full">
           <InputField
             id="password"
             label="Password"
@@ -66,9 +69,19 @@ const Login = () => {
             onChange={handleChange}
             placeholder="Enter your password"
           />
-          <a href="#" className="text-xs font-semibold text-green-600 hover:text-green-500">Forgot Password?</a>
+          <a
+            href="#"
+            className="text-xs font-semibold text-green-600 hover:text-green-500 block mt-1 text-right"
+          >
+            Forgot Password?
+          </a>
         </div>
-        <button className="main-button cursor-pointer bg-[#4BCE4B] w-[80px] h-[25px] text-[#4B4B4B] font-sans border-[1px] my-3" type="submit">Log In</button>
+        <button
+          className="bg-[#4BCE4B] w-full h-10 text-[#4B4B4B] font-semibold rounded-md hover:bg-green-500 transition"
+          type="submit"
+        >
+          Log In
+        </button>
       </form>
     </div>
   );
@@ -82,7 +95,7 @@ const InputField = ({
   placeholder,
   type = "text",
 }) => (
-  <div>
+  <div className="w-full">
     <label htmlFor={id} className="text-gray-700 font-medium mb-1 block">
       {label}
     </label>
