@@ -1,46 +1,93 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-export default function FeaturedImageGallery() {
-  const data = [
-    {
-      imgelink: "./plumbing3.png",
-    },
-    {
-      imgelink: "./plumbing4.png",
-    },
-    {
-      imgelink: "./plumbing6.png",
-    },
-    {
-      imgelink: "./plumbing7.png",
-    },
-    {
-      imgelink: "./plumbing8.png",
-    },
-  ];
+const images = [
+  "./plumbing3.png",
+  "./plumbing4.png",
+  "./plumbing6.png",
+  "./plumbing7.png",
+  "./plumbing8.png",
+];
 
-  const [active, setActive] = React.useState("./plumbing3.png");
-  return (
-    <div className="grid gap-4 justify-center items-center m-5 ">
-      <div>
-        <img
-          className="h-[300px] w-[690px] rounded-lg object-cover object-center shadow-xl shadow-green-400/40"
-          src={active}
-          alt=""
-        />
-      </div>
-      <div className="grid grid-cols-5 gap-2 w-[700px] ">
-        {data.map(({ imgelink }, index) => (
-          <div key={index}>
-            <img
-              onClick={() => setActive(imgelink)}
-              src={imgelink}
-              className="object-cover object-center h-20 max-w-full rounded-lg cursor-pointer shadow-xl shadow-green-400/40"
-              alt="gallery-image"
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+const variants = {
+  initial: direction => {
+    return {
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    }
+  },
+  animate: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      x: { type: 'spring', stiffness: 300, damping: 30 },
+      opacity: { duration: 0.2 },
+    },
+  },
+  exit: direction => {
+    return {
+      x: direction > 0 ? -1000 : 1000,
+      opacity: 0,
+      transition: {
+        x: { type: 'spring', stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 },
+      },
+    }
+  },
 }
+
+const Gallery = () => {
+  const [index, setIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      nextStep()
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, [nextStep]);
+
+  function nextStep() {
+    setDirection(1)
+    if (index === images.length - 1) {
+      setIndex(0)
+      return
+    }
+    setIndex(index + 1)
+  }
+
+  function prevStep() {
+    setDirection(-1)
+    if (index === 0) {
+      setIndex(images.length - 1)
+      return
+    }
+    setIndex(index - 1)
+  }
+
+  return (
+    <div className='relative h-[500px] w-[600px] grid gap-4 my-5 overflow-hidden'>
+      <AnimatePresence initial={false} custom={direction}>
+        <motion.img
+          variants={variants}
+          animate='animate'
+          initial='initial'
+          exit='exit'
+          src={images[index]}
+          alt='slides of course material'
+          className='absolute rounded-lg object-cover object-center shadow-xl shadow-green-400/40 top-0 left-0'
+          key={images[index]}
+          custom={direction}
+        />
+      </AnimatePresence>
+      <button className='details-button prev-btn' onClick={prevStep}>
+        ◀
+      </button>
+      <button className='details-button next-btn' onClick={nextStep}>
+        ▶
+      </button>
+    </div>
+  )
+}
+
+export default Gallery
