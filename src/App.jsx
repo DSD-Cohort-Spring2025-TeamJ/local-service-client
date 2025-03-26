@@ -7,7 +7,7 @@ import Modal from "./components/Modal";
 import Footer from "./components/Footer.jsx";
 import Pipe from "./components/Pipe.jsx";
 import "./css/App.css";
-import FeaturedImageGallery from "./components/Gallery.jsx";
+import Gallery from "./components/Gallery.jsx";
 import { Context } from "./context/Context.jsx";
 import { useLocation } from "react-router-dom";
 // import ScrollingReviews from "./components/Reviews.jsx";
@@ -66,7 +66,7 @@ export default function App() {
       {/* </div> */}
       <div className="flex flex-col items-center w-full">
         {location.pathname === "/" && <TestimonialCarousel />}
-        {location.pathname === "/" && <FeaturedImageGallery />}
+        {location.pathname === "/" && <Gallery />}
       </div>
       {/* </div> */}
       <Footer />

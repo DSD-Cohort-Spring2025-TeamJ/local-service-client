@@ -99,6 +99,18 @@ button.services {
   animation: tilt 2s linear infinite;
 }
 
+.prev-btn {
+  position: absolute;
+  top: 50%;
+  left: 1%;
+}
+
+.next-btn {
+  position: absolute;
+  top: 50%;
+  right: 1%;
+}
+
 @keyframes tilt {
 
   0%,
