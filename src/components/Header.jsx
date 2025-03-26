@@ -12,25 +12,25 @@ export default function Header({ setOpen }) {
         <Logo />
         <img src="./golden-plunger.png" className="w-[85px] -ml-30" />
 
-        {
-          location.pathname === "/login" || location.pathname === "/admin" ? null : (
-            <>
-              <Button
-                className="main-button book-online w-[200px] h-[75px] text-2xl p-10 "
-                text="BOOK ONLINE"
-                onClick={() => setOpen(true)}
-              />
+        {location.pathname === "/login" ||
+        location.pathname === "/admin" ? null : (
+          <>
+            <Button
+              className="main-button book-online w-[200px] h-[75px] text-2xl p-10 "
+              text="BOOK ONLINE"
+              onClick={() => setOpen(true)}
+            />
 
-              <a
-                href="/login"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="main-button bg-gray-300 rounded-[2rem] w-[90px] h-[30px] p-3 text-lg flex items-center text-center justify-center"
-              >
-                ADMIN
-              </a>
-            </>
-          )}
+            <a
+              href="/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="main-button bg-gray-300 rounded-[2rem] w-[90px] h-[30px] p-3 text-lg flex items-center text-center justify-center"
+            >
+              ADMIN
+            </a>
+          </>
+        )}
       </div>
     </div>
   );

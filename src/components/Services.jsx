@@ -11,7 +11,7 @@ export default function Services() {
 
   useEffect(() => {
     fetch(
-      "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services"
+      "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services",
     )
       .then((r) => r.json())
       .then((data) => setServices(data));
@@ -25,7 +25,7 @@ export default function Services() {
     }));
 
     fetch(
-      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${id}/timeSlots`
+      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${id}/timeSlots`,
     )
       .then((r) => r.json())
       .then((data) => {
@@ -70,7 +70,7 @@ export default function Services() {
     if (matchedService) {
       handleSelectService(
         matchedService.service_id,
-        matchedService.estimated_time
+        matchedService.estimated_time,
       );
       setAiRecommendedServiceId(matchedService.service_id);
     }

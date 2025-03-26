@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
   "./plumbing3.png",
@@ -10,84 +11,78 @@ const images = [
 ];
 
 const variants = {
-  initial: direction => {
-    return {
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-    }
-  },
+  initial: (direction) => ({
+    x: direction > 0 ? 1000 : -1000,
+    opacity: 0,
+  }),
   animate: {
     x: 0,
     opacity: 1,
     transition: {
-      x: { type: 'spring', stiffness: 300, damping: 30 },
+      x: { type: "spring", stiffness: 300, damping: 30 },
       opacity: { duration: 0.2 },
     },
   },
-  exit: direction => {
-    return {
-      x: direction > 0 ? -1000 : 1000,
-      opacity: 0,
-      transition: {
-        x: { type: 'spring', stiffness: 300, damping: 30 },
-        opacity: { duration: 0.2 },
-      },
-    }
-  },
-}
+  exit: (direction) => ({
+    x: direction > 0 ? -1000 : 1000,
+    opacity: 0,
+    transition: {
+      x: { type: "spring", stiffness: 300, damping: 30 },
+      opacity: { duration: 0.2 },
+    },
+  }),
+};
 
 const Gallery = () => {
-  const [index, setIndex] = useState(0)
-  const [direction, setDirection] = useState(0)
+  const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      nextStep()
+      nextStep();
     }, 10000);
     return () => clearTimeout(timer);
-  }, [nextStep]);
+  }, [index]);
 
-  function nextStep() {
-    setDirection(1)
-    if (index === images.length - 1) {
-      setIndex(0)
-      return
-    }
-    setIndex(index + 1)
-  }
+  const nextStep = () => {
+    setDirection(1);
+    setIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
 
-  function prevStep() {
-    setDirection(-1)
-    if (index === 0) {
-      setIndex(images.length - 1)
-      return
-    }
-    setIndex(index - 1)
-  }
+  const prevStep = () => {
+    setDirection(-1);
+    setIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
 
   return (
-    <div className='relative h-[500px] w-[600px] grid gap-4 my-5 overflow-hidden'>
+    <div className="relative w-full max-w-[800px] aspect-[4/3] mx-auto overflow-hidden rounded-lg shadow-lg">
       <AnimatePresence initial={false} custom={direction}>
         <motion.img
-          variants={variants}
-          animate='animate'
-          initial='initial'
-          exit='exit'
-          src={images[index]}
-          alt='slides of course material'
-          className='absolute rounded-lg object-cover object-center shadow-xl shadow-green-400/40 top-0 left-0'
           key={images[index]}
+          src={images[index]}
+          alt="slides of course material"
+          variants={variants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
           custom={direction}
+          className="absolute top-0 left-0 w-full h-full object-cover"
         />
       </AnimatePresence>
-      <button className='details-button prev-btn' onClick={prevStep}>
-        ◀
+      <button
+        className="hover:cursor-pointer absolute top-1/2 left-4 -translate-y-1/2 bg-white/70 p-2 rounded-full hover:bg-white transition"
+        onClick={prevStep}
+      >
+        <ChevronLeft size={24} />
       </button>
-      <button className='details-button next-btn' onClick={nextStep}>
-        ▶
+      <button
+        className="hover:cursor-pointer absolute top-1/2 right-4 -translate-y-1/2 bg-white/70 p-2 rounded-full hover:bg-white transition"
+        onClick={nextStep}
+      >
+        <ChevronRight size={24} />
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Gallery
+export default Gallery;

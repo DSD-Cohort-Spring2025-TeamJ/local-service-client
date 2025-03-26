@@ -17,7 +17,7 @@ export default function CalendarEvents() {
     const fetchEvents = async () => {
       try {
         const res = await fetchWithAuth(
-          "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/calendar/events"
+          "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/calendar/events",
         );
         if (!res.ok) throw new Error("Failed to fetch events.");
 

@@ -54,11 +54,7 @@ export default function App() {
             path="/admin"
             render={(props) => <Dashboard {...props} />}
           />
-          <Route
-            exact
-            path="/login"
-            render={(props) => <Login {...props} />}
-          />
+          <Route exact path="/login" render={(props) => <Login {...props} />} />
         </Switch>
 
         <Modal isOpen={open} onClose={handleCloseModal}>
