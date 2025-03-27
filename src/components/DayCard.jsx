@@ -18,13 +18,14 @@ const DayCard = ({ date, slots, buttonFunction, selectedSlot }) => {
               key={i}
               type="button"
               onClick={() => buttonFunction(date, s.start, s.end)}
-              className={`px-4 py-2 rounded-full text-sm shadow-sm hover:cursor-pointer transition ${
+              className={`px-4 py-2 rounded-full text-sm font-medium shadow-sm hover:cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2
+              ${
                 isSelected
-                  ? "bg-green-400 ring-2 ring-green-900 text-black scale-105"
-                  : "bg-green-300 text-black hover:bg-green-400"
+                  ? "bg-emerald-600 text-white ring-black scale-105"
+                  : "bg-neutral-100 text-gray-800 hover:bg-neutral-200"
               }`}
             >
-              {s.start} - {s.end}
+              {s.start} – {s.end}
             </button>
           );
         })}
@@ -39,7 +40,7 @@ DayCard.propTypes = {
     PropTypes.shape({
       start: PropTypes.string.isRequired,
       end: PropTypes.string.isRequired,
-    }),
+    })
   ).isRequired,
   buttonFunction: PropTypes.func.isRequired,
   selectedSlot: PropTypes.shape({
