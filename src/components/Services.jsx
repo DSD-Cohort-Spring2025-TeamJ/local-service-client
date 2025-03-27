@@ -11,7 +11,7 @@ export default function Services() {
 
   useEffect(() => {
     fetch(
-      "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services",
+      "https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services"
     )
       .then((r) => r.json())
       .then((data) => setServices(data));
@@ -25,7 +25,7 @@ export default function Services() {
     }));
 
     fetch(
-      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${id}/timeSlots`,
+      `https://booking-app.us-east-1.elasticbeanstalk.com/service-provider/api/v1/services/${id}/timeSlots`
     )
       .then((r) => r.json())
       .then((data) => {
@@ -70,7 +70,7 @@ export default function Services() {
     if (matchedService) {
       handleSelectService(
         matchedService.service_id,
-        matchedService.estimated_time,
+        matchedService.estimated_time
       );
       setAiRecommendedServiceId(matchedService.service_id);
     }
@@ -81,17 +81,16 @@ export default function Services() {
 
     return (
       <Button
-        className={`services main-button w-[150px] h-[40px] text-lg flex justify-center items-center leading-none rounded-lg transition-all duration-150
-          ${
-            isSelected
-              ? "bg-green-900 text-black ring-2 ring-green-900 scale-105"
-              : "bg-[#B9FBC0] text-green-700"
-          }`}
-        type="button"
         key={s.service_id}
-        onClick={() => handleSelectService(s.service_id, s.estimated_time)}
         id={s.service_id}
         text={s.service_name}
+        onClick={() => handleSelectService(s.service_id, s.estimated_time)}
+        className={`w-[160px] h-[60px] px-4 py-2 m-2 rounded-xl text-base font-medium transition-all duration-200 focus:outline-none focus:ring-2
+          ${
+            isSelected
+              ? "bg-emerald-600 text-white ring-emerald-600 scale-105 shadow-md"
+              : "bg-neutral-200 text-gray-800 hover:bg-neutral-300"
+          }`}
       />
     );
   });
