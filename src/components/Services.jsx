@@ -76,20 +76,25 @@ export default function Services() {
     }
   };
 
-  const renderServiceButtons = services.map((s) => (
-    <Button
-      className={`services main-button bg-[#4BCE4B] w-[150px] h-[40px] text-black font-sans text-lg flex justify-center align-center leading-none rounded-lg ${
-        s.service_id === selectedServiceId
-          ? "ring-4 ring-green-300 scale-105"
-          : ""
-      }`}
-      type="button"
-      key={s.service_id}
-      onClick={() => handleSelectService(s.service_id, s.estimated_time)}
-      id={s.service_id}
-      text={s.service_name}
-    />
-  ));
+  const renderServiceButtons = services.map((s) => {
+    const isSelected = s.service_id === selectedServiceId;
+
+    return (
+      <Button
+        className={`services main-button w-[150px] h-[40px] text-lg flex justify-center items-center leading-none rounded-lg transition-all duration-150
+          ${
+            isSelected
+              ? "bg-green-900 text-black ring-2 ring-green-900 scale-105"
+              : "bg-[#B9FBC0] text-green-700"
+          }`}
+        type="button"
+        key={s.service_id}
+        onClick={() => handleSelectService(s.service_id, s.estimated_time)}
+        id={s.service_id}
+        text={s.service_name}
+      />
+    );
+  });
 
   return (
     <>
