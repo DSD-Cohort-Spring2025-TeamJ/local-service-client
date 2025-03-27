@@ -19,7 +19,7 @@ const IssueDescriptionForm = ({ onClassify }) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ issueDescription: description }),
-        },
+        }
       );
       const data = await res.json();
       setResult(data);
@@ -35,12 +35,11 @@ const IssueDescriptionForm = ({ onClassify }) => {
     <div className="flex flex-col gap-5 p-6 bg-gradient-to-br from-green-50 to-white rounded-2xl border border-green-100">
       <div className="flex items-center gap-2 text-green-600 mb-2">
         <Sparkles className="w-6 h-6 animate-pulse" />
-        <h2 className="text-2xl font-bold">
-          Let AI Understand Your Plumbing Issue
-        </h2>
+        <h2 className="text-2xl font-bold">AI Issue Classification</h2>
       </div>
       <p className="text-gray-600 mb-2">
-        Describe your issue and let our smart assistant recommend the right fix.
+        Describe your plumbing issue below, and let our AI suggest the best
+        service category and estimated time.
       </p>
       <textarea
         value={description}
@@ -55,9 +54,9 @@ const IssueDescriptionForm = ({ onClassify }) => {
         type="button"
         disabled={loading || !description}
         onClick={handleClassifyClick}
-        className="bg-gradient-to-r from-green-300 to-green-400 hover:from-green-400 hover:to-green-600 text-white px-5 py-3 rounded-full text-lg transition shadow-md disabled:opacity-40 disabled:cursor-not-allowed"
+        className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3 rounded-full text-lg transition shadow-md disabled:opacity-40 disabled:cursor-not-allowed"
       >
-        {loading ? "🔎 Analyzing..." : "✨ Find My Service"}
+        {loading ? "🔎 Analyzing..." : "✨ Classify with AI"}
       </button>
 
       {result && (
