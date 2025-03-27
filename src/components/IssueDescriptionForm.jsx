@@ -19,7 +19,7 @@ const IssueDescriptionForm = ({ onClassify }) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ issueDescription: description }),
-        },
+        }
       );
       const data = await res.json();
       setResult(data);
@@ -55,7 +55,7 @@ const IssueDescriptionForm = ({ onClassify }) => {
         type="button"
         disabled={loading || !description}
         onClick={handleClassifyClick}
-        className="bg-gradient-to-r from-green-300 to-green-400 hover:from-green-400 hover:to-green-600 text-white px-5 py-3 rounded-full text-lg transition shadow-md disabled:opacity-40 disabled:cursor-not-allowed"
+        className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3 rounded-full text-lg transition shadow-md disabled:opacity-40 disabled:cursor-not-allowed"
       >
         {loading ? "🔎 Analyzing..." : "✨ Find My Service"}
       </button>
