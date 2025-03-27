@@ -19,11 +19,11 @@ const DayCard = ({ date, slots, buttonFunction, selectedSlot }) => {
               type="button"
               onClick={() => buttonFunction(date, s.start, s.end)}
               className={`px-4 py-2 rounded-full text-sm font-medium shadow-sm hover:cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2
-    ${
-      isSelected
-        ? "bg-emerald-600 text-white ring-black scale-105"
-        : "bg-neutral-100 text-gray-800 hover:bg-neutral-200"
-    }`}
+              ${
+                isSelected
+                  ? "bg-emerald-600 text-white ring-black scale-105"
+                  : "bg-neutral-100 text-gray-800 hover:bg-neutral-200"
+              }`}
             >
               {s.start} – {s.end}
             </button>
