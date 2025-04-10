@@ -40,8 +40,10 @@ export default function App() {
     });
   };
 
+  const bgColorHome = 'amber-50'
   return (
-    <div className="flex flex-col justify-between min-h-screen bg-green-50">
+    <div className= {`flex flex-col justify-between min-h-screen bg-${bgColorHome}`}
+    style={{ backgroundColor: bgColorHome }}>
       <div className="">
         {/* <Header setOpen={setOpen} /> */}
         <StickyHeader setOpen={setOpen} />
