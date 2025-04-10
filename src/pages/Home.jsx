@@ -7,9 +7,13 @@ import { FaUserShield, FaWrench } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { useThemeStore} from "../context/ThemeStore.jsx";
 
+
+
 export default function StickyHeader({ setOpen }) {
   const location = useLocation();
-
+  const changeBgColor = useThemeStore((state) => state.changeBgColor);
+  const newColor = useThemeStore((state) => state.bgColor);
+  console.log("new color: " + newColor);
   return (
     <motion.header
       className="fixed top-0 w-full z-50 backdrop-blur-md bg-white/70 shadow-md"
@@ -24,6 +28,15 @@ export default function StickyHeader({ setOpen }) {
             alt="Pragmatic Plumber"
             className="w-auto h-14"
           />
+          <Button  
+          text = "rose"
+          onClick = {() => changeBgColor("rose-100")}/>
+          <Button  
+          text = "green"
+          onClick = {() => changeBgColor("green-100")}/>
+          <Button  
+          text = "amber"
+          onClick = {() => changeBgColor("amber-50")}/>
         </div>
 
         {location.pathname === "/" && ( //location.pathname !== "/admin"
@@ -90,6 +103,8 @@ export function HeroSection({ setOpen }) {
 
 export function TestimonialCarousel() {
   const [index, setIndex] = React.useState(0);
+  const bgColorHome = useThemeStore((state) => state.bgColor);
+  console.log("bgHomeColor in testimonial " + bgColorHome);
 
   React.useEffect(() => {
     const interval = setInterval(
@@ -99,7 +114,6 @@ export function TestimonialCarousel() {
     return () => clearInterval(interval);
   }, []);
 
-  const bgColorHome = useThemeStore((state) => state.bgColor);
   return (
     <div className= {`flex justify-center items-center py-10 bg-${bgColorHome}`}>
       <div className="relative w-[350px] h-[160px] bg-white rounded-xl shadow-xl p-6">

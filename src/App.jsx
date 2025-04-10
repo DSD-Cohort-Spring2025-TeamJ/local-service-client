@@ -42,6 +42,7 @@ export default function App() {
   };
 
   const bgColorApp = useThemeStore((state) => state.bgColor);
+  console.log("bgAppColor in app " + bgColorApp);
   return (
     <div className= {`flex flex-col justify-between min-h-screen bg-${bgColorApp}`}>
       <div className="">
