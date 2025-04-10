@@ -10,6 +10,7 @@ import Pipe from "./components/Pipe.jsx";
 import "./css/App.css";
 import Gallery from "./components/Gallery.jsx";
 import { Context } from "./context/Context.jsx";
+import { useThemeStore} from "./context/ThemeStore.jsx";
 import { useLocation } from "react-router-dom";
 // import ScrollingReviews from "./components/Reviews.jsx";
 // import Contact from "./components/Contact.jsx";
@@ -40,10 +41,9 @@ export default function App() {
     });
   };
 
-  const bgColorHome = 'amber-50'
+  const bgColorApp = useThemeStore((state) => state.bgColor);
   return (
-    <div className= {`flex flex-col justify-between min-h-screen bg-${bgColorHome}`}
-    style={{ backgroundColor: bgColorHome }}>
+    <div className= {`flex flex-col justify-between min-h-screen bg-${bgColorApp}`}>
       <div className="">
         {/* <Header setOpen={setOpen} /> */}
         <StickyHeader setOpen={setOpen} />

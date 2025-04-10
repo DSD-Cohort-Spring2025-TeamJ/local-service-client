@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Button from "/src/components/Button.jsx";
 import { FaUserShield, FaWrench } from "react-icons/fa";
 import PropTypes from "prop-types";
+import { useThemeStore} from "../context/ThemeStore.jsx";
 
 export default function StickyHeader({ setOpen }) {
   const location = useLocation();
@@ -98,8 +99,9 @@ export function TestimonialCarousel() {
     return () => clearInterval(interval);
   }, []);
 
+  const bgColorHome = useThemeStore((state) => state.bgColor);
   return (
-    <div className="flex justify-center items-center py-10 bg-green-50">
+    <div className= {`flex justify-center items-center py-10 bg-${bgColorHome}`}>
       <div className="relative w-[350px] h-[160px] bg-white rounded-xl shadow-xl p-6">
         <AnimatePresence mode="wait">
           <motion.div
